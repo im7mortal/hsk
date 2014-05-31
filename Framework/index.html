@@ -109,6 +109,25 @@
 <!--дурацкий костыль от вспышек-->
 <div id="f" style="height: 1000px; width: 500px;"></div>
 
+<button onclick="vote(this)">Нажми, чтобы голосовать</button>
+<script>
+    function vote(outputElem) {
+        var xhr = new XMLHttpRequest(); // (1)
+
+        xhr.open('GET', '/lol', true); // (2)
+
+        xhr.onreadystatechange = function() {  // (3)
+            if (xhr.readyState != 4) return; // (3.1)
+
+            outputElem.innerHTML = xhr.responseText; // (3.2)
+        };
+
+        outputElem.innerHTML = '...';
+        xhr.send(null); // (4)
+    }
+
+</script>
+
 <div class="container">
 
     <div class="tab-control" data-role="tab-control">
@@ -116,9 +135,9 @@
 
             <li class="active"><a href="#_page_1">ТЕСТ</a></li>
             <li><a href="#_page_2">СЛОВАРЬ</a></li>
-            <li class="place-right"><a href="#_page_3"><i class="icon-cog"></i></a></li>
-            <li class="place-right"><a href="#_page_4"><i class="icon-heart"></i></a></li>
-            <li class="place-right"><a href="#_page_5"><i class="icon-book"></i></a></li>
+            <li class="place-right"><a href="#_page_5"><i class="icon-heart"></i></a></li>
+            <li class="place-right"><a href="#_page_4"><i class="icon-cog"></i></a></li>
+            <li class="place-right"><a href="#_page_3"><i class="icon-book"></i></a></li>
         </ul>
 
 
@@ -132,16 +151,16 @@
                 <div ng-include="'partials/summary.html'"></div>
             </div>
 
-            <div class="frame" id="_page_3" ng-controller="settingsCtrl">
+            <div class="frame" id="_page_3">
+                <!--<div ng-include="'partials/settings.html'"></div>-->
+            </div>
+
+            <div class="frame" id="_page_4">
                 <div ng-include="'partials/settings.html'"></div>
             </div>
 
-            <div class="frame" id="_page_4" ng-controller="settingsCtrl">
-                <div ng-include="'partials/settings.html'"></div>
-            </div>
-
-            <div class="frame" id="_page_5" ng-controller="loveCtrl">
-                {{love}}
+            <div class="frame" id="_page_5">
+                <div ng-include="'partials/love.html'"></div>
             </div>
 
 

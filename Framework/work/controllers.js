@@ -246,6 +246,7 @@ tryHskControllers.controller('testCtrl',
 
 tryHskControllers.controller('loveCtrl', function ($scope,language) {
 
+
 });
 
 tryHskControllers.controller('settingsCtrl', function ($scope, language) {

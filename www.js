@@ -10,8 +10,13 @@ app.use(logfmt.requestLogger());
 app.get('/', function(req, res) {
     res.end(index);
 });
+app.get('/lol', function(req, res) {
+    console.log(req);
+    res.end('Ваш голос принят: ' + new Date());
+});
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {
     console.log("Listening on " + port);
 });
+
