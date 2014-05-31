@@ -1,3 +1,4 @@
+"use strict";
 var express = require("express");
 var logfmt = require("logfmt");
 var fs = require('fs');
@@ -11,7 +12,8 @@ app.get('/', function(req, res) {
     res.end(index);
 });
 app.get('/lol', function(req, res) {
-    console.log(req);
+//    console.log(req);
+    setTimeout(function(){}, 5000);
     res.end('Ваш голос принят: ' + new Date());
 });
 

@@ -11,24 +11,12 @@ tryHskServices.factory('Word', ['$resource',
         });
     }]);
 
-
-
-tryHskServices.factory('valueBoolean', function() {
-      return {
-          hsk1: true,
-          hsk2: true,
-          hsk3: true,
-          verb: true,
-          numeral: true,
-          adjective: true,
-          pronoun: true,
-          place: true,
-          relate: true,
-          noun: true,
-          otherPart: true,
-          otherThemes: true
-      }
-});
+tryHskServices.factory('valueBoolean', ['$resource',
+    function($resource){
+        return $resource('settings.json', {}, {
+            query: {method:'GET',isArray:true}
+        });
+    }]);
 
 
 tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
@@ -36,8 +24,9 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
     var getSortWords = function() {
         var deferred = $q.defer();
         var words = Word.query();
-
+        var value =valueBoolean.query();
         deferred.resolve(  words.$promise.then(
+            value.$promise.then(
             function () {
 
                 function filterOfHskLevel(words) {
@@ -47,17 +36,17 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
                         hsk = words[i].hsk.split('-');
                         switch (hsk[0]) {
                             case '1' :
-                                if (valueBoolean.hsk1) {
+                                if ( value.bool.hsk1) {
                                     result.push(words[i].id)
                                 }
                                 break;
                             case '2' :
-                                if (valueBoolean.hsk2) {
+                                if ( value.bool.hsk2) {
                                     result.push(words[i].id)
                                 }
                                 break;
                             case '3' :
-                                if (valueBoolean.hsk3) {
+                                if ( value.bool.hsk3) {
                                     result.push(words[i].id)
                                 }
                                 break;
@@ -73,31 +62,31 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
 
                     var result = [];
                     for (var i = 0; i < array.length; i++) {
-                        if (valueBoolean.verb) {
+                        if ( value.bool.verb) {
                             if (words[array[i]].verb) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (valueBoolean.adjective) {
+                        if ( value.bool.adjective) {
                             if (words[array[i]].adjective) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (valueBoolean.noun) {
+                        if ( value.bool.noun) {
                             if (words[array[i]].noun) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (valueBoolean.numeral) {
+                        if ( value.bool.numeral) {
                             if (words[array[i]].number) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (valueBoolean.otherPart) {
+                        if ( value.bool.otherPart) {
                             if(!words[array[i]].numeral && !words[array[i]].noun && !words[array[i]].verb && !words[array[i]].adjective) {
                                 result.push(array[i])
                             }
@@ -109,19 +98,19 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
                 function filterOfThemes(array) {
                     var result = [];
                     for (var i = 0; i < array.length; i++) {
-                        if (valueBoolean.place) {
+                        if ( value.bool.place) {
                             if (words[array[i]].place) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (valueBoolean.relate) {
+                        if ( value.bool.relate) {
                             if (words[array[i]].relationship) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (valueBoolean.otherThemes) {
+                        if ( value.bool.otherThemes) {
                             if(!words[array[i]].relationship && !words[array[i]].place) {
                                 result.push(array[i])
                             }
@@ -139,7 +128,7 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
                 }
 
                 return createFilterWords(filterOfThemes(filterOfPartOfSpeach(filterOfHskLevel(words)))) ;
-            }));
+            })));
 
 
         return deferred.promise;
