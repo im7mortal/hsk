@@ -14,7 +14,8 @@ tryHskServices.factory('Word', ['$resource',
 tryHskServices.factory('valueBoolean', ['$resource',
     function($resource){
         return $resource('settings.json', {}, {
-            query: {method:'GET',isArray:true}
+            query: {method:'GET',isArray:true},
+            getVal: {method:'GET',isArray:true}
         });
     }]);
 
@@ -28,7 +29,6 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
         deferred.resolve(  words.$promise.then(
             value.$promise.then(
             function () {
-
                 function filterOfHskLevel(words) {
                     var result = [];
                     for (var i = 0; i < words.length; i++) {
