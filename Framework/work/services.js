@@ -11,13 +11,32 @@ tryHskServices.factory('Word', ['$resource',
         });
     }]);
 
-tryHskServices.factory('valueBoolean', ['$resource',
-    function($resource){
-        return $resource('settings.json', {}, {
-            query: {method:'GET',isArray:true},
-            getVal: {method:'GET',isArray:true}
-        });
-    }]);
+//tryHskServices.factory('valueBoolean', ['$resource',
+//    function($resource){
+//        return $resource('settings.json', {}, {
+//            query: {method:'GET',isArray:true}
+//        });
+//    }]);
+
+tryHskServices.factory('valueBoolean', function() {
+    return {
+        bool: {
+            hsk1: true,
+            hsk2: true,
+            hsk3: true,
+            verb: true,
+            numeral: true,
+            adjective: true,
+            pronoun: true,
+            place: true,
+            relate: true,
+            noun: true,
+            otherPart: true,
+            otherThemes: true
+        }
+
+    }
+});
 
 
 tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
@@ -25,10 +44,10 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
     var getSortWords = function() {
         var deferred = $q.defer();
         var words = Word.query();
-        var value =valueBoolean.query();
+        var value =valueBoolean;
         deferred.resolve(  words.$promise.then(
-            value.$promise.then(
             function () {
+
                 function filterOfHskLevel(words) {
                     var result = [];
                     for (var i = 0; i < words.length; i++) {
@@ -126,9 +145,10 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
                     }
                     return result;
                 }
-
+                console.log('++++++++++++++++++');
+                console.log(value);
                 return createFilterWords(filterOfThemes(filterOfPartOfSpeach(filterOfHskLevel(words)))) ;
-            })));
+            }));
 
 
         return deferred.promise;
@@ -195,7 +215,7 @@ tryHskServices.factory('language', function () {
         ],
         select = selections[2],
         getLanguage = function () {
-            console.log(select);
+//            console.log(select);
             var language = {};
             switch (select.name) {
                 case 'russian' :
@@ -338,6 +358,43 @@ tryHskServices.factory('StateManager', function($rootScope, $log) {
 
             if (stateContainer.length === 0) {
                 $rootScope.globalLoader = false;
+                $log.log('StateContainer is empty.');
+            }
+
+        },
+
+        getByName: function (service) {
+            return _.include(stateContainer, service)
+        },
+
+        clear: function () {
+            stateContainer.length = 0;
+            $log.log('StateContainer clear.');
+            return true;
+        }
+    }
+
+});
+
+
+
+tryHskServices.factory('SummaryStateManager', function($rootScope, $log) {
+
+    var stateContainer = [];
+
+    return {
+        add: function (service) {
+            stateContainer.push(service);
+            $rootScope.summaryLoader = true;
+            $log.log('Add service: ' + service);
+        },
+
+        remove: function (service) {
+            stateContainer = _.without(stateContainer, service);
+            $log.log('Remove service: ' + service);
+
+            if (stateContainer.length === 0) {
+                $rootScope.summaryLoader = false;
                 $log.log('StateContainer is empty.');
             }
 
