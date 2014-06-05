@@ -5,80 +5,8 @@
     <title></title>
 </head>
 <body>
-<style>
-    .selected{
-        background: #ff0000;
-    }
-    li {
-        cursor: pointer;
-    }
-</style>
-
-<ul id="ul">
-    <li>peter</li>
-    <li>zoya</li>
-    <li>zol</li>
-    <li>pol</li>
-    <li>lol</li>
-</ul>
-
-
-
-<!--<style>-->
-    <!--.anim{-->
-        <!--transition: property duration timing-function delay-->
-    <!--}-->
-<!--</style>-->
-
-
-<!--<span>Догнать</span>-->
-<!--<img class="anim" src="flyjet.jpg">-->
-<!--<span>..и перегнать!</span>-->
-
-<!--<script>-->
-<!--//    alert('ok');-->
-<!--</script>-->
-
 <script>
-    var ul = document.getElementsByTagName('ul')[0];
-//    ul.click(function() {
-//        alert('worked');
-//        ul.style.background('red')
-//    });
-    ul.onclick = function (e) {
-        e = e || event;
-        console.log(e.target);
-        console.log(event.srcElement);
-        var target = e.target || event.srcElement ;
-        if (target.tagName != 'LI') return;
-        if (e.ctrlKey) {
-target.className = '';
-            return;
-        }
-        if (e.shiftKey) {
-            
-        }
-
-        selectSingle(target);
-    };
-    ul.onselectstart = ul.onmousedown = function() {
-        return false;
-    };
-
-    function selectSingle(li) {
-
-        deselectAll();
-        li.className = 'selected';
-    }
-    function ctrlSingle(li) {
-        deselectAll();
-//        li.className = '';
-    }
-    function deselectAll() {
-        for(var i =0;i<ul.children.length; i++) {
-            ul.children[i].className = ''
-        }
-    }
+    var b = {l:'lol',k:'kol',j:8,a: true,v: undefined}; for(keys in b) {console.log(keys)}
 </script>
 </body>
 </html>

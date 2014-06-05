@@ -145,8 +145,6 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
                     }
                     return result;
                 }
-                console.log('++++++++++++++++++');
-                console.log(value);
                 return createFilterWords(filterOfThemes(filterOfPartOfSpeach(filterOfHskLevel(words)))) ;
             }));
 
