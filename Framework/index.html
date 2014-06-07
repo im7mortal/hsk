@@ -43,27 +43,44 @@
 </div>
 <!--дурацкий костыль от вспышек-->
 <div id="f" style="height: 1000px; width: 500px;"></div>
-
-<button onclick="vote(this)">Нажми, чтобы голосовать</button>
-<script>
-    function vote(outputElem) {
-        var xhr = new XMLHttpRequest(); // (1)
-
-        xhr.open('GET', '/lol', true); // (2)
-
-        xhr.onreadystatechange = function() {  // (3)
-            if (xhr.readyState != 4) return; // (3.1)
-
-            outputElem.innerHTML = xhr.responseText; // (3.2)
-        };
-
-        outputElem.innerHTML = '...';
-        xhr.send(null); // (4)
-    }
-
-</script>
-
 <div class="container">
+
+
+
+
+    <button onclick="vote(this)">Голосовать!</button>
+
+    <script>
+        function vote(outputElem) {
+            var xhr = new XMLHttpRequest();
+            var params = 'name=' + encodeURIComponent(rating);
+            xhr.open('GET', '/vote?'+params, true);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState != 4) return;
+
+                if (xhr.status != 200) {
+                    // обработать ошибку
+                    alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
+                    return;
+                }
+
+                // обработать результат
+                outputElem.innerHTML = xhr.responseText;
+            }
+
+            xhr.send(null);
+        }
+
+    </script>
+
+
+
+
+
+
+
+
 
     <div class="tab-control" data-role="tab-control">
         <ul class="tabs">

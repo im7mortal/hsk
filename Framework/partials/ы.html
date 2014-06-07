@@ -5,8 +5,28 @@
     <title></title>
 </head>
 <body>
+
+<div data-widget-name="menu"></div>
+
 <script>
-    var b = {l:'lol',k:'kol',j:8,a: true,v: undefined}; for(keys in b) {console.log(keys)}
+var a = document.body.children[0],
+    b = document.createElement('button');
+b.style.cssText = "-moz-border-radius: 8px; \
+-webkit-border-radius: 8px;\
+border-radius: 8px;\
+border: 2px groove green;\
+display: block;\
+height: 30px;\
+line-height: 30px;\
+width: 100px;\
+text-decoration: none;\
+text-align: center;\
+color: red;\
+font-weight: bold;";
+b.value = 'lol';
+a.appendChild(b);
+
 </script>
 </body>
+
 </html>

@@ -1,4 +1,6 @@
 'use strict';
+var rating;
+
 
 var tryHskControllers = angular.module('tryHskControllers', []);
 
@@ -8,15 +10,19 @@ tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, amountW
     $scope.refresh = function () {
         SummaryStateManager.add('summary');
         sortWords.getSortWords().then(function (words) {
+            console.time('summary');
+            console.log('summary');
             if (words.length == 0) {
                 $scope.amount = 'Ничего не выбрано';
                 $scope.words = words;
             } else {
                 $scope.words = words;
                 amountWords.getAmountWords().then(function (amount) {
+                    console.log('amount-summary');
                 $scope.amount = amount;
                 });
             }
+            console.timeEnd('summary');
             SummaryStateManager.remove('summary');
         });
     };
@@ -106,6 +112,7 @@ tryHskControllers.controller('testCtrl',
         $scope.result = 0;
         $scope.checkAnsver = function (ansv) {
             g.check(ansv);
+            rating = $scope.result;
             g = null;
         };
 
@@ -182,6 +189,7 @@ tryHskControllers.controller('testCtrl',
         };
         $scope.fresh = function () {
             sortWords.getSortWords().then(function (words) {
+                console.log('test');
                 swords = words;
                 if (words.length < 10 ) {
                     if (words.length == 0) {

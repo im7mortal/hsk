@@ -49,8 +49,11 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
             function () {
 
                 function filterOfHskLevel(words) {
+                    console.time('lol');
                     var result = [];
+//                        len = words.length;
                     for (var i = 0; i < words.length; i++) {
+
                         var hsk;
                         hsk = words[i].hsk.split('-');
                         switch (hsk[0]) {
@@ -143,8 +146,11 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
                     for (var i = 0; i < array.length; i++) {
                         result.push(words[array[i]])
                     }
+                    console.timeEnd('lol');
+
                     return result;
                 }
+
                 return createFilterWords(filterOfThemes(filterOfPartOfSpeach(filterOfHskLevel(words)))) ;
             }));
 
@@ -167,6 +173,7 @@ tryHskServices.factory('amountWords', function($q, sortWords) {
 
         deferred.resolve(
             sortWords.getSortWords().then(function(words) {
+                console.log('amount');
                 return ammountWords(words);
             })
         );
