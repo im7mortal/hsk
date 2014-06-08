@@ -41,7 +41,7 @@ function insertRating(id, amount, rights, res) {
         text: "SELECT amount FROM hsk WHERE id = $1",
         values: [id]
     });
-    res.end('ok');
+    res.end(query.toString());
     var result = query.on('row', function (row) {
         console.log(row.amount);
         res.end(result.toString());
@@ -52,7 +52,7 @@ function insertRating(id, amount, rights, res) {
 
 
 
-//
+
 //function insertRating(id, amount, rights, res) {
 //    var conString = "postgres://sssr:hui@localhost/postgres",
 //        client = new pg.Client(conString);
