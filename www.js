@@ -43,7 +43,12 @@ function insertRating(id, amount, rights, res) {
     });
 
 
-    var result = query.on('row', function (row) {
+    query.on('row', function (row) {
+//        var query = client.query('SELECT name, age as user_age FROM users');
+//        query.on('row', function(row) {
+//            console.log('user "%s" is %d years old', row.name, row.user_age);
+//        });
+
         var tara = [];
         for(var key in row) {
             var o = key;
