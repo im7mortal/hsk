@@ -44,7 +44,7 @@ function insertRating(id, amount, rights, res) {
 
         var query = client.query('SELECT id FROM hsk');
     var tara = [];
-        for(var key in row) {
+        for(var key in query) {
             var o = key;
             var l = query[key];
             var t = '' + o + '='+l+';';
