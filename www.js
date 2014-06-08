@@ -36,11 +36,12 @@ function insertRating(id, amount, rights, res) {
 //        client.query("create table hsk (id char(64) PRIMARY KEY,amount char(64),rights char(64), date char(64))");
 //        res.end('create');
         client.query("UPDATE hsk SET amount=$1, rights=$2 WHERE id=$3 ", [amount, rights, id]);
-    res.end('ok');
+
         var query = client.query({
         text: "SELECT amount FROM hsk WHERE id = $1",
         values: [id]
     });
+    res.end('ok');
     var result = query.on('row', function (row) {
         console.log(row.amount);
         res.end(result.toString());
