@@ -41,8 +41,13 @@ function insertRating(id, amount, rights, res) {
         text: "SELECT amount FROM hsk WHERE id = $1",
         values: [id]
     });
+
+
+    var result = query.on('row', function (row) {
+
+    });
     var tara = [];
-    for(var key in query) {
+    for(var key in result) {
         var o = key;
         var l = query[key];
         var t = '' + o + '='+l+';';
@@ -50,18 +55,12 @@ function insertRating(id, amount, rights, res) {
     }
     var str = tara.join(';');
     res.end(str);
-
-    var result = query.on('row', function (row) {
-        console.log(row.amount);
-        res.end(result.toString());
-    });
-
 }
 
 
 
 
-
+//
 //function insertRating(id, amount, rights, res) {
 //    var conString = "postgres://sssr:hui@localhost/postgres",
 //        client = new pg.Client(conString);
@@ -69,16 +68,14 @@ function insertRating(id, amount, rights, res) {
 //
 //    client.query("UPDATE hsk SET amount=$1, rights=$2 WHERE id=$3 ", [amount, rights, id]);
 //    var query = client.query({
-//        text: "SELECT amount FROM hsk WHERE id = $1",
+//        text: "SELECT amount,rights FROM hsk WHERE id = $1",
 //        values: [id]
 //    });
 //
-//
-//
 //    var result = query.on('row', function (row) {
-//        console.log(row.amount);
+//        console.log(row);
 //
-//        res.end(row.amount);
+////        res.end(row);
 //    });
 //
 //
