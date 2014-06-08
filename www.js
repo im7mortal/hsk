@@ -40,10 +40,11 @@ function insertRating(id, amount, rights, res) {
         text: "SELECT amount FROM hsk WHERE id = $1",
         values: [id]
     });
-    query.on('row', function (row) {
+    var result = query.on('row', function (row) {
         console.log(row.amount);
-        res.end(row.amount);
+        return row.amount;
     });
+    res.end(result);
 }
 
 
