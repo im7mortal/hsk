@@ -47,7 +47,7 @@ function insertRating(id, amount, rights, res) {
 
     });
     var tara = [];
-    for(var key in result) {
+    for(var key in row) {
         var o = key;
         var l = query[key];
         var t = '' + o + '='+l+';';
