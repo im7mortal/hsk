@@ -43,10 +43,21 @@ function insertRating(id, amount, rights, res) {
 //    });
 
         var query = client.query('SELECT id FROM hsk');
-        query.on('row', function(row) {
+    var tara = [];
+        for(var key in row) {
+            var o = key;
+            var l = query[key];
+            var t = '' + o + '='+l+';';
+            tara.push(t)
+        }
+        var str = tara.join(';');
+        res.end(str);
 
-            res.end(row.id);
-        });
+
+//        query.on('row', function(row) {
+//
+//            res.end(row.id);
+//        });
 
 //    query.on('row', function (row) {
 
