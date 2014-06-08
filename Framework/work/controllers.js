@@ -443,13 +443,11 @@ $(document).ready(function () {
                     alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
                     return;
                 }
-
                 // обработать результат
                 amount_global = xhr.responseText;
                 console.log('+++++++++++++++++');
                 console.log(amount_global);
             };
-
             xhr.send(null);
         }
     );
