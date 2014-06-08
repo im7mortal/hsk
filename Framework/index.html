@@ -30,6 +30,7 @@
 
     <title>HSK. Китайский язык 汉语</title>
     <!--<script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>-->
+
 </head>
 <body class="metro" ng-app="tryHsk" ng-cloak>
 <div class="loader" ng-show="globalLoader">
@@ -45,43 +46,8 @@
 <div id="f" style="height: 1000px; width: 500px;"></div>
 <div class="container">
 
-
-
-
-    <button onclick="vote(this)">Голосовать!</button>
-
-    <script>
-        function vote(outputElem) {
-            var xhr = new XMLHttpRequest();
-            var params = 'name=' + encodeURIComponent(rating);
-            xhr.open('GET', '/vote?'+params, true);
-
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState != 4) return;
-
-                if (xhr.status != 200) {
-                    // обработать ошибку
-                    alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
-                    return;
-                }
-
-                // обработать результат
-                outputElem.innerHTML = xhr.responseText;
-            }
-
-            xhr.send(null);
-        }
-
-    </script>
-
-
-
-
-
-
-
-
-
+    <button class="toServer">Голосовать!</button>
+    <div id="hui"></div>
     <div class="tab-control" data-role="tab-control">
         <ul class="tabs">
 
@@ -135,53 +101,48 @@
 </div>
 
 
-<!--<script type="text/javascript" charset="cp1251" >-->
-<!--window.onload = (function() {   // когда загрузится вся страница-->
-<!--VK.init(function() {    // инициализируем Vk API-->
-<!--// узнаём flashVars, переданные приложению GET запросом. Сохраняем их в переменную flashVars-->
-<!--var parts=document.location.search.substr(1).split("&");-->
-<!--var flashVars={}, curr;-->
-<!--for (i=0; i<parts.length; i++) {-->
-<!--curr = parts[i].split('=');-->
-<!--// записываем в массив flashVars значения. Например: flashVars['viewer_id'] = 1;-->
-<!--flashVars[curr[0]] = curr[1];-->
-<!--}-->
-<!--// получаем viewer_id из полученных переменных-->
-<!--//@fixme  ой как плохо!!!-->
-<!--var viewer_id = flashVars['viewer_id'];-->
-<!--//            var b = wall.get(59379236);-->
-<!--alert( viewer_id)-->
-<!--});-->
-<!--account.setNameInMenu('HSK')-->
-<!--});-->
-<!--// Функция получения друзей и вывода их на экран-->
-<!--function doIt(){-->
-<!--/*-->
-<!--VK.api('метод', {параметр: "значение"}, callback функция{-->
-<!--// работаем с полученными данными-->
-<!--});-->
-<!--*/-->
-<!--VK.api("setNameInMenu", 'HSK');-->
+<script type="text/javascript" charset="cp1251">
+    window.onload = (function () {   // когда загрузится вся страница
+        VK.init(function () {    // инициализируем Vk API
+            var parts = document.location.search.substr(1).split("&");
+            var flashVars = {}, curr;
+            for (i = 0; i < parts.length; i++) {
+                curr = parts[i].split('=');
+                flashVars[curr[0]] = curr[1];
+            }
+            window.id = flashVars['viewer_id'];
+        });
+    });
 
-<!--VK.api("friends.get", {fields: "photo_medium"}, function(data) {-->
-<!--// Действия с полученными данными-->
-<!--for(c=0;c<data.response.length;c++){-->
-<!--$("body").append("<img src='"+data.response[c].photo_medium+"'>");-->
-<!--}-->
-<!--});-->
 
-<!--VK.api("wall.post", {owner_id: "59379236"}, function(data) {-->
-<!--// Действия с полученными данными-->
-    <!--alert(data);-->
-<!--return 'lol';-->
+    // Функция получения друзей и вывода их на экран
+    //function doIt(){
+    ///*
+    //VK.api('метод', {параметр: "значение"}, callback функция{
+    //// работаем с полученными данными
+    //});
+    //*/
+    //VK.api("setNameInMenu", 'HSK');
+    //
+    //VK.api("friends.get", {fields: "photo_medium"}, function(data) {
+    //// Действия с полученными данными
+    //for(c=0;c<data.response.length;c++){
+    //$("body").append("<img src='"+data.response[c].photo_medium+"'>");
+    //}
+    //});
+    //
+    //VK.api("wall.post", {owner_id: "59379236"}, function(data) {
+    //// Действия с полученными данными
+    //    alert(data);
+    //return 'lol';
+    //
+    //});
+    //}
+    //$(document).ready(function(){
+    //doIt();
+    //});
 
-<!--});-->
-<!--}-->
-<!--$(document).ready(function(){-->
-<!--doIt();-->
-<!--});-->
-
-<!--</script>-->
+</script>
 
 
 </body>

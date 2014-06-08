@@ -11,13 +11,8 @@ tryHskServices.factory('Word', ['$resource',
         });
     }]);
 
-//tryHskServices.factory('valueBoolean', ['$resource',
-//    function($resource){
-//        return $resource('settings.json', {}, {
-//            query: {method:'GET',isArray:true}
-//        });
-//    }]);
 
+// @todo  настроить cookies
 tryHskServices.factory('valueBoolean', function() {
     return {
         bool: {
@@ -275,76 +270,9 @@ tryHskServices.factory('language', function () {
 
 
 
-//tryHskServices.factory('langua',
-//    function($scope){
-//        var lan = {};
-//
-//
-//        $scope.languages = [
-//            {name:'russian',
-//                text: 'Русский',
-//                search : 'Поиск',
-//                select : 'Выберите язык',
-//                char : "Иероглиф",
-//                pinyin : "Пиньинь",
-//                translate : "Перевод",
-//                eng : "Английский"},
-//            {name:'hanyu',
-//                text: '汉语',
-//                search : 'Поиск',
-//                select : 'Выберите язык',
-//                char : "Иероглиф",
-//                pinyin : "Пиньинь",
-//                translate : "Перевод",
-//                eng : "Английский"},
-//            {name:'english',
-//                text: 'English',
-//                search : 'Search',
-//                select : 'Choose language',
-//                char : "Hieroglyph",
-//                pinyin : "Pinyin",
-//                translate : "Russian",
-//                eng : "English"}
-//        ];
-//
-//        $scope.myLang = $scope.languages[1];
-//        $rootScope.changeLanguage = function() {
-//            switch($scope.myLang.name) {
-//                case 'russian' :  lan  = {
-//                    "search" : 'Поиск',
-//                    "select" : 'Выберите язык',
-//                    "char" : "Иероглиф",
-//                    "pinyin" : "Пиньинь",
-//                    "translate" : "Перевод",
-//                    "eng" : "Английский"
-//                };
-//                    break;
-//                case 'hanyu' :  lan  = {
-//                    "search" : '搜索',
-//                    "select" : '选择语言',
-//                    "char" : "字",
-//                    "pinyin" : "拼音",
-//                    "translate" : "俄语",
-//                    "eng" : "英语"
-//                }; break;
-//                case 'english' : lan  = {
-//                    "search" : 'Search',
-//                    "select" : 'Choose language',
-//                    "char" : "Hieroglyph",
-//                    "pinyin" : "Pinyin",
-//                    "translate" : "Russian",
-//                    "eng" : "English"
-//                };  break;
-//                default:
-//                    console.log('Error language()');
-//                    break
-//            }
-//        };
-//        $rootScope.changeLanguage();
-//        console.log(lan);
-//        return lan  ;
-//    });
 
+
+//  statemanager'ы
 
 tryHskServices.factory('StateManager', function($rootScope, $log) {
 

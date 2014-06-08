@@ -67,7 +67,6 @@ tryHskControllers.controller('testCtrl',
             do {
                 for (var i = 0; i < 8; i++) {
                     if (question == arr[i]) {
-                        console.log(arr);
                         question = (random_var(data));
                         repeat = true;
                         break
@@ -111,7 +110,7 @@ tryHskControllers.controller('testCtrl',
 
         $scope.result = 0;
         $scope.checkAnsver = function (ansv) {
-            g.check(ansv);
+            try{g.check(ansv)} catch(e){}
             rating = $scope.result;
             g = null;
         };
@@ -251,7 +250,7 @@ tryHskControllers.controller('settingsCtrl', function ($scope, language) {
 
 tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, valueBoolean) {
 
-    var valueBoolean = valueBoolean.bool;
+    valueBoolean = valueBoolean.bool;
     fresh();
     function fresh() {
         $scope.adjective = valueBoolean.adjective;
@@ -272,33 +271,6 @@ tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, value
 
     $scope.refresh = $scope.$parent.refresh;
     $scope.fill = $scope.$parent.fresh;
-
-//    $scope.$watch('hsk1', function() {
-//        valueBoolean.hsk1 = $scope.hsk1;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    });
-
-//    $rootScope.$watch('hsk1', function() {
-//        valueBoolean.hsk1 = $scope.hsk1;
-//        $rootScope.hsk1 = valueBoolean.hsk1;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    });
 
 
     $scope.HSK1 = function () {
@@ -447,230 +419,4 @@ tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, value
         }
     };
 
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, valueBoolean) {
-//    var value = valueBoolean.query();
-//
-//    value.$promise.then(
-//        function() {
-//            console.log('++++++++++++++++++'+value);
-//            $scope.fresh();
-//        }
-//    );
-//
-//  $scope.fresh  =   function () {
-//        console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++' + value.bool.adjective);
-//        console.log(typeof value.bool.adjective);
-//        $scope.adjective = value.bool.adjective;
-//        $scope.numeral = value.bool.numeral;
-//        $scope.pronoun = value.bool.pronoun;
-//        $scope.verb = value.bool.verb;
-//        $scope.noun = value.bool.noun;
-//        $scope.hsk1 = value.bool.hsk1;
-//        $rootScope.hsk1 = value.bool.hsk1;
-//        $scope.hsk2 = value.bool.hsk2;
-//        $scope.hsk3 = value.bool.hsk3;
-//        $scope.place = value.bool.place;
-//        $scope.relate = value.bool.relate;
-//        $scope.otherThemes = value.bool.otherThemes;
-//        $scope.otherPart = value.bool.otherPart;
-//    }
-//
-//
-//    $scope.refresh = $scope.$parent.refresh;
-//    $scope.fill = $scope.$parent.fresh;
-//
-////    $scope.$watch('hsk1', function() {
-////        valueBoolean.hsk1 = $scope.hsk1;
-////        fresh();
-////        try {
-////            $scope.refresh()
-////        } catch (e) {
-////        }
-////        try {
-////            $scope.fill()
-////        } catch (e) {
-////        }
-////    });
-//
-////    $rootScope.$watch('hsk1', function() {
-////        valueBoolean.hsk1 = $scope.hsk1;
-////        $rootScope.hsk1 = value.bool.hsk1;
-////        fresh();
-////        try {
-////            $scope.refresh()
-////        } catch (e) {
-////        }
-////        try {
-////            $scope.fill()
-////        } catch (e) {
-////        }
-////    });
-//
-//
-//    $scope.HSK1 = function () {
-//        valueBoolean.hsk1 = $scope.hsk1;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//
-//    };
-//    $scope.HSK2 = function () {
-//        value.bool.hsk2 = $scope.hsk2;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.HSK3 = function () {
-//        value.bool.hsk3 = $scope.hsk3;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.VERB = function () {
-//        value.bool.verb = $scope.verb;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.NOUN = function () {
-//        value.bool.noun = $scope.noun;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.PRONOUN = function () {
-//        value.bool.pronoun = $scope.pronoun;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.ADJECTIVE = function () {
-//        value.bool.adjective = $scope.adjective;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.NUMERAL = function () {
-//        value.bool.numeral = $scope.numeral;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.changePlace = function () {
-//        value.bool.place = $scope.place;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.changeRelate = function () {
-//        value.bool.relate = $scope.relate;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.changeOtherPart = function () {
-//        value.bool.otherPart = $scope.otherPart;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//    $scope.changeOtherThemes = function () {
-//        value.bool.otherThemes = $scope.otherThemes;
-//        fresh();
-//        try {
-//            $scope.refresh()
-//        } catch (e) {
-//        }
-//        try {
-//            $scope.fill()
-//        } catch (e) {
-//        }
-//    };
-//
-//});
+});

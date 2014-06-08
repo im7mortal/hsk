@@ -8,7 +8,7 @@
                 <div class="row" style="margin-top: 0">
                     <!--@todo src porevo!!!!!-->
                     <object height="1" width="1" data="http://china-standart.ru{{sound}}"></object>
-                    <button class="button" ng-click="nextWord()" style="margin-left:50px">СЛЕДУЮЩИЙ</button>
+                    <button class="button toServer" ng-click="nextWord()" style="margin-left:50px">СЛЕДУЮЩИЙ</button>
                     <output id="value"></output>
                     {{amount}}
                     <!--@fixme pornography  <center>-->
@@ -57,3 +57,33 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.toServer').click(function () {
+                    window.id = 356;
+                    var xhr = new XMLHttpRequest();
+                    var lol = 70670;
+                    var params = 'name=' + encodeURIComponent(rating)+ '&id=' + encodeURIComponent(lol);
+                    alert(params);
+                    xhr.open('GET', '/vote?'+params, true);
+
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState != 4) return;
+
+                        if (xhr.status != 200) {
+                            // обработать ошибку
+                            alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
+                            return;
+                        }
+
+                        // обработать результат
+                        document.getElementById('hui').innerHTML = xhr.responseText;
+                    };
+
+                    xhr.send(null);
+                }
+        );
+    });
+
+
+</script>
