@@ -31,17 +31,19 @@ app.listen(port, function () {
 function insertRating(id, amount, rights, res) {
     var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o",
         client = new pg.Client(conString);
-    client.connect();
+        client.connect();
 
-    client.query("UPDATE hsk SET amount=$1, rights=$2 WHERE id=$3 ", [amount, rights, id]);
-    var query = client.query({
-        text: "SELECT amount FROM hsk WHERE id = $1",
-        values: [id]
-    });
-    query.on('row', function (row) {
-        console.log(row.amount);
-        res.end(row.amount);
-    });
+        client.query("create table hsk (id char(64) PRIMARY KEY,amount char(64),rights char(64), date char(64))");
+        res.end('create');
+//        client.query("UPDATE hsk SET amount=$1, rights=$2 WHERE id=$3 ", [amount, rights, id]);
+//        var query = client.query({
+//        text: "SELECT amount FROM hsk WHERE id = $1",
+//        values: [id]
+//    });
+//    query.on('row', function (row) {
+//        console.log(row.amount);
+//        res.end(row.amount);
+//    });
 }
 
 
