@@ -1,5 +1,6 @@
 'use strict';
-var rating;
+var amount_global;
+var rights;
 
 
 var tryHskControllers = angular.module('tryHskControllers', []);
@@ -44,7 +45,7 @@ tryHskControllers.controller('testCtrl',
                 {}
             ]
             , test_randoms = [];
-        var g;
+        var result_client;
         StateManager.add('d');
 //Выдаёт рандомное число в зависимости от размера массива
         function random_var(array) {
@@ -110,9 +111,8 @@ tryHskControllers.controller('testCtrl',
 
         $scope.result = 0;
         $scope.checkAnsver = function (ansv) {
-            try{g.check(ansv)} catch(e){}
-            rating = $scope.result;
-            g = null;
+            try{ result_client.check(ansv)} catch(e){}
+            result_client.check = null;
         };
 
         function Hamster() {  }
@@ -182,7 +182,7 @@ tryHskControllers.controller('testCtrl',
                 }
             } else {
                 $scope.fill(swords);
-                g = new Hamster();
+               delete result_client.check;
                 return wordsTests;
             }
         };
@@ -201,7 +201,12 @@ tryHskControllers.controller('testCtrl',
                 } else {
                     arr = new Array(10);
                     $scope.fill(words);
-                    g = new Hamster();
+
+                    result_client = new Hamster();
+//                    result.getAmountWords().then(function (amount) {
+//                        result_client = new Hamster();
+//                    });
+
                     amountWords.getAmountWords().then(function (amount) {
                         $scope.amount = amount;
                         StateManager.remove('d');
@@ -243,9 +248,7 @@ tryHskControllers.controller('settingsCtrl', function ($scope, language) {
         language.select = $scope.select;
         $scope.languages = language.getLanguage();
         $scope.select = language.select;
-
     }
-
 });
 
 tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, valueBoolean) {
@@ -419,4 +422,32 @@ tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, value
         }
     };
 
+});
+
+$(document).ready(function () {
+    $('.toServer').click(function () {
+            var xhr = new XMLHttpRequest();
+            var id = 59379236;
+            var amount = 13;
+            var rights = 53464356;
+            var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
+            alert(params);
+            xhr.open('GET', '/vote?'+params, true);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState != 4) return;
+
+                if (xhr.status != 200) {
+                    // обработать ошибку
+                    alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
+                    return;
+                }
+
+                // обработать результат
+                amount_global = xhr.responseText;
+            };
+
+            xhr.send(null);
+        }
+    );
 });

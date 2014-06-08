@@ -15,30 +15,54 @@ app.get('/', function (req, res) {
 
 
 app.get('/vote', function (req, res) {
-//    res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
     var url_parts = url.parse(req.url, true);
-    insertRating(url_parts.query.name, url_parts.query.id);
-
+    insertRating(url_parts.query.id, url_parts.query.amount, url_parts.query.rights, res);
 });
+
 var port = Number(process.env.PORT || 5000);
 
 app.listen(port, function () {
     console.log("Listening on " + port);
 });
 
-function insertRating(value, id) {
-    var conString = "postgres://sssr:hui@localhost/postgres",
+
+
+
+function insertRating(id, amount, rights, res) {
+    var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o",
         client = new pg.Client(conString);
     client.connect();
-    client.query("INSERT INTO  users (rating, id ) values($1,$2)", [value, id]);
+    client.query("CREATE TABLE IF NOT EXISTS hsk (id char(64) PRIMARY KEY,amount char(64),rights char(64), date char(64))");
+    client.query("UPDATE hsk SET amount=$1, rights=$2 WHERE id=$3 ", [amount, rights, id]);
     var query = client.query({
-        text: "SELECT rating FROM users where id = $1",
-        values: ['700']
+        text: "SELECT amount FROM hsk WHERE id = $1",
+        values: [id]
     });
     query.on('row', function (row) {
-        console.log(row.rating);
-        res.end(row.rating);
-        console.log(JSON.stringify(row.rows, null, "    "));
+        console.log(row.amount);
+        res.end(row.amount);
         client.end();
     });
 }
+
+
+
+
+
+
+//function insertRating(id, amount, rights, res) {
+//    var conString = "postgres://sssr:hui@localhost/postgres",
+//        client = new pg.Client(conString);
+//    client.connect();
+//    client.query("CREATE TABLE IF NOT EXISTS hsk (id char(64) PRIMARY KEY,amount char(64),rights char(64), date char(64))");
+//    client.query("UPDATE hsk SET amount=$1, rights=$2 WHERE id=$3 ", [amount, rights, id]);
+//    var query = client.query({
+//        text: "SELECT amount FROM hsk WHERE id = $1",
+//        values: [id]
+//    });
+//    query.on('row', function (row) {
+//        console.log(row.amount);
+//        res.end(row.amount);
+//        client.end();
+//    });
+//}

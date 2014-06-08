@@ -5,15 +5,33 @@
 var tryHskServices = angular.module('tryHskServices', ['ngResource']);
 
 tryHskServices.factory('Word', ['$resource',
-    function($resource){
+    function ($resource) {
         return $resource('words.json', {}, {
-            query: {method:'GET',isArray:true}
+            query: {method: 'GET', isArray: true}
         });
     }]);
 
 
+tryHskServices.factory('result', function ($q, $resource) {
+//        return $resource('words.json', {}, {
+//            query: {method:'GET',isArray:true}
+//        });
+
+    var deferred = $q.defer();
+
+    deferred.resolve();
+
+
+//return {
+//  amount : '98',
+//  rights : '42',
+//    rating : '3000'
+//}
+    return deferred.promise;
+});
+
 // @todo  настроить cookies
-tryHskServices.factory('valueBoolean', function() {
+tryHskServices.factory('valueBoolean', function () {
     return {
         bool: {
             hsk1: true,
@@ -34,13 +52,13 @@ tryHskServices.factory('valueBoolean', function() {
 });
 
 
-tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
+tryHskServices.factory('sortWords', function ($q, Word, valueBoolean) {
 
-    var getSortWords = function() {
+    var getSortWords = function () {
         var deferred = $q.defer();
         var words = Word.query();
-        var value =valueBoolean;
-        deferred.resolve(  words.$promise.then(
+        var value = valueBoolean;
+        deferred.resolve(words.$promise.then(
             function () {
 
                 function filterOfHskLevel(words) {
@@ -53,17 +71,17 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
                         hsk = words[i].hsk.split('-');
                         switch (hsk[0]) {
                             case '1' :
-                                if ( value.bool.hsk1) {
+                                if (value.bool.hsk1) {
                                     result.push(words[i].id)
                                 }
                                 break;
                             case '2' :
-                                if ( value.bool.hsk2) {
+                                if (value.bool.hsk2) {
                                     result.push(words[i].id)
                                 }
                                 break;
                             case '3' :
-                                if ( value.bool.hsk3) {
+                                if (value.bool.hsk3) {
                                     result.push(words[i].id)
                                 }
                                 break;
@@ -79,32 +97,32 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
 
                     var result = [];
                     for (var i = 0; i < array.length; i++) {
-                        if ( value.bool.verb) {
+                        if (value.bool.verb) {
                             if (words[array[i]].verb) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if ( value.bool.adjective) {
+                        if (value.bool.adjective) {
                             if (words[array[i]].adjective) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if ( value.bool.noun) {
+                        if (value.bool.noun) {
                             if (words[array[i]].noun) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if ( value.bool.numeral) {
+                        if (value.bool.numeral) {
                             if (words[array[i]].number) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if ( value.bool.otherPart) {
-                            if(!words[array[i]].numeral && !words[array[i]].noun && !words[array[i]].verb && !words[array[i]].adjective) {
+                        if (value.bool.otherPart) {
+                            if (!words[array[i]].numeral && !words[array[i]].noun && !words[array[i]].verb && !words[array[i]].adjective) {
                                 result.push(array[i])
                             }
                         }
@@ -115,20 +133,20 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
                 function filterOfThemes(array) {
                     var result = [];
                     for (var i = 0; i < array.length; i++) {
-                        if ( value.bool.place) {
+                        if (value.bool.place) {
                             if (words[array[i]].place) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if ( value.bool.relate) {
+                        if (value.bool.relate) {
                             if (words[array[i]].relationship) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if ( value.bool.otherThemes) {
-                            if(!words[array[i]].relationship && !words[array[i]].place) {
+                        if (value.bool.otherThemes) {
+                            if (!words[array[i]].relationship && !words[array[i]].place) {
                                 result.push(array[i])
                             }
                         }
@@ -146,7 +164,7 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
                     return result;
                 }
 
-                return createFilterWords(filterOfThemes(filterOfPartOfSpeach(filterOfHskLevel(words)))) ;
+                return createFilterWords(filterOfThemes(filterOfPartOfSpeach(filterOfHskLevel(words))));
             }));
 
 
@@ -161,13 +179,13 @@ tryHskServices.factory('sortWords', function($q, Word, valueBoolean) {
 
 
 //@todo пришпилить локализацию
-tryHskServices.factory('amountWords', function($q, sortWords) {
+tryHskServices.factory('amountWords', function ($q, sortWords) {
 
-    var getAmountWords = function() {
+    var getAmountWords = function () {
         var deferred = $q.defer();
 
         deferred.resolve(
-            sortWords.getSortWords().then(function(words) {
+            sortWords.getSortWords().then(function (words) {
                 console.log('amount');
                 return ammountWords(words);
             })
@@ -177,17 +195,23 @@ tryHskServices.factory('amountWords', function($q, sortWords) {
             var slov,
                 last_number,
                 number;
-            last_number = array.length.toString().substr(array.length.toString().length-1,1);
+            last_number = array.length.toString().substr(array.length.toString().length - 1, 1);
             number = array.length.toString();
-            if(last_number === '1') {slov = ' слово'}
+            if (last_number === '1') {
+                slov = ' слово'
+            }
             else {
-                if(last_number == '2'||last_number == '3'||last_number == '4') {
-                    if(number == '12'||number == '13'||number == '14') {
-                        slov = ' слов'}
-                    else {slov = ' слова'}
+                if (last_number == '2' || last_number == '3' || last_number == '4') {
+                    if (number == '12' || number == '13' || number == '14') {
+                        slov = ' слов'
+                    }
+                    else {
+                        slov = ' слова'
+                    }
                 }
                 else {
-                    slov = ' слов'}
+                    slov = ' слов'
+                }
             }
             return  'Выбрано ' + array.length + slov;
         }
@@ -267,14 +291,9 @@ tryHskServices.factory('language', function () {
 });
 
 
-
-
-
-
-
 //  statemanager'ы
 
-tryHskServices.factory('StateManager', function($rootScope, $log) {
+tryHskServices.factory('StateManager', function ($rootScope, $log) {
 
     var stateContainer = [];
 
@@ -310,8 +329,7 @@ tryHskServices.factory('StateManager', function($rootScope, $log) {
 });
 
 
-
-tryHskServices.factory('SummaryStateManager', function($rootScope, $log) {
+tryHskServices.factory('SummaryStateManager', function ($rootScope, $log) {
 
     var stateContainer = [];
 

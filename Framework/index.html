@@ -29,7 +29,7 @@
     <script src="work/services.js"></script>
 
     <title>HSK. Китайский язык 汉语</title>
-    <!--<script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>-->
+    <script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
 
 </head>
 <body class="metro" ng-app="tryHsk" ng-cloak>
@@ -115,32 +115,34 @@
     });
 
 
-    // Функция получения друзей и вывода их на экран
-    //function doIt(){
-    ///*
-    //VK.api('метод', {параметр: "значение"}, callback функция{
-    //// работаем с полученными данными
-    //});
-    //*/
-    //VK.api("setNameInMenu", 'HSK');
-    //
-    //VK.api("friends.get", {fields: "photo_medium"}, function(data) {
-    //// Действия с полученными данными
-    //for(c=0;c<data.response.length;c++){
-    //$("body").append("<img src='"+data.response[c].photo_medium+"'>");
-    //}
-    //});
-    //
-    //VK.api("wall.post", {owner_id: "59379236"}, function(data) {
-    //// Действия с полученными данными
-    //    alert(data);
-    //return 'lol';
-    //
-    //});
-    //}
-    //$(document).ready(function(){
-    //doIt();
-    //});
+//    Функция получения друзей и вывода их на экран
+    function doIt(){
+    /*
+    VK.api('метод', {параметр: "значение"}, callback функция{
+    // работаем с полученными данными
+    });
+    */
+//    VK.api("setNameInMenu", 'HSK');
+
+    VK.api("friends.get", {fields: "photo_medium"}, function(data) {
+    // Действия с полученными данными
+    for(c=0;c<data.response.length;c++){
+    $("body").append("<img src='"+data.response[c].photo_medium+"'>");
+    }
+    });
+
+//    VK.api("wall.post", {owner_id: "59379236"}, function(data) {
+//    // Действия с полученными данными
+//        alert(data);
+//    return 'lol';
+//    });
+    }
+
+
+
+    $(document).ready(function(){
+    doIt();
+    });
 
 </script>
 
