@@ -44,17 +44,17 @@ function insertRating(id, amount, rights, res) {
 
 
     var result = query.on('row', function (row) {
-
+        var tara = [];
+        for(var key in row) {
+            var o = key;
+            var l = query[key];
+            var t = '' + o + '='+l+';';
+            tara.push(t)
+        }
+        var str = tara.join(';');
+        res.end(str);
     });
-    var tara = [];
-    for(var key in row) {
-        var o = key;
-        var l = query[key];
-        var t = '' + o + '='+l+';';
-        tara.push(t)
-    }
-    var str = tara.join(';');
-    res.end(str);
+
 }
 
 
