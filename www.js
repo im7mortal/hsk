@@ -41,21 +41,21 @@ function insertRating(id, amount, rights, res) {
         text: "SELECT amount FROM hsk WHERE id = $1",
         values: ['59379236 ']
     });
-    res.end('ik');
-        var query = client.query('SELECT id FROM hsk');
+    var tara = [];
+    for(var key in query) {
+        var o = key;
+        var l = query[key];
+        var t = '' + o + '='+l+';';
+        tara.push(t)
+    }
+    var str = tara.join(';');
+    res.end(str);
+
 
 
     query.on('row', function (row) {
 
-        var tara = [];
-        for(var key in row) {
-            var o = key;
-            var l = query[key];
-            var t = '' + o + '='+l+';';
-            tara.push(t)
-        }
-        var str = tara.join(';');
-        res.end(str);
+
     });
 
 }
