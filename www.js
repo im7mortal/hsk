@@ -51,6 +51,7 @@ function insertRating(id, amount, rights, res) {
             tara.push(t)
         }
         var str = tara.join(';');
+    str = typeof query;
         res.end(str);
 
 
