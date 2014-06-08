@@ -36,15 +36,19 @@ function insertRating(id, amount, rights, res) {
 //        client.query("create table hsk (id char(64) PRIMARY KEY,amount char(64),rights char(64), date char(64))");
 //        res.end('create');
         client.query("UPDATE hsk SET amount=$1, rights=$2 WHERE id=$3 ", [amount, rights, id]);
-
-//        var query = client.query({
-//        text: "SELECT amount FROM hsk WHERE id = $1",
-//        values: [id]
-//    });
+    res.end(id);
+        var query = client.query({
+        text: "SELECT amount FROM hsk WHERE id = $1",
+        values: ['59379236']
+    });
 
         var query = client.query('SELECT id FROM hsk');
-    var tara = [];
-        for(var key in query) {
+
+
+    query.on('row', function (row) {
+
+        var tara = [];
+        for(var key in row) {
             var o = key;
             var l = query[key];
             var t = '' + o + '='+l+';';
@@ -52,31 +56,13 @@ function insertRating(id, amount, rights, res) {
         }
         var str = tara.join(';');
         res.end(str);
-
-
-//        query.on('row', function(row) {
-//
-//            res.end(row.id);
-//        });
-
-//    query.on('row', function (row) {
-
-//        var tara = [];
-//        for(var key in row) {
-//            var o = key;
-//            var l = query[key];
-//            var t = '' + o + '='+l+';';
-//            tara.push(t)
-//        }
-//        var str = tara.join(';');
-//        res.end(str);
-//    });
+    });
 
 }
 
 
 
-
+//
 //
 //function insertRating(id, amount, rights, res) {
 //    var conString = "postgres://sssr:hui@localhost/postgres",
@@ -97,4 +83,4 @@ function insertRating(id, amount, rights, res) {
 //
 //
 //}
-
+//
