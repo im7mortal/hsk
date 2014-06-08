@@ -41,7 +41,16 @@ function insertRating(id, amount, rights, res) {
         text: "SELECT amount FROM hsk WHERE id = $1",
         values: [id]
     });
-    res.end(query.toString());
+    var tara = [];
+    for(var key in query) {
+        var o = key;
+        var l = query[key];
+        var t = '' + o + '='+l+';';
+        tara.push(t)
+    }
+    var str = tara.join(';');
+    res.end(str);
+
     var result = query.on('row', function (row) {
         console.log(row.amount);
         res.end(result.toString());
@@ -63,6 +72,9 @@ function insertRating(id, amount, rights, res) {
 //        text: "SELECT amount FROM hsk WHERE id = $1",
 //        values: [id]
 //    });
+//
+//
+//
 //    var result = query.on('row', function (row) {
 //        console.log(row.amount);
 //
