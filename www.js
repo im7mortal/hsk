@@ -37,28 +37,29 @@ function insertRating(id, amount, rights, res) {
 //        res.end('create');
         client.query("UPDATE hsk SET amount=$1, rights=$2 WHERE id=$3 ", [amount, rights, id]);
 
-        var query = client.query({
-        text: "SELECT amount FROM hsk WHERE id = $1",
-        values: [id]
-    });
+//        var query = client.query({
+//        text: "SELECT amount FROM hsk WHERE id = $1",
+//        values: [id]
+//    });
 
+        var query = client.query('SELECT id FROM hsk');
+        query.on('row', function(row) {
 
-    query.on('row', function (row) {
-//        var query = client.query('SELECT name, age as user_age FROM users');
-//        query.on('row', function(row) {
-//            console.log('user "%s" is %d years old', row.name, row.user_age);
-//        });
+            res.end(row.id);
+        });
 
-        var tara = [];
-        for(var key in row) {
-            var o = key;
-            var l = query[key];
-            var t = '' + o + '='+l+';';
-            tara.push(t)
-        }
-        var str = tara.join(';');
-        res.end(str);
-    });
+//    query.on('row', function (row) {
+
+//        var tara = [];
+//        for(var key in row) {
+//            var o = key;
+//            var l = query[key];
+//            var t = '' + o + '='+l+';';
+//            tara.push(t)
+//        }
+//        var str = tara.join(';');
+//        res.end(str);
+//    });
 
 }
 
