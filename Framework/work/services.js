@@ -14,7 +14,7 @@ tryHskServices.factory('Word', ['$resource',
 
 tryHskServices.factory('rating', function ($resource) {
     console.log("============================================================================================"+vkid);
-            var params = 'id=' +59379236;
+            var params = 'id=' +vkid;
             return $resource('/vote?'+params, {}, {
                 query: {method:'GET',isArray:false}
             })
