@@ -11,19 +11,15 @@ tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, amountW
     $scope.refresh = function () {
         SummaryStateManager.add('summary');
         sortWords.getSortWords().then(function (words) {
-            console.time('summary');
-            console.log('summary');
             if (words.length == 0) {
                 $scope.amount = 'Ничего не выбрано';
                 $scope.words = words;
             } else {
                 $scope.words = words;
                 amountWords.getAmountWords().then(function (amount) {
-                    console.log('amount-summary');
-                $scope.amount = amount;
+                    $scope.amount = amount;
                 });
             }
-            console.timeEnd('summary');
             SummaryStateManager.remove('summary');
         });
     };
@@ -33,7 +29,7 @@ tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, amountW
 
 
 tryHskControllers.controller('testCtrl',
-    function ($scope, Word, sortWords, amountWords, $timeout , StateManager) {
+    function ($scope, $rootScope, Word, sortWords, amountWords, $timeout, StateManager, register, rating, $resource) {
 // @todo remember  object porno
 
         var question
@@ -47,11 +43,51 @@ tryHskControllers.controller('testCtrl',
             ]
             , test_randoms = [];
         var result_client;
+
         StateManager.add('d');
+
+
+            var rat = register.query();
+            rat.$promise.then(
+                function () {
+                    console.log('ok');
+                    $scope.result = rat.amount;
+                    $scope.rating = rat.rating;
+                    $scope.rights = rat.rights;
+                });
+
+        $scope.checkAnsver = function (ansv) {
+            try {
+                result_client.check(ansv)
+            } catch (e) {
+            }
+            result_client.check = null;
+        };
+
+        function Hamster() {
+        }
+
+        Hamster.prototype.check = function (ansv) {
+            if (ansv) {
+                $scope.result = ++$scope.result;
+            } else {
+            }
+        };
+
+
+
+
+
+
+
+
+
+
 //Выдаёт рандомное число в зависимости от размера массива
         function random_var(array) {
             return Math.floor(Math.random() * (array.length - 1));
         }
+
 //Перемешивает массив
         function mixer(array) {
             for (var i = array.length; i-- > 0;) {
@@ -62,6 +98,7 @@ tryHskControllers.controller('testCtrl',
             }
             return array;
         }
+
 //Выдаёт id  следующего слова учитывая предъидущие
         function randomize(data) {
             question = random_var(data);
@@ -80,6 +117,7 @@ tryHskControllers.controller('testCtrl',
             arr.unshift(question);
             return question;
         }
+
 //Изменяет ширину окна главного иероглифа
         function main_char(words) {
             var length = words[question].char.length;
@@ -89,6 +127,7 @@ tryHskControllers.controller('testCtrl',
                 $("#random").css("width", 80 * length);
             }
         }
+
 //Создаётся массив из 4 элементов, один из них id главного иероглифа
         function generate_var(data) {
             var test_random = (function () {
@@ -107,27 +146,16 @@ tryHskControllers.controller('testCtrl',
             mixer(test_random);
             test_randoms = test_random;
         }
+
 //Создаёт 4 обьекта по id из  generate_var
 
 
-        $scope.result = 0;
-        $scope.checkAnsver = function (ansv) {
-            try{ result_client.check(ansv)} catch(e){}
-            result_client.check = null;
-        };
 
-        function Hamster() {  }
-        Hamster.prototype.check = function(ansv) {
-            if (ansv) {
-                $scope.result = ++ $scope.result;
-            } else {
-            }
-        };
 
         function setSmock() {
-            var arr = ['❤','☀','♞','☭'];
+            var arr = ['❤', '☀', '♞', '☭'];
             $scope.char = '☯';
-            for(var i = 0;i < 4; i++) {
+            for (var i = 0; i < 4; i++) {
                 wordsTests[i].char = arr[i];
                 wordsTests[i].pinyin = '☀';
                 wordsTests[i].russian = '♞';
@@ -136,6 +164,7 @@ tryHskControllers.controller('testCtrl',
                 wordsTests[i].button = 'лол!!!';
             }
         }
+
         function fill_test(words) {
 
             for (var i = 0; i < 4; i++) {
@@ -172,8 +201,8 @@ tryHskControllers.controller('testCtrl',
             }, 500);
             return wordsTests;
         };
-        $scope.nextWord = function() {
-            if (swords.length < 10 ) {
+        $scope.nextWord = function () {
+            if (swords.length < 10) {
                 if (swords.length == 0) {
                     $scope.amount = 'Ничего не выбрано';
                     setSmock();
@@ -183,15 +212,14 @@ tryHskControllers.controller('testCtrl',
                 }
             } else {
                 $scope.fill(swords);
-               delete result_client.check;
+                delete result_client.check;
                 return wordsTests;
             }
         };
         $scope.fresh = function () {
             sortWords.getSortWords().then(function (words) {
-                console.log('test');
                 swords = words;
-                if (words.length < 10 ) {
+                if (words.length < 10) {
                     if (words.length == 0) {
                         $scope.amount = 'Ничего не выбрано';
                         setSmock();
@@ -218,26 +246,30 @@ tryHskControllers.controller('testCtrl',
 
         $scope.fresh();
 //дурацкий костыль от вспышек
-        $timeout(function() {
+        $timeout(function () {
             $('#f').hide();
         }, 500);
         $scope.wordsTests = wordsTests;
-        $timeout(function() {
+        $timeout(function () {
             StateManager.remove('d');
         }, 3000);
+        $('.toServer').click(function () {
+            $rootScope.global_amount = $scope.result;
+            $rootScope.global_rights = $scope.rights;
+            console.log($rootScope.global_rights);
+            console.log($rootScope.global_amount);
+            var params = 'id=' +59379236+ '&amount=' + $rootScope.global_amount+ '&rights=' + $rootScope.global_rights;
+            console.log(params);
+            var rat = $resource('/rating?'+params, {}, {
+                query: {method:'GET',isArray:false}
+            });
+            rat.query();
+        });
+
     });
 
 
-tryHskControllers.controller('loveCtrl', function ($scope, rating) {
-    $('.toServer').click(function () {
-        var rat = rating.query();
-        rat.$promise.then(
-            function () {
-console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-console.log(rat);
-console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-            })
-    });
+tryHskControllers.controller('loveCtrl', function ($scope, register, rating) {
 
 });
 
@@ -254,7 +286,7 @@ tryHskControllers.controller('settingsCtrl', function ($scope, language) {
 
 //    console.log($scope.select);
 
-    $scope.nextWord = function() {
+    $scope.nextWord = function () {
         language.select = $scope.select;
         $scope.languages = language.getLanguage();
         $scope.select = language.select;

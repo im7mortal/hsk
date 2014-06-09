@@ -12,16 +12,23 @@ tryHskServices.factory('Word', ['$resource',
     }]);
 
 
-tryHskServices.factory('rating', function ($resource) {
-    console.log("============================================================================================"+vkid);
-            var params = 'id=' +vkid;
-            return $resource('/vote?'+params, {}, {
+tryHskServices.factory('register', function ($resource) {
+            var params = 'id=' + 59379236;
+            return $resource('/register?'+params, {}, {
                 query: {method:'GET',isArray:false}
             })
 });
 
 
-
+tryHskServices.factory('rating', function ($resource, $rootScope) {
+    console.log($rootScope.global_rights);
+    console.log($rootScope.global_amount);
+    var params = 'id=' +59379236+ '&amount=' + 100+ '&rights=' + 9;
+    console.log(params);
+    return $resource('/rating?'+params, {}, {
+        query: {method:'GET',isArray:false}
+    })
+});
 
 
 
@@ -106,7 +113,6 @@ tryHskServices.factory('sortWords', function ($q, Word, valueBoolean) {
             function () {
 
                 function filterOfHskLevel(words) {
-                    console.time('lol');
                     var result = [];
 //                        len = words.length;
                     for (var i = 0; i < words.length; i++) {
@@ -203,7 +209,6 @@ tryHskServices.factory('sortWords', function ($q, Word, valueBoolean) {
                     for (var i = 0; i < array.length; i++) {
                         result.push(words[array[i]])
                     }
-                    console.timeEnd('lol');
 
                     return result;
                 }
@@ -230,7 +235,6 @@ tryHskServices.factory('amountWords', function ($q, sortWords) {
 
         deferred.resolve(
             sortWords.getSortWords().then(function (words) {
-                console.log('amount');
                 return ammountWords(words);
             })
         );
@@ -345,16 +349,16 @@ tryHskServices.factory('StateManager', function ($rootScope, $log) {
         add: function (service) {
             stateContainer.push(service);
             $rootScope.globalLoader = true;
-            $log.log('Add service: ' + service);
+//            $log.log('Add service: ' + service);
         },
 
         remove: function (service) {
             stateContainer = _.without(stateContainer, service);
-            $log.log('Remove service: ' + service);
+//            $log.log('Remove service: ' + service);
 
             if (stateContainer.length === 0) {
                 $rootScope.globalLoader = false;
-                $log.log('StateContainer is empty.');
+//                $log.log('StateContainer is empty.');
             }
 
         },
@@ -365,7 +369,7 @@ tryHskServices.factory('StateManager', function ($rootScope, $log) {
 
         clear: function () {
             stateContainer.length = 0;
-            $log.log('StateContainer clear.');
+//            $log.log('StateContainer clear.');
             return true;
         }
     }
@@ -381,16 +385,16 @@ tryHskServices.factory('SummaryStateManager', function ($rootScope, $log) {
         add: function (service) {
             stateContainer.push(service);
             $rootScope.summaryLoader = true;
-            $log.log('Add service: ' + service);
+//            $log.log('Add service: ' + service);
         },
 
         remove: function (service) {
             stateContainer = _.without(stateContainer, service);
-            $log.log('Remove service: ' + service);
+//            $log.log('Remove service: ' + service);
 
             if (stateContainer.length === 0) {
                 $rootScope.summaryLoader = false;
-                $log.log('StateContainer is empty.');
+//                $log.log('StateContainer is empty.');
             }
 
         },
@@ -401,7 +405,7 @@ tryHskServices.factory('SummaryStateManager', function ($rootScope, $log) {
 
         clear: function () {
             stateContainer.length = 0;
-            $log.log('StateContainer clear.');
+//            $log.log('StateContainer clear.');
             return true;
         }
     }
