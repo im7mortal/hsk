@@ -429,8 +429,8 @@ $(document).ready(function () {
     $('.toServer').click(function () {
             var xhr = new XMLHttpRequest();
             var id = 59379236;
-            var amount = 1998988981111;
-            var rights = 53464356;
+            var amount = 'yes!!';
+            var rights = 'this is works!!';
             var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
             alert(params);
             xhr.open('GET', '/vote?'+params, true);
