@@ -66,8 +66,8 @@ app.listen(port, function () {
 
 
 function insertRating(id, res) {
-    var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o",
-//    var conString = "postgres://sssr:hui@localhost/postgres",
+//    var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o"
+    var conString = "postgres://sssr:hui@localhost/postgres",
 
         client = new pg.Client(conString);
         client.connect();
@@ -83,7 +83,7 @@ function insertRating(id, res) {
 //    });
 
 
-    query = client.query('SELECT amount,rights FROM hsk WHERE id = $1', [id], function (err, result) {
+    var query = client.query('SELECT amount,rights FROM hsk WHERE id = $1', [id], function (err, result) {
         var a, b, c;
         a = parseInt(result.rows[0].amount);
         b = parseInt(result.rows[0].rights);
