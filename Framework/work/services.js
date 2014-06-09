@@ -26,7 +26,8 @@ tryHskServices.factory('rating', function ($q, $resource) {
         id = flashVars['viewer_id'];
     });
 
-
+console.log('KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK')
+console.log(id)
     var amount = 1000;
     var rights = 500;
     var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
