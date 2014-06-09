@@ -228,7 +228,16 @@ tryHskControllers.controller('testCtrl',
     });
 
 
-tryHskControllers.controller('loveCtrl', function ($scope,language) {
+tryHskControllers.controller('loveCtrl', function ($q, $scope, rating) {
+    $('.toServer').click(function () {
+        var deferred = $q.defer();
+        var rat = rating.query();
+        deferred.resolve(rat.$promise.then(
+            function () {
+console.log('PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP')
+console.log(rat)
+            }));
+    });
 
 });
 
@@ -425,31 +434,32 @@ tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, value
 
 });
 
-$(document).ready(function () {
-    $('.toServer').click(function () {
-            var xhr = new XMLHttpRequest();
-            var id = 59379236;
-            var amount = 1000;
-            var rights = 500;
-            var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
-            alert(params);
-            xhr.open('GET', '/vote?'+params, true);
 
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState != 4) return;
-
-                if (xhr.status != 200) {
-                    // обработать ошибку
-                    alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
-                    return;
-                }
-                // обработать результат
-                amount_global = JSON.parse(xhr.responseText);
-                console.log('+++++++++++++++++');
-                console.log(amount_global.amount);
-                console.log(amount_global);
-            };
-            xhr.send(null);
-        }
-    );
-});
+//$(document).ready(function () {
+//    $('.toServer').click(function () {
+//            var xhr = new XMLHttpRequest();
+//            var id = 59379236;
+//            var amount = 1000;
+//            var rights = 500;
+//            var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
+//            alert(params);
+//            xhr.open('GET', '/vote?'+params, true);
+//
+//            xhr.onreadystatechange = function() {
+//                if (xhr.readyState != 4) return;
+//
+//                if (xhr.status != 200) {
+//                    // обработать ошибку
+//                    alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
+//                    return;
+//                }
+//                // обработать результат
+//                amount_global = JSON.parse(xhr.responseText);
+//                console.log('+++++++++++++++++');
+//                console.log(amount_global.amount);
+//                console.log(amount_global);
+//            };
+//            xhr.send(null);
+//        }
+//    );
+//});

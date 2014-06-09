@@ -9,17 +9,18 @@
     <meta name="author" content="">
 
     <!--Metro UI-->
-    <link rel="stylesheet" href="css/metro-bootstrap.css">
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
     <link href="css/iconFont.css" rel="stylesheet">
     <link href="css/tryhsk.css" rel="stylesheet">
     <script src="js/jquery/jquery-2.1.1.min.js"></script>
     <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
     <script src="js/metro.min.js"></script>
     <script src="js/docs.js"></script>
     <script src="js/underscore-min.js"></script>
 
     <!--AngularJS-->
-<script src="angular/angular.js"></script>
+    <script src="angular/angular.js"></script>
     <script src="angular-route/angular-route.js"></script>
     <script src="angular-resource/angular-resource.js"></script>
     <script src="src/ngCookies/cookies.js"></script>
@@ -29,7 +30,7 @@
     <script src="work/services.js"></script>
 
     <title>HSK. Китайский язык 汉语</title>
-    <script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
+
 
 </head>
 <body class="metro" ng-app="tryHsk" ng-cloak>
@@ -113,32 +114,20 @@
             }
             hui = flashVars['viewer_id'];
         });
-        console.log('******************************************************************************')
+        console.log('******************************************************************************');
         console.log(hui);
+
     });
 
 
 //    Функция получения друзей и вывода их на экран
-    function doIt(){
-    /*
-    VK.api('метод', {параметр: "значение"}, callback функция{
-    // работаем с полученными данными
-    });
-    */
-//    VK.api("setNameInMenu", 'HSK');
-
-    VK.api("friends.get", {fields: "photo_medium"}, function(data) {
-    // Действия с полученными данными
-    for(c=0;c<data.response.length;c++){
-    $("body").append("<img src='"+data.response[c].photo_medium+"'>");
-    }
-    });
-
-//    VK.api("wall.post", {owner_id: "59379236"}, function(data) {
-//    // Действия с полученными данными
-//        alert(data);
-//    return 'lol';
-//    });
+    function doIt() {
+        VK.api("friends.get", {fields: "photo_medium"}, function (data) {
+            // Действия с полученными данными
+            for (c = 0; c < data.response.length; c++) {
+                $("body").append("<img src='" + data.response[c].photo_medium + "'>");
+            }
+        });
     }
 
 

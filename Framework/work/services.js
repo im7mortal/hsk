@@ -12,23 +12,48 @@ tryHskServices.factory('Word', ['$resource',
     }]);
 
 
-tryHskServices.factory('result', function ($q, $resource) {
-//        return $resource('words.json', {}, {
-//            query: {method:'GET',isArray:true}
-//        });
-
-    var deferred = $q.defer();
-
-    deferred.resolve();
 
 
-//return {
-//  amount : '98',
-//  rights : '42',
-//    rating : '3000'
-//}
-    return deferred.promise;
+tryHskServices.factory('rating', function ($q, $resource) {
+    var id;
+    VK.init(function () {    // инициализируем Vk API
+        var parts = document.location.search.substr(1).split("&");
+        var flashVars = {}, curr;
+        for (i = 0; i < parts.length; i++) {
+            curr = parts[i].split('=');
+            flashVars[curr[0]] = curr[1];
+        }
+        id = flashVars['viewer_id'];
+    });
+
+
+    var amount = 1000;
+    var rights = 500;
+    var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
+        return $resource('/vote?'+params, {}, {
+            query: {method:'GET',isArray:false}
+        });
 });
+
+
+
+//tryHskServices.factory('result', function ($q, $resource) {
+////        return $resource('words.json', {}, {
+////            query: {method:'GET',isArray:true}
+////        });
+//
+//    var deferred = $q.defer();
+//
+//    deferred.resolve();
+//
+//
+////return {
+////  amount : '98',
+////  rights : '42',
+////    rating : '3000'
+////}
+//    return deferred.promise;
+//});
 
 // @todo  настроить cookies
 tryHskServices.factory('valueBoolean', function () {

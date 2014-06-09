@@ -84,6 +84,7 @@ function insertRating(id, amount, rights, res) {
             rights:b
         };
         str = JSON.stringify(str);
+
         res.end(str);
     });
 
