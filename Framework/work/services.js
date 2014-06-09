@@ -13,15 +13,10 @@ tryHskServices.factory('Word', ['$resource',
 
 
 tryHskServices.factory('rating', function ($resource) {
-    var getRating = function () {
             var params = 'id=' + encodeURIComponent(vkid);
             return $resource('/vote?'+params, {}, {
                 query: {method:'GET',isArray:false}
             })
-    };
-    return {
-        getRating: getRating
-    }
 });
 
 
