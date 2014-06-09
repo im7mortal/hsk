@@ -117,41 +117,41 @@
 </div>
 
 
-<script type="text/javascript" charset="cp1251">
-    var hui;
-    window.onload = (function () {   // когда загрузится вся страница
-        VK.init(function () {    // инициализируем Vk API
-            var parts = document.location.search.substr(1).split("&");
-            var flashVars = {}, curr;
-            for (i = 0; i < parts.length; i++) {
-                curr = parts[i].split('=');
-                flashVars[curr[0]] = curr[1];
-            }
-            hui = flashVars['viewer_id'];
-        });
-        console.log('******************************************************************************');
-        console.log(hui);
+<!--<script type="text/javascript" charset="cp1251">-->
+    <!--var hui;-->
+    <!--window.onload = (function () {   // когда загрузится вся страница-->
+        <!--VK.init(function () {    // инициализируем Vk API-->
+            <!--var parts = document.location.search.substr(1).split("&");-->
+            <!--var flashVars = {}, curr;-->
+            <!--for (i = 0; i < parts.length; i++) {-->
+                <!--curr = parts[i].split('=');-->
+                <!--flashVars[curr[0]] = curr[1];-->
+            <!--}-->
+            <!--hui = flashVars['viewer_id'];-->
+        <!--});-->
+        <!--console.log('******************************************************************************');-->
+        <!--console.log(hui);-->
 
-    });
-
-
-//    Функция получения друзей и вывода их на экран
-    function doIt() {
-        VK.api("friends.get", {fields: "photo_medium"}, function (data) {
-            // Действия с полученными данными
-            for (c = 0; c < data.response.length; c++) {
-                $("body").append("<img src='" + data.response[c].photo_medium + "'>");
-            }
-        });
-    }
+    <!--});-->
 
 
+<!--//    Функция получения друзей и вывода их на экран-->
+    <!--function doIt() {-->
+        <!--VK.api("friends.get", {fields: "photo_medium"}, function (data) {-->
+            <!--// Действия с полученными данными-->
+            <!--for (c = 0; c < data.response.length; c++) {-->
+                <!--$("body").append("<img src='" + data.response[c].photo_medium + "'>");-->
+            <!--}-->
+        <!--});-->
+    <!--}-->
 
-    $(document).ready(function(){
-    doIt();
-    });
 
-</script>
+
+    <!--$(document).ready(function(){-->
+    <!--doIt();-->
+    <!--});-->
+
+<!--</script>-->
 
 
 </body>
