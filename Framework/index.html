@@ -63,9 +63,6 @@
 <!--дурацкий костыль от вспышек-->
 <div id="f" style="height: 1000px; width: 500px;"></div>
 <div class="container">
-
-    <button class="toServer">Голосовать!</button>
-    <div id="hui"></div>
     <div class="tab-control" data-role="tab-control">
         <ul class="tabs">
 
@@ -121,25 +118,84 @@
 
 <script type="text/javascript" charset="cp1251">
 
-
-//    Функция получения друзей и вывода их на экран
-    function doIt() {
-        VK.api("friends.get", {fields: "photo_medium"}, function (data) {
-            // Действия с полученными данными
-
-            console.log('{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}');
-            console.log(data);
-            for (c = 0; c < data.response.length; c++) {
-                $(".lol_content").append("<img src='" + data.response[c].photo_medium + "'>");
-            }
-        });
-    }
+    $(window).unload( function(){
+            var xhr = new XMLHttpRequest()
+            ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;
+            xhr.open('GET', '/rating?'+params, true);
+            xhr.send(null);
+    } );
 
 
 
-    $(document).ready(function(){
-    doIt();
-    });
+
+    //$(document).ready(function () {
+    //    $('.toServer').click(function () {
+    //            var xhr = new XMLHttpRequest();
+    //            var id = 59379236;
+    //            var amount = 1000;
+    //            var rights = 500;
+    //            var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
+    //            alert(params);
+    //            xhr.open('GET', '/vote?'+params, true);
+    //
+    //            xhr.onreadystatechange = function() {
+    //                if (xhr.readyState != 4) return;
+    //
+    //                if (xhr.status != 200) {
+    //                    // обработать ошибку
+    //                    alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
+    //                    return;
+    //                }
+    //                // обработать результат
+    //                amount_global = JSON.parse(xhr.responseText);
+    //                console.log('+++++++++++++++++');
+    //                console.log(amount_global.amount);
+    //                console.log(amount_global);
+    //            };
+    //            xhr.send(null);
+    //        }
+    //    );
+    //});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////    Функция получения друзей и вывода их на экран
+//    function doIt() {
+//        VK.api("friends.get", {fields: "photo_medium"}, function (data) {
+//            // Действия с полученными данными
+//
+//            console.log('{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}');
+//            console.log(data);
+//            for (c = 0; c < data.response.length; c++) {
+//                $(".lol_content").append("<img src='" + data.response[c].photo_medium + "'>");
+//            }
+//        });
+//    }
+//
+//
+//
+//    $(document).ready(function(){
+//    doIt();
+//    });
 
 </script>
 

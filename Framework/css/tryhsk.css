@@ -17,7 +17,7 @@ body  {
 
 .summaryLoader {
     position: fixed;
-    width: 100%;
+    width: inherit;
     height: 100%;
     z-index: 1000;
     opacity: 1;

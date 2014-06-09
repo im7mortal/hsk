@@ -211,6 +211,10 @@ tryHskControllers.controller('testCtrl',
                     setSmock();
                 }
             } else {
+                $rootScope.global_amount = $scope.result;
+                $rootScope.global_rights = $scope.rights;
+                global_amount = $scope.result;
+                global_rights = $scope.rights;
                 $scope.fill(swords);
                 delete result_client.check;
                 return wordsTests;
@@ -229,6 +233,10 @@ tryHskControllers.controller('testCtrl',
                     }
                 } else {
                     arr = new Array(10);
+                    $rootScope.global_amount = $scope.result;
+                    $rootScope.global_rights = $scope.rights;
+                    global_amount = $scope.result;
+                    global_rights = $scope.rights;
                     $scope.fill(words);
 
                     result_client = new Hamster();
