@@ -228,15 +228,14 @@ tryHskControllers.controller('testCtrl',
     });
 
 
-tryHskControllers.controller('loveCtrl', function ($q, $scope, rating) {
+tryHskControllers.controller('loveCtrl', function ($scope, rating) {
     $('.toServer').click(function () {
-        var deferred = $q.defer();
         var rat = rating.query();
-        deferred.resolve(rat.$promise.then(
+        rat.$promise.then(
             function () {
 console.log('PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP')
 console.log(rat)
-            }));
+            })
     });
 
 });
