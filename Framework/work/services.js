@@ -13,16 +13,14 @@ tryHskServices.factory('Word', ['$resource',
 
 
 tryHskServices.factory('register', function ($resource) {
-            var params = 'id=' + 59379236;
+            var params = 'id=' + vkid;
             return $resource('/register?'+params, {}, {
                 query: {method:'GET',isArray:false}
             })
 });
 
 
-tryHskServices.factory('rating', function ($resource, $rootScope) {
-    console.log($rootScope.global_rights);
-    console.log($rootScope.global_amount);
+tryHskServices.factory('rating', function ($resource) {
     var params = 'id=' +59379236+ '&amount=' + 100+ '&rights=' + 9;
     console.log(params);
     return $resource('/rating?'+params, {}, {

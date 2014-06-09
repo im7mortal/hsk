@@ -258,7 +258,7 @@ tryHskControllers.controller('testCtrl',
             $rootScope.global_rights = $scope.rights;
             console.log($rootScope.global_rights);
             console.log($rootScope.global_amount);
-            var params = 'id=' +59379236+ '&amount=' + $rootScope.global_amount+ '&rights=' + $rootScope.global_rights;
+            var params = 'id=' +vkid+ '&amount=' + $rootScope.global_amount+ '&rights=' + $rootScope.global_rights;
             console.log(params);
             var rat = $resource('/rating?'+params, {}, {
                 query: {method:'GET',isArray:false}
