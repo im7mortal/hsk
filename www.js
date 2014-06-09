@@ -39,7 +39,7 @@ function insertRating(id, amount, rights, res) {
 
         var query = client.query({
         text: "SELECT amount FROM hsk WHERE id = $1",
-        values: [id]
+        values: ['90812']
     });
 //    var tara = [];
 //    for(var key in query) {
