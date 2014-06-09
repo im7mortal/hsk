@@ -15,6 +15,23 @@
     <script src="js/jquery/jquery-2.1.1.min.js"></script>
     <script src="js/jquery/jquery.widget.min.js"></script>
     <script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
+    <script>
+        var vkid;
+        window.onload = (function () {   // когда загрузится вся страница
+            VK.init(function () {    // инициализируем Vk API
+                var parts = document.location.search.substr(1).split("&");
+                var flashVars = {}, curr;
+                for (i = 0; i < parts.length; i++) {
+                    curr = parts[i].split('=');
+                    flashVars[curr[0]] = curr[1];
+                }
+                vkid = flashVars['viewer_id'];
+            });
+            console.log('******************************************************************************');
+            console.log(vkid);
+
+        });
+    </script>
     <script src="js/metro.min.js"></script>
     <script src="js/docs.js"></script>
     <script src="js/underscore-min.js"></script>

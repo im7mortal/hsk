@@ -12,14 +12,12 @@ tryHskServices.factory('Word', ['$resource',
     }]);
 
 
-tryHskServices.factory('rating', function ($resource, vk_id) {
+tryHskServices.factory('rating', function ($resource) {
     var getRating = function () {
-        return vk_id.getId().then(function (id) {
-            var params = 'id=' + encodeURIComponent(id);
+            var params = 'id=' + encodeURIComponent(vkid);
             return $resource('/vote?'+params, {}, {
                 query: {method:'GET',isArray:false}
             })
-        })
     };
     return {
         getRating: getRating
@@ -27,35 +25,57 @@ tryHskServices.factory('rating', function ($resource, vk_id) {
 });
 
 
+
+
+
+
 /*
- var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
+ tryHskServices.factory('rating', function ($resource, vk_id) {
+ var getRating = function () {
+ return vk_id.getId().then(function (id) {
+ var params = 'id=' + encodeURIComponent(id);
  return $resource('/vote?'+params, {}, {
  query: {method:'GET',isArray:false}
+ })
+ })
+ };
+ return {
+ getRating: getRating
+ }
+ });
+
+
+
+ // var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
+ // return $resource('/vote?'+params, {}, {
+ // query: {method:'GET',isArray:false}
+ // });
+
+
+
+ tryHskServices.factory('vk_id', function ($q) {
+ var getId = function () {
+ var deferred = $q.defer();
+ deferred.resolve(
+ function () {
+ return VK.init(function () {
+ var parts = document.location.search.substr(1).split("&");
+ var flashVars = {}, curr;
+ for (i = 0; i < parts.length; i++) {
+ curr = parts[i].split('=');
+ flashVars[curr[0]] = curr[1];
+ }
+ return flashVars['viewer_id'];
+ })
+ });
+ return deferred.promise;
+ };
+ return {
+ getId: getId
+ }
  });
  */
 
-
-tryHskServices.factory('vk_id', function ($q) {
-    var getId = function () {
-        var deferred = $q.defer();
-        deferred.resolve(
-            function () {
-                return VK.init(function () {
-                    var parts = document.location.search.substr(1).split("&");
-                    var flashVars = {}, curr;
-                    for (i = 0; i < parts.length; i++) {
-                        curr = parts[i].split('=');
-                        flashVars[curr[0]] = curr[1];
-                    }
-                    return flashVars['viewer_id'];
-                })
-            });
-        return deferred.promise;
-    };
-    return {
-        getId: getId
-    }
-});
 
 
 // @todo  настроить cookies
