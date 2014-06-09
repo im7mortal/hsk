@@ -17,7 +17,6 @@
     <script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
     <script>
         var vkid;
-        window.onload = (function () {   // когда загрузится вся страница
             VK.init(function () {    // инициализируем Vk API
                 var parts = document.location.search.substr(1).split("&");
                 var flashVars = {}, curr;
@@ -30,7 +29,6 @@
             console.log('******************************************************************************');
             console.log(vkid);
 
-        });
     </script>
     <script src="js/metro.min.js"></script>
     <script src="js/docs.js"></script>
