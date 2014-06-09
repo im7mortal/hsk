@@ -119,13 +119,17 @@
 <script type="text/javascript" charset="cp1251">
 
     $(window).unload( function(){
-        alert('lol');
             var xhr = new XMLHttpRequest()
             ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;
             xhr.open('GET', '/rating?'+params, true);
             xhr.send(null);
     } );
-
+window.onunload = function() {
+    var xhr = new XMLHttpRequest()
+            ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;
+    xhr.open('GET', '/rating?'+params, true);
+    xhr.send(null);
+};
 
 
 
