@@ -102,6 +102,7 @@
 
 
 <script type="text/javascript" charset="cp1251">
+    var hui;
     window.onload = (function () {   // когда загрузится вся страница
         VK.init(function () {    // инициализируем Vk API
             var parts = document.location.search.substr(1).split("&");
@@ -110,11 +111,11 @@
                 curr = parts[i].split('=');
                 flashVars[curr[0]] = curr[1];
             }
-            window.id = flashVars['viewer_id'];
+            hui = flashVars['viewer_id'];
         });
     });
 console.log('******************************************************************************')
-console.log(id);
+console.log(hui);
 
 //    Функция получения друзей и вывода их на экран
     function doIt(){
