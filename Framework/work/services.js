@@ -13,13 +13,17 @@ tryHskServices.factory('Word', ['$resource',
 
 
 tryHskServices.factory('rating', function ($resource, vk_id) {
-
-   return vk_id.getId().then(function (id) {
-        var params = 'id=' + encodeURIComponent(id);
-        return $resource('/vote?'+params, {}, {
-            query: {method:'GET',isArray:false}
+    var getRating = function () {
+        return vk_id.getId().then(function (id) {
+            var params = 'id=' + encodeURIComponent(id);
+            return $resource('/vote?'+params, {}, {
+                query: {method:'GET',isArray:false}
+            })
         })
-    })
+    };
+    return {
+        getRating: getRating
+    }
 });
 
 

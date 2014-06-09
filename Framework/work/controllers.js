@@ -230,7 +230,7 @@ tryHskControllers.controller('testCtrl',
 
 tryHskControllers.controller('loveCtrl', function ($scope, rating) {
     $('.toServer').click(function () {
-        var rat = rating;
+        var rat = rating.getRating();
         rat.$promise.then(
             function () {
 console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
