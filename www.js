@@ -62,7 +62,7 @@ function insertRating(id, amount, rights, res) {
         tara.push(t)
     }
     var str = tara.join(';');
-    res.end(str);
+    res.end(row.amount);
 
     });
 
