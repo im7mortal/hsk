@@ -429,8 +429,8 @@ $(document).ready(function () {
     $('.toServer').click(function () {
             var xhr = new XMLHttpRequest();
             var id = 59379236;
-            var amount = 'yes!!';
-            var rights = 'this is works!!';
+            var amount = 1000;
+            var rights = 500;
             var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
             alert(params);
             xhr.open('GET', '/vote?'+params, true);
@@ -444,8 +444,9 @@ $(document).ready(function () {
                     return;
                 }
                 // обработать результат
-                amount_global = xhr.responseText;
+                amount_global = JSON.parse(xhr.responseText);
                 console.log('+++++++++++++++++');
+                console.log(amount_global.amount);
                 console.log(amount_global);
             };
             xhr.send(null);
