@@ -301,177 +301,20 @@ tryHskControllers.controller('settingsCtrl', function ($scope, language) {
     }
 });
 
-tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, valueBoolean) {
-
-    valueBoolean = valueBoolean.bool;
-    fresh();
-    function fresh() {
-        $scope.adjective = valueBoolean.adjective;
-        $scope.numeral = valueBoolean.numeral;
-        $scope.pronoun = valueBoolean.pronoun;
-        $scope.verb = valueBoolean.verb;
-        $scope.noun = valueBoolean.noun;
-        $scope.hsk1 = valueBoolean.hsk1;
-        $rootScope.hsk1 = valueBoolean.hsk1;
-        $scope.hsk2 = valueBoolean.hsk2;
-        $scope.hsk3 = valueBoolean.hsk3;
-        $scope.place = valueBoolean.place;
-        $scope.relate = valueBoolean.relate;
-        $scope.otherThemes = valueBoolean.otherThemes;
-        $scope.otherPart = valueBoolean.otherPart;
-    }
-
-
-    $scope.refresh = $scope.$parent.refresh;
-    $scope.fill = $scope.$parent.fresh;
-
-
-    $scope.HSK1 = function () {
-        valueBoolean.hsk1 = $scope.hsk1;
-        fresh();
+tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, checkboxValues) {
+    $scope.checkboxValues = checkboxValues.getCheckboxValues();
+    $scope.$watch('checkboxValues', function () {
+        checkboxValues.refreshCheckboxValues($scope.checkboxValues);
         try {
-            $scope.refresh()
+            $scope.$parent.refresh();
         } catch (e) {
         }
         try {
-            $scope.fill()
+            $scope.$parent.fresh()
         } catch (e) {
         }
-
-    };
-    $scope.HSK2 = function () {
-        valueBoolean.hsk2 = $scope.hsk2;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.HSK3 = function () {
-        valueBoolean.hsk3 = $scope.hsk3;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.VERB = function () {
-        valueBoolean.verb = $scope.verb;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.NOUN = function () {
-        valueBoolean.noun = $scope.noun;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.PRONOUN = function () {
-        valueBoolean.pronoun = $scope.pronoun;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.ADJECTIVE = function () {
-        valueBoolean.adjective = $scope.adjective;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.NUMERAL = function () {
-        valueBoolean.numeral = $scope.numeral;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.changePlace = function () {
-        valueBoolean.place = $scope.place;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.changeRelate = function () {
-        valueBoolean.relate = $scope.relate;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.changeOtherPart = function () {
-        valueBoolean.otherPart = $scope.otherPart;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-    $scope.changeOtherThemes = function () {
-        valueBoolean.otherThemes = $scope.otherThemes;
-        fresh();
-        try {
-            $scope.refresh()
-        } catch (e) {
-        }
-        try {
-            $scope.fill()
-        } catch (e) {
-        }
-    };
-
+    }, true);
+//   3 аргумент true важен в $watch так как из за него наблюдается весь обьект целиком
 });
 
 

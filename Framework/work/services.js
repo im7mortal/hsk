@@ -80,33 +80,89 @@ tryHskServices.factory('rating', function ($resource) {
 
 
 // @todo  настроить cookies
-tryHskServices.factory('valueBoolean', function () {
+tryHskServices.factory('valueBoolean',['$cookies',
+    function ($cookies) {
     return {
         bool: {
-            hsk1: true,
-            hsk2: true,
-            hsk3: true,
-            verb: true,
-            numeral: true,
-            adjective: true,
-            pronoun: true,
-            place: true,
-            relate: true,
-            noun: true,
-            otherPart: true,
-            otherThemes: true
+            hsk1: $cookies.hsk1 || true,
+            hsk2: $cookies.hsk2 || true,
+            hsk3: $cookies.hsk3 || true,
+            verb: $cookies.verb || true,
+            numeral: $cookies.numeral || true,
+            adjective: $cookies.adjective || true,
+            pronoun: $cookies.pronoun || true,
+            place: $cookies.place || true,
+            relate: $cookies.relate || true,
+            noun: $cookies.noun || true,
+            otherPart: $cookies.otherPart || true,
+            otherThemes: $cookies.otherThemes || true
         }
-
     }
-});
+}]);
+
+tryHskServices.factory('checkboxValues', ['$cookies', function ($cookies) {
+    return  {
+
+        getCheckboxValues: function () {
+            return JSON.parse($cookies.checkboxValues);
+        },
+        refreshCheckboxValues: function (object) {
+            $cookies.checkboxValues = JSON.stringify(object);
+        }
+    };
+}]);
 
 
-tryHskServices.factory('sortWords', function ($q, Word, valueBoolean) {
+
+
+//    $cookies.checkboxValues = JSON.stringify({
+//        hsk1: true,
+//        hsk2: true,
+//        hsk3: true,
+//        verb: true,
+//        numeral: true,
+//        adjective: true,
+//        pronoun: true,
+//        place: true,
+//        relate: true,
+//        noun: true,
+//        otherPart: true,
+//        otherThemes: true
+//    });
+//    console.log($cookies.checkboxValues);
+//    console.log(JSON.parse($cookies.checkboxValues));
+
+//    $scope.checkboxValues =  checkboxValues.getCheckboxValues().then( function() {});
+
+
+
+//    $scope.checkboxValues =  {
+//        hsk1: $cookies.hsk1 || true,
+//        hsk2: $cookies.hsk2 || true,
+//        hsk3: $cookies.hsk3 || true,
+//        verb: $cookies.verb || true,
+//        numeral: $cookies.numeral || true,
+//        adjective: $cookies.adjective || true,
+//        pronoun: $cookies.pronoun || true,
+//        place: $cookies.place || true,
+//        relate: $cookies.relate || true,
+//        noun: $cookies.noun || true,
+//        otherPart: $cookies.otherPart || true,
+//        otherThemes: $cookies.otherThemes || true
+//    };
+//    console.log($scope.checkboxValues);
+
+
+
+
+
+
+tryHskServices.factory('sortWords', function ($q, Word, checkboxValues) {
 
     var getSortWords = function () {
-        var deferred = $q.defer();
-        var words = Word.query();
-        var value = valueBoolean;
+        var deferred = $q.defer()
+            ,words = Word.query(),
+            value = checkboxValues.getCheckboxValues();
         deferred.resolve(words.$promise.then(
             function () {
 
@@ -119,17 +175,17 @@ tryHskServices.factory('sortWords', function ($q, Word, valueBoolean) {
                         hsk = words[i].hsk.split('-');
                         switch (hsk[0]) {
                             case '1' :
-                                if (value.bool.hsk1) {
+                                if (value.hsk1) {
                                     result.push(words[i].id)
                                 }
                                 break;
                             case '2' :
-                                if (value.bool.hsk2) {
+                                if (value.hsk2) {
                                     result.push(words[i].id)
                                 }
                                 break;
                             case '3' :
-                                if (value.bool.hsk3) {
+                                if (value.hsk3) {
                                     result.push(words[i].id)
                                 }
                                 break;
@@ -145,31 +201,31 @@ tryHskServices.factory('sortWords', function ($q, Word, valueBoolean) {
 
                     var result = [];
                     for (var i = 0; i < array.length; i++) {
-                        if (value.bool.verb) {
+                        if (value.verb) {
                             if (words[array[i]].verb) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (value.bool.adjective) {
+                        if (value.adjective) {
                             if (words[array[i]].adjective) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (value.bool.noun) {
+                        if (value.noun) {
                             if (words[array[i]].noun) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (value.bool.numeral) {
+                        if (value.numeral) {
                             if (words[array[i]].number) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (value.bool.otherPart) {
+                        if (value.otherPart) {
                             if (!words[array[i]].numeral && !words[array[i]].noun && !words[array[i]].verb && !words[array[i]].adjective) {
                                 result.push(array[i])
                             }
@@ -181,19 +237,19 @@ tryHskServices.factory('sortWords', function ($q, Word, valueBoolean) {
                 function filterOfThemes(array) {
                     var result = [];
                     for (var i = 0; i < array.length; i++) {
-                        if (value.bool.place) {
+                        if (value.place) {
                             if (words[array[i]].place) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (value.bool.relate) {
+                        if (value.relate) {
                             if (words[array[i]].relationship) {
                                 result.push(array[i]);
                                 continue
                             }
                         }
-                        if (value.bool.otherThemes) {
+                        if (value.otherThemes) {
                             if (!words[array[i]].relationship && !words[array[i]].place) {
                                 result.push(array[i])
                             }
@@ -337,6 +393,12 @@ tryHskServices.factory('language', function () {
 });
 
 
+
+
+
+
+
+
 //  statemanager'ы
 
 tryHskServices.factory('StateManager', function ($rootScope, $log) {
@@ -409,3 +471,5 @@ tryHskServices.factory('SummaryStateManager', function ($rootScope, $log) {
     }
 
 });
+
+

@@ -20,6 +20,7 @@ app.get('/register', function (req, res) {
 });
 
 app.get('/rating', function (req, res) {
+    console.log('rating');
     var url_parts = url.parse(req.url, true);
     insertRating(url_parts.query.id,url_parts.query.amount,url_parts.query.rights, res);
 });
