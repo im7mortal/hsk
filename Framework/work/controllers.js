@@ -5,7 +5,8 @@ var rights;
 
 var tryHskControllers = angular.module('tryHskControllers', []);
 
-tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, amountWords, $rootScope, language, SummaryStateManager) {
+tryHskControllers.controller('summaryCtrl', function ($scope, $rootScope, sortWords, amountWords, language, SummaryStateManager) {
+
 
     $scope.language = language.getLanguage();
     $scope.refresh = function () {
@@ -31,7 +32,9 @@ tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, amountW
 tryHskControllers.controller('testCtrl',
     function ($scope, $rootScope, Word, sortWords, amountWords, $timeout, StateManager, register, rating, $resource) {
 // @todo remember  object porno
-
+        $scope.result = 0;
+        $scope.rating = 0;
+        $scope.rights = 0;
         var question
             , swords
             , arr = new Array(10)

@@ -78,9 +78,6 @@ tryHskServices.factory('rating', function ($resource) {
  */
 
 
-
-
-
 tryHskServices.factory('checkboxValues', ['$cookies', '$rootScope', function ($cookies) {
     return {
         getCheckboxValues: function () {
@@ -109,9 +106,9 @@ tryHskServices.factory('checkboxValues', ['$cookies', '$rootScope', function ($c
     };
 }]);
 
+tryHskServices.factory('resultOfHSK', function () {
 
-
-
+});
 
 
 tryHskServices.factory('sortWords', function ($q, Word, checkboxValues) {
@@ -283,6 +280,11 @@ tryHskServices.factory('amountWords', function ($q, sortWords) {
     };
 
 });
+
+
+
+
+
 
 
 // Сервис отвечает за язык
