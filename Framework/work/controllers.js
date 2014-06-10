@@ -32,9 +32,9 @@ tryHskControllers.controller('summaryCtrl', function ($scope, $rootScope, sortWo
 tryHskControllers.controller('testCtrl',
     function ($scope, $rootScope, Word, sortWords, amountWords, $timeout, StateManager, register, rating, $resource) {
 // @todo remember  object porno
-        $scope.result = 0;
-        $scope.rating = 0;
-        $scope.rights = 0;
+//        $scope.result = 0;
+//        $scope.rating = 0;
+//        $scope.rights = 0;
         var question
             , swords
             , arr = new Array(10)
