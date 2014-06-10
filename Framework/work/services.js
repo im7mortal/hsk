@@ -79,45 +79,25 @@ tryHskServices.factory('rating', function ($resource) {
 
 
 
-// @todo  настроить cookies
-tryHskServices.factory('valueBoolean',['$cookies',
-    function ($cookies) {
+
+
+tryHskServices.factory('checkboxValues', ['$cookies', '$rootScope', function ($cookies) {
     return {
-        bool: {
-            hsk1: $cookies.hsk1 || true,
-            hsk2: $cookies.hsk2 || true,
-            hsk3: $cookies.hsk3 || true,
-            verb: $cookies.verb || true,
-            numeral: $cookies.numeral || true,
-            adjective: $cookies.adjective || true,
-            pronoun: $cookies.pronoun || true,
-            place: $cookies.place || true,
-            relate: $cookies.relate || true,
-            noun: $cookies.noun || true,
-            otherPart: $cookies.otherPart || true,
-            otherThemes: $cookies.otherThemes || true
-        }
-    }
-}]);
-
-tryHskServices.factory('checkboxValues', ['$cookies', function ($cookies) {
-    return  {
-
         getCheckboxValues: function () {
             if ($cookies.checkboxValues === undefined) {
                 return {
-                    hsk1: $cookies.hsk1 || true,
-                    hsk2: $cookies.hsk2 || true,
-                    hsk3: $cookies.hsk3 || true,
-                    verb: $cookies.verb || true,
-                    numeral: $cookies.numeral || true,
-                    adjective: $cookies.adjective || true,
-                    pronoun: $cookies.pronoun || true,
-                    place: $cookies.place || true,
-                    relate: $cookies.relate || true,
-                    noun: $cookies.noun || true,
-                    otherPart: $cookies.otherPart || true,
-                    otherThemes: $cookies.otherThemes || true
+                    hsk1: true,
+                    hsk2: true,
+                    hsk3: true,
+                    verb: true,
+                    numeral: true,
+                    adjective: true,
+                    pronoun: true,
+                    place: true,
+                    relate: true,
+                    noun: true,
+                    otherPart: true,
+                    otherThemes: true
                 }
             } else {
                 return JSON.parse($cookies.checkboxValues);
@@ -132,54 +112,14 @@ tryHskServices.factory('checkboxValues', ['$cookies', function ($cookies) {
 
 
 
-//    $cookies.checkboxValues = JSON.stringify({
-//        hsk1: true,
-//        hsk2: true,
-//        hsk3: true,
-//        verb: true,
-//        numeral: true,
-//        adjective: true,
-//        pronoun: true,
-//        place: true,
-//        relate: true,
-//        noun: true,
-//        otherPart: true,
-//        otherThemes: true
-//    });
-//    console.log($cookies.checkboxValues);
-//    console.log(JSON.parse($cookies.checkboxValues));
-
-//    $scope.checkboxValues =  checkboxValues.getCheckboxValues().then( function() {});
-
-
-
-//    $scope.checkboxValues =  {
-//        hsk1: $cookies.hsk1 || true,
-//        hsk2: $cookies.hsk2 || true,
-//        hsk3: $cookies.hsk3 || true,
-//        verb: $cookies.verb || true,
-//        numeral: $cookies.numeral || true,
-//        adjective: $cookies.adjective || true,
-//        pronoun: $cookies.pronoun || true,
-//        place: $cookies.place || true,
-//        relate: $cookies.relate || true,
-//        noun: $cookies.noun || true,
-//        otherPart: $cookies.otherPart || true,
-//        otherThemes: $cookies.otherThemes || true
-//    };
-//    console.log($scope.checkboxValues);
-
-
-
-
 
 
 tryHskServices.factory('sortWords', function ($q, Word, checkboxValues) {
 
     var getSortWords = function () {
         var deferred = $q.defer()
-            ,words = Word.query(),
-            value = checkboxValues.getCheckboxValues();
+            ,words = Word.query()
+            ,value = checkboxValues.getCheckboxValues();
         deferred.resolve(words.$promise.then(
             function () {
 

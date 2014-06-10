@@ -302,9 +302,12 @@ tryHskControllers.controller('settingsCtrl', function ($scope, language) {
 });
 
 tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, checkboxValues) {
-    $scope.checkboxValues = checkboxValues.getCheckboxValues();
+
+    $rootScope.checkboxValues = checkboxValues.getCheckboxValues();
+    $scope.checkboxValues = $rootScope.checkboxValues;
     $scope.$watch('checkboxValues', function () {
         checkboxValues.refreshCheckboxValues($scope.checkboxValues);
+        $rootScope.checkboxValues = $scope.checkboxValues;
         try {
             $scope.$parent.refresh();
         } catch (e) {
@@ -313,6 +316,9 @@ tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, check
             $scope.$parent.fresh()
         } catch (e) {
         }
+    }, true);
+    $rootScope.$watch('checkboxValues', function () {
+        $scope.checkboxValues = $rootScope.checkboxValues;
     }, true);
 //   3 аргумент true важен в $watch так как из за него наблюдается весь обьект целиком
 });
