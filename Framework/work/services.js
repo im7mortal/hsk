@@ -104,7 +104,24 @@ tryHskServices.factory('checkboxValues', ['$cookies', function ($cookies) {
     return  {
 
         getCheckboxValues: function () {
-            return JSON.parse($cookies.checkboxValues);
+            if ($cookies.checkboxValues === undefined) {
+                return {
+                    hsk1: $cookies.hsk1 || true,
+                    hsk2: $cookies.hsk2 || true,
+                    hsk3: $cookies.hsk3 || true,
+                    verb: $cookies.verb || true,
+                    numeral: $cookies.numeral || true,
+                    adjective: $cookies.adjective || true,
+                    pronoun: $cookies.pronoun || true,
+                    place: $cookies.place || true,
+                    relate: $cookies.relate || true,
+                    noun: $cookies.noun || true,
+                    otherPart: $cookies.otherPart || true,
+                    otherThemes: $cookies.otherThemes || true
+                }
+            } else {
+                return JSON.parse($cookies.checkboxValues);
+            }
         },
         refreshCheckboxValues: function (object) {
             $cookies.checkboxValues = JSON.stringify(object);
