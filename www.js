@@ -15,13 +15,15 @@ app.get('/', function (req, res) {
 
 //@todo  ПОМОЕМУ КЛИЕНТ БД НЕ ЗАКРЫВАЕТСЯ
 app.get('/register', function (req, res) {
+//    res.end('lol');
+    console.log('otdal');
     var url_parts = url.parse(req.url, true);
     getRegister(url_parts.query.id, res);
 });
 
 app.get('/rating', function (req, res) {
-    console.log('rating');
     var url_parts = url.parse(req.url, true);
+    console.log(url_parts.query);
     insertRating(url_parts.query.id,url_parts.query.amount,url_parts.query.rights, res);
 });
 

@@ -30,11 +30,7 @@ tryHskControllers.controller('summaryCtrl', function ($scope, $rootScope, sortWo
 
 
 tryHskControllers.controller('testCtrl',
-    function ($scope, $rootScope, Word, sortWords, amountWords, $timeout, StateManager, register, rating, $resource) {
-// @todo remember  object porno
-//        $scope.result = 0;
-//        $scope.rating = 0;
-//        $scope.rights = 0;
+    function ($scope, $rootScope, Word, sortWords, amountWords, $timeout, StateManager, $resource) {
         var question
             , swords
             , arr = new Array(10)
@@ -44,38 +40,60 @@ tryHskControllers.controller('testCtrl',
                 {},
                 {}
             ]
-            , test_randoms = [];
-        var result_client;
+            , test_randoms = []
+            ,result_client;
 
         StateManager.add('d');
+        var params ='id=' +vkid;
+        $resource('/register?' + params, {}, {
+            query: {method:'GET',isArray:false}
+        }).query().$promise.then(function(stat) {
+                $scope.amountOfTry = parseInt(stat.amount);
+                $scope.rights = parseInt(stat.rights);
+                $scope.rating =  stat.rating;
+            });
 
 
-            var rat = register.query();
-            rat.$promise.then(
-                function () {
-                    console.log('ok');
-                    $scope.result = rat.amount;
-                    $scope.rating = rat.rating;
-                    $scope.rights = rat.rights;
+        $scope.$watch('rights', function () {
+            var params ='id=' +vkid+ '&amount=' + $scope.amountOfTry + '&rights=' + $scope.rights;
+            $resource('/rating?'+ params, {}, {
+                query: {method:'GET',isArray:false}
+            }).query().$promise.then(function(stat) {
+                    $scope.rating =  stat.rating;
                 });
+         }, true);
 
-        $scope.checkAnsver = function (ansv) {
+
+        $scope.checkAnswer = function (ansv) {
             try {
                 result_client.check(ansv)
             } catch (e) {
             }
-            result_client.check = null;
+            result_client = null;
         };
+
 
         function Hamster() {
         }
-
         Hamster.prototype.check = function (ansv) {
             if (ansv) {
-                $scope.result = ++$scope.result;
+                $scope.rights = ++$scope.rights;
             } else {
             }
         };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -150,11 +168,6 @@ tryHskControllers.controller('testCtrl',
             test_randoms = test_random;
         }
 
-//Создаёт 4 обьекта по id из  generate_var
-
-
-
-
         function setSmock() {
             var arr = ['❤', '☀', '♞', '☭'];
             $scope.char = '☯';
@@ -167,7 +180,7 @@ tryHskControllers.controller('testCtrl',
                 wordsTests[i].button = 'лол!!!';
             }
         }
-
+//Создаёт 4 обьекта по id из  generate_var
         function fill_test(words) {
 
             for (var i = 0; i < 4; i++) {
@@ -186,6 +199,8 @@ tryHskControllers.controller('testCtrl',
                     wordsTests[i].button = 'Всё получится!';
                 }
             }
+            result_client= null;
+            result_client = new Hamster();
             return wordsTests;
         }
 
@@ -202,8 +217,10 @@ tryHskControllers.controller('testCtrl',
                 $("div.content:has(button.success)").css("border", "2px solid #60a917");
                 $("div.content:has(button.danger)").css("border", "2px solid red");
             }, 500);
+            $scope.amountOfTry = ++$scope.amountOfTry;
             return wordsTests;
         };
+
         $scope.nextWord = function () {
             if (swords.length < 10) {
                 if (swords.length == 0) {
@@ -214,15 +231,12 @@ tryHskControllers.controller('testCtrl',
                     setSmock();
                 }
             } else {
-                $rootScope.global_amount = $scope.result;
-                $rootScope.global_rights = $scope.rights;
-                global_amount = $scope.result;
-                global_rights = $scope.rights;
                 $scope.fill(swords);
-                delete result_client.check;
+
                 return wordsTests;
             }
         };
+
         $scope.fresh = function () {
             sortWords.getSortWords().then(function (words) {
                 swords = words;
@@ -236,16 +250,9 @@ tryHskControllers.controller('testCtrl',
                     }
                 } else {
                     arr = new Array(10);
-                    $rootScope.global_amount = $scope.result;
-                    $rootScope.global_rights = $scope.rights;
-                    global_amount = $scope.result;
-                    global_rights = $scope.rights;
                     $scope.fill(words);
 
-                    result_client = new Hamster();
-//                    result.getAmountWords().then(function (amount) {
-//                        result_client = new Hamster();
-//                    });
+
 
                     amountWords.getAmountWords().then(function (amount) {
                         $scope.amount = amount;
@@ -256,6 +263,7 @@ tryHskControllers.controller('testCtrl',
         };
 
         $scope.fresh();
+
 //дурацкий костыль от вспышек
         $timeout(function () {
             $('#f').hide();
@@ -264,24 +272,27 @@ tryHskControllers.controller('testCtrl',
         $timeout(function () {
             StateManager.remove('d');
         }, 3000);
-        $('.toServer').click(function () {
-            $rootScope.global_amount = $scope.result;
-            $rootScope.global_rights = $scope.rights;
-            console.log($rootScope.global_rights);
-            console.log($rootScope.global_amount);
-            var params = 'id=' +vkid+ '&amount=' + $rootScope.global_amount+ '&rights=' + $rootScope.global_rights;
-            console.log(params);
-            var rat = $resource('/rating?'+params, {}, {
-                query: {method:'GET',isArray:false}
-            });
-            rat.query();
-        });
-
     });
 
 
-tryHskControllers.controller('loveCtrl', function ($scope, register, rating) {
+tryHskControllers.controller('loveCtrl', function ($scope) {
 
+});
+
+tryHskControllers.controller('ratingCtrl', function ($scope, Users) {
+    var users = Users.query();
+
+    users.$promise.then(
+        function () {
+            if (users.length == 0) {
+                $scope.amount = 'Ничего не выбрано';
+//                $scope.users = users;
+                //todo обработать ошибку
+            } else {
+                $scope.users = users;
+            }
+        });
+    $scope.predicate = 'id';
 });
 
 tryHskControllers.controller('settingsCtrl', function ($scope, language) {
@@ -295,8 +306,6 @@ tryHskControllers.controller('settingsCtrl', function ($scope, language) {
             text: 'English'}
     ];
 
-//    console.log($scope.select);
-
     $scope.nextWord = function () {
         language.select = $scope.select;
         $scope.languages = language.getLanguage();
@@ -304,7 +313,7 @@ tryHskControllers.controller('settingsCtrl', function ($scope, language) {
     }
 });
 
-tryHskControllers.controller('treeviewCtrl', function ($scope, $rootScope, checkboxValues) {
+tryHskControllers.controller('checkboxCtrl', function ($scope, $rootScope, checkboxValues) {
 
     $rootScope.checkboxValues = checkboxValues.getCheckboxValues();
     $scope.checkboxValues = $rootScope.checkboxValues;

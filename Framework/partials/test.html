@@ -1,5 +1,5 @@
 <div class="frame" id="_page_1" ng-controller="testCtrl">
-    <h1 style="position: absolute;left: 20px;top: 100px; margin-top: 0">{{result}}</h1>
+    <h1 style="position: absolute;left: 20px;top: 100px; margin-top: 0">{{amountOfTry}}</h1>
     <h1 style="position: absolute;left: 20px;top: 150px; margin-top: 0">{{rating}}</h1>
     <h1 style="position: absolute;left: 20px;top: 200px; margin-top: 0">{{rights}}</h1>
     <div class="grid fluid">
@@ -30,7 +30,7 @@
 
 
                         <div class="accordion-frame" ng-repeat="wordsTest in wordsTests">
-                            <a class="heading" href="#" ng-click="checkAnsver(wordsTest.ansv)">{{wordsTest.russian}}</a>
+                            <a class="heading" href="#" ng-click="checkAnswer(wordsTest.ansv)">{{wordsTest.russian}}</a>
 
                             <div class="content">
                                 <div class="grid" style="margin-top:0;margin-bottom:0">

@@ -28,9 +28,6 @@
                 }
                 vkid = flashVars['viewer_id'];
             });
-            console.log('******************************************************************************');
-            console.log(vkid);
-
     </script>
     <script src="js/metro.min.js"></script>
     <script src="js/docs.js"></script>
@@ -99,9 +96,15 @@
                 <div class="row" style="margin-top:0;margin-bottom:0">
                     <div class="accordion" data-role="accordion" data-closeany="true">
                         <div class="accordion-frame">
-                            <a class="active heading" href="#">Any components as content</a>
+                            <a class="active heading" href="#">Рейтинг пользователей</a>
                             <div class="content lol_content">
-                                lol
+                                <div class="grid">
+                                    <div class="row" ng-controller="ratingCtrl">
+<div class="span1" ng-repeat="user in users | orderBy:predicate:reverse" >
+
+</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

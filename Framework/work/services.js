@@ -12,21 +12,42 @@ tryHskServices.factory('Word', ['$resource',
     }]);
 
 
-tryHskServices.factory('register', function ($resource) {
-            var params = 'id=' + vkid;
-            return $resource('/register?'+params, {}, {
-                query: {method:'GET',isArray:false}
-            })
-});
+//tryHskServices.factory('statisticOfHSK', ['$rootScope', '$resource', function ($resource, $rootScope) {
+//
+//        $rootScope.result = 0;
+//        $rootScope.rating = 0;
+//        $rootScope.rights = 0;
+//
+//var statisticOfHSK = {
+//    getStatisticOfHSK: function () {
+//
+//    },
+//    refreshStatisticOfHSK: function () {
+//        var params = 'id=' +59379236+ '&amount=' + $rootScope.amountOfTry+ '&rights=' + $rootScope.rights;
+//        console.log(params);
+//        return $resource('/rating?'+params, {}, {
+//            query: {method:'GET',isArray:false}
+//        })
+//    }
+//};
+//    var statistic = statisticOfHSK.getStatisticOfHSK().query();
+//
+//          statistic.$promise.then(function() {
+//
+//          });
+//
+//
+//
+//    return statisticOfHSK;
+//}]);
 
 
-tryHskServices.factory('rating', function ($resource) {
-    var params = 'id=' +59379236+ '&amount=' + 100+ '&rights=' + 9;
-    console.log(params);
-    return $resource('/rating?'+params, {}, {
-        query: {method:'GET',isArray:false}
-    })
-});
+tryHskServices.factory('Users', ['$resource',
+    function ($resource) {
+        return $resource('/users', {}, {
+            query: {method: 'GET', isArray: true}
+        })
+    }]);
 
 
 
@@ -78,7 +99,7 @@ tryHskServices.factory('rating', function ($resource) {
  */
 
 
-tryHskServices.factory('checkboxValues', ['$cookies', '$rootScope', function ($cookies) {
+tryHskServices.factory('checkboxValues', ['$cookies', function ($cookies) {
     return {
         getCheckboxValues: function () {
             if ($cookies.checkboxValues === undefined) {
@@ -106,9 +127,7 @@ tryHskServices.factory('checkboxValues', ['$cookies', '$rootScope', function ($c
     };
 }]);
 
-tryHskServices.factory('resultOfHSK', function () {
 
-});
 
 
 tryHskServices.factory('sortWords', function ($q, Word, checkboxValues) {
