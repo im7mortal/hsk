@@ -42,12 +42,6 @@ tryHskServices.factory('Word', ['$resource',
 //}]);
 
 
-tryHskServices.factory('Users', ['$resource',
-    function ($resource) {
-        return $resource('/users', {}, {
-            query: {method: 'GET', isArray: true}
-        })
-    }]);
 
 
 

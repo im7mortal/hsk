@@ -279,18 +279,23 @@ tryHskControllers.controller('loveCtrl', function ($scope) {
 
 });
 
-tryHskControllers.controller('ratingCtrl', function ($scope, Users) {
-    var users = Users.query();
+tryHskControllers.controller('ratingCtrl', function ($scope, $resource) {
 
-    users.$promise.then(
-        function () {
-            if (users.length == 0) {
-                $scope.amount = 'Ничего не выбрано';
-//                $scope.users = users;
+    $resource('/users', {}, {
+        query: {method:'GET',isArray: true }
+    }).query().$promise.then(function(users) {
+for(var i = 0;i < users.length;i++) {
+
+    if (users.length == 0) {
                 //todo обработать ошибку
             } else {
+                VK.api("friends.get", {user_id: users[i].id, fields: "photo_medium"}, function (data) {
+                    // Действия с полученными данными
+console.log(data.response[i].photo_medium);
+                });
                 $scope.users = users;
             }
+}
         });
     $scope.predicate = 'id';
 });

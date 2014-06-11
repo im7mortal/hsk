@@ -16,15 +16,19 @@ app.get('/', function (req, res) {
 //@todo  ПОМОЕМУ КЛИЕНТ БД НЕ ЗАКРЫВАЕТСЯ
 app.get('/register', function (req, res) {
 //    res.end('lol');
-    console.log('otdal');
     var url_parts = url.parse(req.url, true);
     getRegister(url_parts.query.id, res);
 });
 
 app.get('/rating', function (req, res) {
     var url_parts = url.parse(req.url, true);
-    console.log(url_parts.query);
     insertRating(url_parts.query.id,url_parts.query.amount,url_parts.query.rights, res);
+});
+
+app.get('/users', function (req, res) {
+console.log(arr);
+    res.end(arr);
+
 });
 
 
@@ -34,6 +38,63 @@ app.listen(port, function () {
     console.log("Listening on " + port);
 });
 
+
+var arr = [];
+function user_stat() {
+    var conString = "postgres://sssr:hui@localhost/postgres"
+        , client = new pg.Client(conString)
+         ;
+    client.connect();
+    client.query('SELECT id,amount,rights FROM hsk', [], function (err, result) {
+        var giant_arr = [];
+        var id_arr = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            var a, b, c, user_obj = {};
+            a = parseInt(result.rows[i].amount);
+            if (a < 100) {
+                continue
+            }
+            b = parseInt(result.rows[i].rights);
+            c = (b * b) / (a * a);
+            user_obj.rating = c;
+            user_obj.id = result.rows[i].id;
+
+            giant_arr.push(user_obj);
+            id_arr.push(result.rows[i].id);
+        }
+
+        function compareAge(personA, personB) {
+            return personA.rating - personB.rating;
+        }
+
+        giant_arr.sort(compareAge);
+//        console.log(giant_arr);
+
+
+
+        for (var j = giant_arr.length - 1; j> giant_arr.length - 9; j--) {
+arr.push(giant_arr[j])
+        }
+
+
+        arr = arr.map(function(n) {
+            return JSON.stringify(n);
+        });
+
+
+        arr = del_spaces('['+arr.join()+']');
+
+
+    });
+}
+
+user_stat();
+
+function del_spaces(str)
+{
+    str = str.replace(/\s/g, '');
+    return str;
+}
 
 
 
@@ -93,28 +154,33 @@ function insertRating(id, amount, rights, res) {
     client.connect();
 
     var query = client.query("UPDATE hsk SET amount=$1, rights=$2, date=$4 WHERE id=$3 ", [amount, rights, id, new Date()], function (err, result) {
-        var query = client.query('SELECT amount,rights FROM hsk WHERE id = $1', [id], function (err, result) {
-            var a, b, c;
-            console.log(amount + '  ' + id + '  ' + rights + '  ');
-            a = parseInt(result.rows[0].amount);
-            b = parseInt(result.rows[0].rights);
-            if (a < 100) {
-                res.end('hui');
-                return
-            }
-            c = (b * b) / (a * a);
+        if(err) {
+            return;
+        } else {
+            var query = client.query('SELECT amount,rights FROM hsk WHERE id = $1', [id], function (err, result) {
+                if(err) {
+                    return;
+                } else {
+                    var a, b, c;
+                    console.log(amount + '  ' + id + '  ' + rights + '  ');
+                    a = parseInt(result.rows[0].amount);
+                    b = parseInt(result.rows[0].rights);
+                    if (a < 100) {
+                        res.end('hui');
+                        return
+                    }
+                    c = (b * b) / (a * a);
 
-            var str = {
-                rating: c,
-                amount: a,
-                rights: b
-            };
-            str = JSON.stringify(str);
+                    var str = {
+                        rating: c,
+                        amount: a,
+                        rights: b
+                    };
+                    str = JSON.stringify(str);
 
-            res.end(str);
-
-        });
-
+                    res.end(str);
+                }
+            });
+        }
     });
 }
-
