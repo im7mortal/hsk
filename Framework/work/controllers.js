@@ -306,6 +306,7 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
                                 });
                             }
                         }
+                        console.log(new_array);
                         return new_array;
                     }
                     }
