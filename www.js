@@ -5,7 +5,8 @@ var express = require("express")
     , pg = require("pg")
     , url = require('url')
     , app = express();
-
+    var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o";
+//var conString = "postgres://sssr:hui@localhost/postgres";
 var index = fs.readFileSync('Framework/index.html');
 app.use(express.static('Framework'));
 app.use(logfmt.requestLogger());
@@ -26,12 +27,14 @@ app.get('/rating', function (req, res) {
 });
 
 app.get('/users', function (req, res) {
-console.log(arr);
-    res.end(arr);
+
+
+    console.log(strl);
+    res.end(strl);
 
 });
 
-
+var strl;
 var port = Number(process.env.PORT || 5000);
 
 app.listen(port, function () {
@@ -41,8 +44,8 @@ app.listen(port, function () {
 
 var arr = [];
 function user_stat() {
-    var conString = "postgres://sssr:hui@localhost/postgres"
-        , client = new pg.Client(conString)
+
+        var client = new pg.Client(conString);
          ;
     client.connect();
     client.query('SELECT id,amount,rights FROM hsk', [], function (err, result) {
@@ -73,7 +76,7 @@ function user_stat() {
 
 
         for (var j = giant_arr.length - 1; j> giant_arr.length - 9; j--) {
-arr.push(giant_arr[j])
+        arr.push(giant_arr[j])
         }
 
 
@@ -82,13 +85,13 @@ arr.push(giant_arr[j])
         });
 
 
-        arr = del_spaces('['+arr.join()+']');
+         strl = del_spaces('['+arr.join()+']');
 
 
     });
 }
-
 user_stat();
+
 
 function del_spaces(str)
 {
@@ -99,9 +102,7 @@ function del_spaces(str)
 
 
 function getRegister(id, res) {
-    var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o"
-//    var conString = "postgres://sssr:hui@localhost/postgres"
-        , client = new pg.Client(conString);
+    var client = new pg.Client(conString);
 
     client.connect();
 
@@ -147,9 +148,7 @@ function getRegister(id, res) {
     })}
 
 function insertRating(id, amount, rights, res) {
-    var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o"
-//    var conString = "postgres://sssr:hui@localhost/postgres"
-        , client = new pg.Client(conString);
+    var client = new pg.Client(conString);
 
     client.connect();
 
