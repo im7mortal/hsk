@@ -290,7 +290,7 @@ for(var i = 0;i < users.length;i++) {
     if (users.length == 0) {
                 //todo обработать ошибку
             } else {
-                VK.api("friends.get", {fields: "photo_medium"}, function (data) {
+                VK.api("users.get", {user_ids: 59379236,fields: "photo_medium"}, function (data) {
                     // Действия с полученными данными
 console.log(data.response[i].photo_medium);
                 });
