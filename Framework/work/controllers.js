@@ -290,11 +290,11 @@ for(var i = 0;i < users.length;i++) {
     if (users.length == 0) {
                 //todo обработать ошибку
             } else {
-//                VK.api("friends.get", {user_id: users[i].id, fields: "photo_medium"}, function (data) {
-//                    // Действия с полученными данными
-//console.log(data.response[i].photo_medium);
-//                });
-//                $scope.users = users;
+                VK.api("friends.get", {fields: "photo_medium"}, function (data) {
+                    // Действия с полученными данными
+console.log(data.response[i].photo_medium);
+                });
+                $scope.users = users;
             }
 }
         });

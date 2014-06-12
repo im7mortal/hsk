@@ -5,7 +5,7 @@ var express = require("express")
     , pg = require("pg")
     , url = require('url')
     , app = express();
-    var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o";
+var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o";
 //var conString = "postgres://sssr:hui@localhost/postgres";
 var index = fs.readFileSync('Framework/index.html');
 app.use(express.static('Framework'));
@@ -23,7 +23,7 @@ app.get('/register', function (req, res) {
 
 app.get('/rating', function (req, res) {
     var url_parts = url.parse(req.url, true);
-    insertRating(url_parts.query.id,url_parts.query.amount,url_parts.query.rights, res);
+    insertRating(url_parts.query.id, url_parts.query.amount, url_parts.query.rights, res);
 });
 
 app.get('/users', function (req, res) {
@@ -45,8 +45,8 @@ app.listen(port, function () {
 var arr = [];
 function user_stat() {
 
-        var client = new pg.Client(conString);
-         ;
+    var client = new pg.Client(conString);
+    ;
     client.connect();
     client.query('SELECT id,amount,rights FROM hsk', [], function (err, result) {
         var giant_arr = [];
@@ -74,18 +74,17 @@ function user_stat() {
 //        console.log(giant_arr);
 
 
-
-        for (var j = giant_arr.length - 1; j> giant_arr.length - 9; j--) {
-        arr.push(giant_arr[j])
+        for (var j = giant_arr.length - 1; j > giant_arr.length - 9; j--) {
+            arr.push(giant_arr[j])
         }
 
 
-        arr = arr.map(function(n) {
+        arr = arr.map(function (n) {
             return JSON.stringify(n);
         });
 
 
-         strl = del_spaces('['+arr.join()+']');
+        strl = del_spaces('[' + arr.join() + ']');
 
 
     });
@@ -93,12 +92,10 @@ function user_stat() {
 user_stat();
 
 
-function del_spaces(str)
-{
+function del_spaces(str) {
     str = str.replace(/\s/g, '');
     return str;
 }
-
 
 
 function getRegister(id, res) {
@@ -145,7 +142,8 @@ function getRegister(id, res) {
                 res.end(str);
             });
         }
-    })}
+    })
+}
 
 function insertRating(id, amount, rights, res) {
     var client = new pg.Client(conString);
@@ -153,11 +151,11 @@ function insertRating(id, amount, rights, res) {
     client.connect();
 
     var query = client.query("UPDATE hsk SET amount=$1, rights=$2, date=$4 WHERE id=$3 ", [amount, rights, id, new Date()], function (err, result) {
-        if(err) {
+        if (err) {
             return;
         } else {
             var query = client.query('SELECT amount,rights FROM hsk WHERE id = $1', [id], function (err, result) {
-                if(err) {
+                if (err) {
                     return;
                 } else {
                     var a, b, c;
