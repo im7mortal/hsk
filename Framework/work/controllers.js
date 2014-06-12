@@ -279,26 +279,26 @@ tryHskControllers.controller('loveCtrl', function ($scope) {
 
 });
 
-//tryHskControllers.controller('ratingCtrl', function ($scope, $resource) {
-//
-//    $resource('/users', {}, {
-//        query: {method:'GET',isArray: true }
-//    }).query().$promise.then(function(users) {
-//for(var i = 0;i < users.length;i++) {
-//
-//    if (users.length == 0) {
-//                //todo обработать ошибку
-//            } else {
+tryHskControllers.controller('ratingCtrl', function ($scope, $resource) {
+
+    $resource('/users', {}, {
+        query: {method:'GET',isArray: true }
+    }).query().$promise.then(function(users) {
+for(var i = 0;i < users.length;i++) {
+
+    if (users.length == 0) {
+                //todo обработать ошибку
+            } else {
 //                VK.api("friends.get", {user_id: users[i].id, fields: "photo_medium"}, function (data) {
 //                    // Действия с полученными данными
 //console.log(data.response[i].photo_medium);
 //                });
 //                $scope.users = users;
-//            }
-//}
-//        });
-//    $scope.predicate = 'id';
-//});
+            }
+}
+        });
+    $scope.predicate = 'id';
+});
 
 tryHskControllers.controller('settingsCtrl', function ($scope, language) {
     $scope.languages = language.getLanguage();
