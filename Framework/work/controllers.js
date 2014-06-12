@@ -284,13 +284,13 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource) {
     $resource('/users', {}, {
         query: {method:'GET',isArray: true }
     }).query().$promise.then(function(users) {
-            console.log(users[0].id);
+            console.log(users);
 for(var i = 0;i < users.length;i++) {
 
     if (users.length == 0) {
                 //todo обработать ошибку
             } else {
-                VK.api("users.get", {user_ids: 59379236,fields: "photo_medium"}, function (data) {
+                VK.api("users.get", {user_ids: users[i].id,fields: "photo_medium"}, function (data) {
                     // Действия с полученными данными
 console.log('lolololololololololollolololololololololollolololololololololollolololololololololollolololololololololollolololololololololol');
 console.log(data);
