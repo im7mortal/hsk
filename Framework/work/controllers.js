@@ -294,9 +294,9 @@ for(var i = 0;i < users.length;i++) {
                 VK.api("users.get", {user_ids: users[i].id,fields: "photo_medium"}, function (data) {
                     // Действия с полученными данными
                     console.log(data);
-                 new_object.photo_medium = data.response.o.photo_medium ;
-                 new_object.first_name = data.response.first_name ;
-                 new_object.last_name = data.response.last_name ;
+                 new_object.photo_medium = data.response[0].photo_medium ;
+                 new_object.first_name = data.response[0].first_name ;
+                 new_object.last_name = data.response[0].last_name ;
 console.log(new_object)
                 });
             }
