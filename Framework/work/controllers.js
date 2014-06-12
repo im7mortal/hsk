@@ -285,39 +285,40 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
         query: {method: 'GET', isArray: true }
     }).query().$promise.then(function (users) {
             console.log(users);
-            var new_array = [];
 
-            function visualRating() {
+            function vis_rat(){
                 var deferred = $q.defer();
 
-
-                deferred.resolve(function () {
-                    for (var i = 0; i < users.length; i++) {
-                        var new_object = {};
-                        if (users.length == 0) {
-                            //todo обработать ошибку
-                        } else {
-                            VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
-                                // Действия с полученными данными
-                                new_object.photo_medium = data.response[0].photo_medium;
-                                new_object.first_name = data.response[0].first_name;
-                                new_object.last_name = data.response[0].last_name;
-                                new_array.push(new_object)
-                            });
+                deferred.resolve(
+                    function() {
+                        var new_array = [];
+                        for (var i = 0; i < users.length; i++) {
+                            var new_object = {};
+                            if (users.length == 0) {
+                                //todo обработать ошибку
+                            } else {
+                                VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
+                                    // Действия с полученными данными
+                                    new_object.photo_medium = data.response[0].photo_medium;
+                                    new_object.first_name = data.response[0].first_name;
+                                    new_object.last_name = data.response[0].last_name;
+                                    new_array.push(new_object)
+                                });
+                            }
                         }
+                        return new_array;
                     }
-
-                });
+                );
                 return deferred.promise;
             }
 
+            vis_rat().then(function (words) {
+                console.log('llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll');
+                console.log(words);
+                $scope.users = words;
+            })
         });
 
-
-    setTimeout(function () {
-        console.log(new_array);
-        $scope.users = new_array;
-    }, 10000);
 
     $scope.predicate = 'id';
 });
