@@ -284,7 +284,7 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource) {
     $resource('/users', {}, {
         query: {method:'GET',isArray: true }
     }).query().$promise.then(function(users) {
-            console.log(users);
+            console.log(users[0].id);
 for(var i = 0;i < users.length;i++) {
 
     if (users.length == 0) {
