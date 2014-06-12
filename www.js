@@ -88,7 +88,7 @@ arr.push(giant_arr[j])
     });
 }
 
-//user_stat();
+user_stat();
 
 function del_spaces(str)
 {
