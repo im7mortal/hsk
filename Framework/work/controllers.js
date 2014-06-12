@@ -317,7 +317,7 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
     setTimeout(function () {
         console.log(new_array);
         $scope.users = new_array;
-    }, 3000);
+    }, 10000);
 
     $scope.predicate = 'id';
 });
