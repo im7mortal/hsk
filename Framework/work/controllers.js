@@ -290,7 +290,7 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
                 var deferred = $q.defer();
 
                 deferred.resolve(
-                    function() {
+                    {vis:function() {
                         var new_array = [];
                         for (var i = 0; i < users.length; i++) {
                             var new_object = {};
@@ -308,11 +308,12 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
                         }
                         return new_array;
                     }
+                    }
                 );
                 return deferred.promise;
             }
 
-            vis_rat().then(function (words) {
+            vis_rat.vis().then(function (words) {
                 console.log('llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll');
                 console.log(words);
                 $scope.users = words;
