@@ -300,7 +300,9 @@ for(var i = 0;i < users.length;i++) {
                 });
             }
 }
-       console.log(new_array)
+       setTimeout(function() {
+           console.log(new_array)
+       },3000);
         });
     $scope.predicate = 'id';
 });
