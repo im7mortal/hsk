@@ -305,6 +305,12 @@ for(var i = 0;i < users.length;i++) {
            $scope.users = new_array;
        },3000);
         });
+
+    $scope.$watch('users', function () {
+        $scope.users = new_array;
+    }, true);
+
+
     $scope.predicate = 'id';
 });
 
