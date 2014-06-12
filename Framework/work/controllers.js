@@ -292,7 +292,8 @@ for(var i = 0;i < users.length;i++) {
             } else {
                 VK.api("users.get", {user_ids: 59379236,fields: "photo_medium"}, function (data) {
                     // Действия с полученными данными
-console.log(data.response[i].photo_medium);
+console.log('lolololololololololollolololololololololollolololololololololollolololololololololollolololololololololollolololololololololol');
+console.log(data);
                 });
                 $scope.users = users;
             }
