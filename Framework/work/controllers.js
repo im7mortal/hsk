@@ -285,17 +285,19 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource) {
         query: {method:'GET',isArray: true }
     }).query().$promise.then(function(users) {
             console.log(users);
+            var new_array = [];
 for(var i = 0;i < users.length;i++) {
-
+    var new_object ={};
     if (users.length == 0) {
                 //todo обработать ошибку
             } else {
                 VK.api("users.get", {user_ids: users[i].id,fields: "photo_medium"}, function (data) {
                     // Действия с полученными данными
-console.log('lolololololololololollolololololololololollolololololololololollolololololololololollolololololololololollolololololololololol');
-console.log(data);
+                 new_object.photo_medium = data.response.photo_medium ;
+                 new_object.first_name = data.response.first_name ;
+                 new_object.last_name = data.response.last_name ;
+console.log(new_object)
                 });
-                $scope.users = users;
             }
 }
         });
