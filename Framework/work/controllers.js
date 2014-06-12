@@ -286,39 +286,58 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
     }).query().$promise.then(function (users) {
             console.log(users);
 
-            function vis_rat(){
-                var deferred = $q.defer();
 
-                deferred.resolve(
-                    {vis:function() {
-                        var new_array = [];
-                        for (var i = 0; i < users.length; i++) {
-                            var new_object = {};
-                            if (users.length == 0) {
-                                //todo обработать ошибку
-                            } else {
-                                VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
-                                    // Действия с полученными данными
-                                    new_object.photo_medium = data.response[0].photo_medium;
-                                    new_object.first_name = data.response[0].first_name;
-                                    new_object.last_name = data.response[0].last_name;
-                                    new_array.push(new_object)
-                                });
-                            }
-                        }
-                        console.log(new_array);
-                        return new_array;
-                    }
-                    }
-                );
-                return deferred.promise;
+            var new_array = [];
+            for (var i = 0; i < users.length; i++) {
+                var new_object = {};
+                if (users.length == 0) {
+                    //todo обработать ошибку
+                } else {
+                    VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
+                        // Действия с полученными данными
+                        new_object.photo_medium = data.response[0].photo_medium;
+                        new_object.first_name = data.response[0].first_name;
+                        new_object.last_name = data.response[0].last_name;
+                        new_array.push(new_object)
+                    });
+                }
             }
 
-            vis_rat.vis().then(function (words) {
-                console.log('llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll');
-                console.log(words);
-                $scope.users = words;
-            })
+            console.log(new_array);
+//
+//            function vis_rat(){
+//                var deferred = $q.defer();
+//
+//                deferred.resolve(
+//                    {vis:function() {
+//                        var new_array = [];
+//                        for (var i = 0; i < users.length; i++) {
+//                            var new_object = {};
+//                            if (users.length == 0) {
+//                                //todo обработать ошибку
+//                            } else {
+//                                VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
+//                                    // Действия с полученными данными
+//                                    new_object.photo_medium = data.response[0].photo_medium;
+//                                    new_object.first_name = data.response[0].first_name;
+//                                    new_object.last_name = data.response[0].last_name;
+//                                    new_array.push(new_object)
+//                                });
+//                            }
+//                        }
+//                        console.log(new_array);
+//                        return new_array;
+//                    }
+//                    }
+//                );
+//                return deferred.promise;
+//            }
+//
+//            vis_rat.vis().then(function (words) {
+//                console.log('llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll');
+//                console.log(words);
+//                $scope.users = words;
+//            })
         });
 
 
