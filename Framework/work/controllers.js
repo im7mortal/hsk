@@ -301,7 +301,8 @@ for(var i = 0;i < users.length;i++) {
             }
 }
        setTimeout(function() {
-           console.log(new_array)
+           console.log(new_array);
+           $scope.users = new_array;
        },3000);
         });
     $scope.predicate = 'id';
