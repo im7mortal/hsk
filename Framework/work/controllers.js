@@ -279,27 +279,8 @@ tryHskControllers.controller('loveCtrl', function ($scope) {
 
 });
 
-tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
-    $scope.users = [ {
-        "id" : 0,
-        "last_name" : "阿姨",
-        "pinyin" : "āyí",
-        "russian" : "тётя,тётка; (при обращении)тётя; няня(в детском саду)",
-        "s" : "ayi",
-        "hsk" : "3-1",
-        "noun" : 1,
-        "relationship" : 1,
-        "sound" : "http://china-standart.ru/sounds2/b/cmn-b28cca4b.mp3"
-    }, {
-        "id" : 1,
-        "last_name" : "啊",
-        "pinyin" : "ā;",
-        "russian" : "фразовая частица восклицательных и побудительных предложений",
-        "s" : "a",
-        "hsk" : "3-2",
-        "verb" : 1,
-        "sound" : "http://china-standart.ru/words/a1-1_song1.mp3"
-    }];
+tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout) {
+
     $resource('/users', {}, {
         query: {method: 'GET', isArray: true }
     }).query().$promise.then(function (users) {
@@ -321,11 +302,13 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
                     });
                 }
             }
-           setTimeout(function () {
-               console.log(new_array);
-               $scope.users = new_array;
 
-           },10000);
+            $timeout(function() {
+                console.log(new_array);
+                $scope.users = new_array;
+            }, 10000);
+
+
 //
 //            function vis_rat(){
 //                var deferred = $q.defer();
