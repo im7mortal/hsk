@@ -99,6 +99,7 @@ user_stat();
 
 
 function del_spaces(str) {
+    // Удаляет пробелы
     str = str.replace(/\s/g, '');
     return str;
 }
@@ -121,7 +122,7 @@ function getRegister(id, res) {
                     rights: b
                 };
                 str = JSON.stringify(str);
-
+                str = del_spaces(str);
                 res.end(str);
                 return
             }
@@ -133,7 +134,7 @@ function getRegister(id, res) {
                 rights: b
             };
             str = JSON.stringify(str);
-
+            str = del_spaces(str);
             res.end(str);
 
 
@@ -145,6 +146,7 @@ function getRegister(id, res) {
                     rights: 0
                 };
                 str = JSON.stringify(str);
+                str = del_spaces(str);
                 res.end(str);
             });
         }
@@ -180,7 +182,7 @@ function insertRating(id, amount, rights, res) {
                         rights: b
                     };
                     str = JSON.stringify(str);
-
+                    str = del_spaces(str);
                     res.end(str);
                 }
             });
