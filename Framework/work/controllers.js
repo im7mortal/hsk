@@ -305,6 +305,8 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
            setTimeout(function () {
                console.log(new_array);
                $scope.users =new_array;
+               console.log($scope.users);
+
            },10000);
 //
 //            function vis_rat(){

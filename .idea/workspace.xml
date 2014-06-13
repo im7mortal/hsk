@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="080aeaf0-14d2-4242-ad7a-f9e4d30f304c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/work/controllers.js" afterPath="$PROJECT_DIR$/Framework/work/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/index.html" afterPath="$PROJECT_DIR$/Framework/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lol.iws" />
@@ -70,20 +68,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Framework/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6393443" vertical-offset="1674" max-vertical-offset="3798">
-              <caret line="106" column="6" selection-start-line="106" selection-start-column="6" selection-end-line="106" selection-end-column="6" />
+            <state vertical-scroll-proportion="-19.333334" vertical-offset="1350" max-vertical-offset="3798">
+              <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="summary.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="summary.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Framework/partials/summary.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="972">
+            <state vertical-scroll-proportion="0.031161472" vertical-offset="619" max-vertical-offset="972">
               <caret line="35" column="115" selection-start-line="35" selection-start-column="88" selection-end-line="35" selection-end-column="115" />
               <folding />
             </state>
@@ -357,7 +355,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3219076" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -739,14 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/partials/summary.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="972">
-          <caret line="35" column="115" selection-start-line="35" selection-start-column="88" selection-end-line="35" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Framework/partials/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="1278">
@@ -781,8 +771,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Framework/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6393443" vertical-offset="1674" max-vertical-offset="3798">
-          <caret line="106" column="6" selection-start-line="106" selection-start-column="6" selection-end-line="106" selection-end-column="6" />
+        <state vertical-scroll-proportion="-19.333334" vertical-offset="1350" max-vertical-offset="3798">
+          <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/partials/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.031161472" vertical-offset="619" max-vertical-offset="972">
+          <caret line="35" column="115" selection-start-line="35" selection-start-column="88" selection-end-line="35" selection-end-column="115" />
           <folding />
         </state>
       </provider>
