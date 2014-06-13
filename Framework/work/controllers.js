@@ -287,8 +287,8 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
             console.log(users);
 
 
-            var new_array = [];
-            var new_object = {};
+            var new_array;
+            var new_object;
             var strt =''+users[0].id+','+users[1].id+','+users[2].id+','+users[3].id+','+users[4].id+','+users[5].id+','+users[6].id+','+users[7].id+',';
             console.log(strt);
             if (users.length == 0) {
@@ -297,9 +297,13 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
                 VK.api("users.get", {user_ids: strt, fields: "photo_medium"}, function (data) {
                     // Действия с полученными данными
                     console.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
-                    console.log(data.response);
+                    console.log(data.length);
+                    console.log(typeof data);
+                    new_array = [];
                 for (var i = 0; i < data.length; i++) {
 //                (function () {
+                    new_object = null;
+                    new_object = {};
                     new_object.photo_medium = data.response[i].photo_medium;
                     new_object.first_name = data.response[i].first_name;
                     new_object.last_name = data.response[i].last_name;
