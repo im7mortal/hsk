@@ -288,13 +288,13 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
 
 
             var new_array = [];
-            var new_object = {};
-//            var strt =''+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+',';
-
 
 
             for (var i = 0; i < users.length; i++) {
                 (function () {
+
+                    var new_object = {};
+//                    var strt =''+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+',';
                     if (users.length == 0) {
                         //todo обработать ошибку
                     } else {
@@ -307,6 +307,7 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
                             new_array.push(new_object);
                         });
                     }
+
                 })();
             }
 
