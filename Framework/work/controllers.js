@@ -287,41 +287,28 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
             console.log(users);
 
 
-            var new_array;
-            var new_object;
-            var strt =''+users[0].id+','+users[1].id+','+users[2].id+','+users[3].id+','+users[4].id+','+users[5].id+','+users[6].id+','+users[7].id+',';
-            console.log(strt);
-            if (users.length == 0) {
-                //todo обработать ошибку
-            } else {
-                VK.api("users.get", {user_ids: strt, fields: "photo_medium"}, function (data) {
-                    // Действия с полученными данными
-                    console.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
-                    console.log(data);
-                    console.log(typeof data);
-                    new_object.photo_medium = data.response[0].photo_medium;
-                    new_object.first_name = data.response[0].first_name;
-                    new_object.last_name = data.response[0].last_name;
-                    console.log(new_object)
-                    new_array = [];
-                for (var i = 0; i < data.length; i++) {
-//                (function () {
-                    new_object = null;
-                    new_object = {};
-                    new_object.photo_medium = data.response[i].photo_medium;
-                    new_object.first_name = data.response[i].first_name;
-                    new_object.last_name = data.response[i].last_name;
-                    new_object.rating = users[i].rating;
-                    new_array.push(new_object);
-                    console.log(new_array);
-//                })();
+            var new_array = [];
+            var new_object = {};
+//            var strt =''+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+',';
+
+
+
+            for (var i = 0; i < users.length; i++) {
+                (function () {
+                    if (users.length == 0) {
+                        //todo обработать ошибку
+                    } else {
+                        VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
+                            // Действия с полученными данными
+                            new_object.photo_medium = data.response[0].photo_medium;
+                            new_object.first_name = data.response[0].first_name;
+                            new_object.last_name = data.response[0].last_name;
+                            new_object.rating = users[0].rating;
+                            new_array.push(new_object);
+                        });
+                    }
+                })();
             }
-
-                });
-            }
-
-
-
 
             $timeout(function() {
                 console.log(new_array);
