@@ -304,14 +304,26 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
             }
            setTimeout(function () {
                console.log(new_array);
-               $scope.users = new_array;
-               var lol_arr = [];
-
-               for(var f = 0;f < $scope.users.length;f++) {
-                   var tr = JSON.stringify($scope.users[f]);
-                   lol_arr.push(tr)
-               }
-               console.log(lol_arr.join());
+               $scope.users = [ {
+                   "id" : 0,
+                   "last_name" : "阿姨",
+                   "pinyin" : "āyí",
+                   "russian" : "тётя,тётка; (при обращении)тётя; няня(в детском саду)",
+                   "s" : "ayi",
+                   "hsk" : "3-1",
+                   "noun" : 1,
+                   "relationship" : 1,
+                   "sound" : "http://china-standart.ru/sounds2/b/cmn-b28cca4b.mp3"
+               }, {
+                   "id" : 1,
+                   "last_name" : "啊",
+                   "pinyin" : "ā;",
+                   "russian" : "фразовая частица восклицательных и побудительных предложений",
+                   "s" : "a",
+                   "hsk" : "3-2",
+                   "verb" : 1,
+                   "sound" : "http://china-standart.ru/words/a1-1_song1.mp3"
+               }];
 
            },10000);
 //
