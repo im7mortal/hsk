@@ -109,7 +109,7 @@ function getRegister(id, res) {
 
     client.connect();
 
-    client.query('SELECT amount,rights FROM hsk WHERE id = $1', [id], function (err, result) {
+    var query = client.query('SELECT amount,rights FROM hsk WHERE id = $1', [id], function (err, result) {
         if (result.rows.length > 0) {
             var a, b, c, str;
             a = parseInt(result.rows[0].amount);
@@ -156,7 +156,7 @@ function insertRating(id, amount, rights, res) {
 
     client.connect();
 
-    client.query("UPDATE hsk SET amount=$1, rights=$2, date=$4 WHERE id=$3 ", [amount, rights, id, new Date()], function (err, result) {
+    var query = client.query("UPDATE hsk SET amount=$1, rights=$2, date=$4 WHERE id=$3 ", [amount, rights, id, new Date()], function (err, result) {
         if (err) {
             return;
         } else {
