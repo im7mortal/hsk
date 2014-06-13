@@ -299,12 +299,14 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
                         //todo обработать ошибку
                     } else {
                         VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
+                            console.log(data)
+                            console.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
                             // Действия с полученными данными
-                            new_object.photo_medium = data.response[0].photo_medium;
-                            new_object.first_name = data.response[0].first_name;
-                            new_object.last_name = data.response[0].last_name;
-                            new_object.rating = users[i].rating;
-                            new_array.push(new_object);
+//                            new_object.photo_medium = data.response[0].photo_medium;
+//                            new_object.first_name = data.response[0].first_name;
+//                            new_object.last_name = data.response[0].last_name;
+//                            new_object.rating = users[i].rating;
+//                            new_array.push(new_object);
                         });
                     }
 
