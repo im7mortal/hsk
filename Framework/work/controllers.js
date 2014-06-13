@@ -306,9 +306,10 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
                console.log(new_array);
                $scope.users = new_array;
                var lol_arr = [];
-               for(var f=0;f<$scope.users.length;f++) {
 
-                   lol_arr.push(JSON.stringify($scope.users[f]))
+               for(var f = 0;f < $scope.users.length;f++) {
+                   var tr = JSON.stringify($scope.users[f]);
+                   lol_arr.push(tr)
                }
                console.log(lol_arr.join());
 
