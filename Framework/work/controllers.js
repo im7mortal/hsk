@@ -306,9 +306,10 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
                     new_object.last_name = data.response[i].last_name;
                     new_object.rating = users[i].rating;
                     new_array.push(new_object);
+                    console.log(new_array)
                 })();
             }
-console.log(new_array)
+
                 });
             }
 
