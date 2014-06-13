@@ -286,10 +286,10 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
     }).query().$promise.then(function (users) {
             console.log(users);
 
-
+            var new_object = {};
             var new_array = [];
             for (var i = 0; i < users.length; i++) {
-                var new_object = {};
+                new_object = null;
                 if (users.length == 0) {
                     //todo обработать ошибку
                 } else {
