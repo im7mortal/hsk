@@ -16,9 +16,7 @@
     <script src="js/jquery/jquery.widget.min.js"></script>
     <script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
     <script>
-        var vkid
-        ,global_amount
-        ,global_rights;
+        var vkid;
             VK.init(function () {    // инициализируем Vk API
                 var parts = document.location.search.substr(1).split("&");
                 var flashVars = {}, curr;
@@ -126,18 +124,18 @@
 
 <script type="text/javascript" charset="cp1251">
 
-    $(window).unload( function(){
-            var xhr = new XMLHttpRequest()
-            ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;
-            xhr.open('GET', '/rating?'+params, true);
-            xhr.send(null);
-    } );
-window.onunload = function() {
-    var xhr = new XMLHttpRequest()
-            ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;
-    xhr.open('GET', '/rating?'+params, true);
-    xhr.send(null);
-};
+//    $(window).unload( function(){
+//            var xhr = new XMLHttpRequest()
+//            ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;
+//            xhr.open('GET', '/rating?'+params, true);
+//            xhr.send(null);
+//    } );
+//window.onunload = function() {
+//    var xhr = new XMLHttpRequest()
+//            ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;
+//    xhr.open('GET', '/rating?'+params, true);
+//    xhr.send(null);
+//};
 
 
 
