@@ -302,8 +302,9 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $q) {
                     });
                 }
             }
-
-            console.log(new_array);
+           setTimeout(function () {
+               console.log(new_array);
+           },10000)
 //
 //            function vis_rat(){
 //                var deferred = $q.defer();
