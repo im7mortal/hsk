@@ -298,7 +298,8 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
                         new_object.photo_medium = data.response[0].photo_medium;
                         new_object.first_name = data.response[0].first_name;
                         new_object.last_name = data.response[0].last_name;
-                        new_array.push(new_object)
+                        console.log(new_array);
+                        new_array.push(new_object);
                     });
                 }
             }
