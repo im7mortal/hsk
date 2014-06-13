@@ -16,7 +16,6 @@ app.get('/', function (req, res) {
 
 //@todo  ПОМОЕМУ КЛИЕНТ БД НЕ ЗАКРЫВАЕТСЯ
 app.get('/register', function (req, res) {
-//    res.end('lol');
     var url_parts = url.parse(req.url, true);
     getRegister(url_parts.query.id, res);
 });
@@ -46,7 +45,6 @@ var arr = [];
 function user_stat() {
 
     var client = new pg.Client(conString);
-    ;
     client.connect();
     client.query('SELECT id,amount,rights FROM hsk', [], function (err, result) {
         var giant_arr = [];
