@@ -103,7 +103,8 @@
                                     <div class="row" ng-controller="ratingCtrl">
 <!--<div class="span1" ng-repeat="user in users | orderBy:predicate:reverse" >-->
 <div class="span1" ng-repeat="user in users" >
-{{user.last_name}}
+    <img src="{{user.photo_medium}}">
+{{user.first_name}}{{user.last_name}}
 </div>
                                     </div>
                                 </div>
