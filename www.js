@@ -97,6 +97,8 @@ function getRegister(id, res) {
     var client = new pg.Client(conString);
     client.connect();
     client.query('SELECT amount,rights,rating FROM hsk WHERE id = $1', [id], function (err, result) {
+        if (err) { client.end();
+        } else {
         if (result.rows.length > 0) {
             var rating = parseInt(result.rows[0].rating),
                 amount = parseInt(result.rows[0].amount),
@@ -125,16 +127,20 @@ function getRegister(id, res) {
         } else {
             client.query("INSERT INTO hsk (id, amount, rights, date, rating) VALUES ($1, $2, $3, $4, $5);",
                 [id, '0', '0', new Date(), 0], function (err, result) {
-                var str = {
-                    rating: 0,
-                    amount: 0,
-                    rights: 0
-                };
-                str = JSON.stringify(str);
-                str = del_spaces(str);
-                res.end(str);
-                client.end();
+                    if (err) { client.end();
+                    } else {
+                    var str = {
+                        rating: 0,
+                        amount: 0,
+                        rights: 0
+                    };
+                    str = JSON.stringify(str);
+                    str = del_spaces(str);
+                    res.end(str);
+                    client.end();
+                }
             });
+        }
         }
     })
 }
