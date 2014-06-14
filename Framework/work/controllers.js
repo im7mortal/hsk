@@ -298,6 +298,9 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $http) {
             console.log(data);
 //                            Действия с полученными данными
             $scope.users = data;
+            console.log($scope.users.response[3].first_name);
+            console.log($scope.users.response[3].last_name);
+            console.log($scope.users.response[3].photo_medium);
 
 
 //            new_object.photo_medium = data.response[0].photo_medium;

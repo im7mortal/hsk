@@ -40,21 +40,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Framework/work/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5190" max-vertical-offset="8604">
-              <caret line="302" column="69" selection-start-line="302" selection-start-column="45" selection-end-line="302" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.63076925" vertical-offset="5190" max-vertical-offset="8658">
+              <caret line="302" column="63" selection-start-line="302" selection-start-column="63" selection-end-line="302" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Framework/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3966942" vertical-offset="1728" max-vertical-offset="3834">
-              <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
+            <state vertical-scroll-proportion="-6.6666665" vertical-offset="1728" max-vertical-offset="3834">
+              <caret line="106" column="31" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -100,8 +100,8 @@
         <option value="$PROJECT_DIR$/Framework/partials/info.html" />
         <option value="$PROJECT_DIR$/Framework/partials/summary.html" />
         <option value="$PROJECT_DIR$/www.js" />
-        <option value="$PROJECT_DIR$/Framework/work/controllers.js" />
         <option value="$PROJECT_DIR$/Framework/index.html" />
+        <option value="$PROJECT_DIR$/Framework/work/controllers.js" />
       </list>
     </option>
   </component>
@@ -757,18 +757,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/work/controllers.js">
+    <entry file="file://$PROJECT_DIR$/Framework/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5190" max-vertical-offset="8604">
-          <caret line="302" column="69" selection-start-line="302" selection-start-column="45" selection-end-line="302" selection-end-column="69" />
+        <state vertical-scroll-proportion="-6.6666665" vertical-offset="1728" max-vertical-offset="3834">
+          <caret line="106" column="31" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/index.html">
+    <entry file="file://$PROJECT_DIR$/Framework/work/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3966942" vertical-offset="1728" max-vertical-offset="3834">
-          <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.63076925" vertical-offset="5190" max-vertical-offset="8658">
+          <caret line="302" column="63" selection-start-line="302" selection-start-column="63" selection-end-line="302" selection-end-column="63" />
           <folding />
         </state>
       </provider>
