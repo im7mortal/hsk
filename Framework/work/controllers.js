@@ -44,7 +44,6 @@ tryHskControllers.controller('testCtrl',
 
 
         var params ='id=' +vkid;
-//        var params ='id=' +10000000;
 
         $resource('/register?' + params, {}, {
             query: {method:'GET',isArray:false}
@@ -60,7 +59,6 @@ tryHskControllers.controller('testCtrl',
         $scope.$watch('rights', function () {
             if($scope.amountOfTry == undefined || $scope.rights == undefined) {return}
             var params ='id=' +vkid+ '&amount=' + $scope.amountOfTry + '&rights=' + $scope.rights;
-//            var params ='id=' +10000000+ '&amount=' + $scope.amountOfTry + '&rights=' + $scope.rights;
             $resource('/rating?'+ params, {}, {
                 query: {method:'GET',isArray:false}
             }).query().$promise.then(function(stat) {
