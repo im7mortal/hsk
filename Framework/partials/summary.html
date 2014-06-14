@@ -1,7 +1,12 @@
 <div class="frame" id="_page_2" ng-controller="summaryCtrl">
     <div style="height: 20px;width: 100%;"></div>
-    Поиск :<input ng-model="query">
-    {{amount}}
+    Поиск: <input ng-model="query">
+    <ng-pluralize count="words.length"
+                  when="{'0': 'Ничего не выбрано',
+                     'one': 'Выбрано {} слово',
+                     'few': 'Выбрано {} слово',
+                     'many': 'Выбрано {} слов'}">
+    </ng-pluralize>
     <div class="grid fluid">
         <div class="row">
 

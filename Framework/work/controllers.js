@@ -3,19 +3,11 @@
 
 var tryHskControllers = angular.module('tryHskControllers', []);
 
-tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, amountWords, language, SummaryStateManager) {
+tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, SummaryStateManager) {
     $scope.refresh = function () {
         SummaryStateManager.add('summary');
         sortWords.getSortWords().then(function (words) {
-            if (words.length == 0) {
-                $scope.amount = 'Ничего не выбрано';
-                $scope.words = words;
-            } else {
-                $scope.words = words;
-                amountWords.getAmountWords().then(function (amount) {
-                    $scope.amount = amount;
-                });
-            }
+            $scope.words = words;
         SummaryStateManager.remove('summary');
         });
     };
@@ -25,7 +17,7 @@ tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, amountW
 
 
 tryHskControllers.controller('testCtrl',
-    function ($scope, $rootScope, Word, sortWords, amountWords, $timeout, StateManager, $resource) {
+    function ($scope, $rootScope, Word, sortWords, $timeout, StateManager, $resource) {
         var question
             , swords
             , arr = new Array(10)
@@ -226,47 +218,66 @@ console.log(vkid);
         };
 
         $scope.nextWord = function () {
+            document.getElementById('id_button_next').style.display = 'none';
+            var elems = document.getElementsByClassName('text-muted');
+            for(var i = 0; i < elems.length; i++) {
+                elems[i].style.display = 'none';
+            }
+            $scope.button_next = 'СЛЕДУЮЩИЙ';
+            $scope.class_button_next = 'info';
             if (swords.length < 10) {
-                if (swords.length == 0) {
-                    $scope.amount = 'Ничего не выбрано';
-                    setSmock();
-                } else {
-                    $scope.amount = 'Слишком мало слов';
-                    setSmock();
-                }
+                setSmock();
             } else {
                 $scope.fill(swords);
-
                 return wordsTests;
             }
         };
 
         $scope.fresh = function () {
+            document.getElementById('id_button_next').style.display = 'none';
+            var elems = document.getElementsByClassName('text-muted');
+            for(var i = 0; i < elems.length; i++) {
+                elems[i].style.display = 'none';
+            }
+            $scope.button_next = 'СЛЕДУЮЩИЙ';
+            $scope.class_button_next = 'info';
             sortWords.getSortWords().then(function (words) {
+                $scope.words = words;
                 swords = words;
                 if (words.length < 10) {
-                    if (words.length == 0) {
-                        $scope.amount = 'Ничего не выбрано';
-                        setSmock();
-                    } else {
-                        $scope.amount = 'Слишком мало слов';
-                        setSmock();
-                    }
+                    setSmock();
                 } else {
                     arr = new Array(10);
                     $scope.fill(words);
-
-
-
-                    amountWords.getAmountWords().then(function (amount) {
-                        $scope.amount = amount;
-                        StateManager.remove('test');
-                    });
+                    StateManager.remove('test');
                 }
             });
         };
+// todo  костыль/  только первый запуск
+        $timeout(function () {
+            $scope.fresh();
+        }, 500);
 
-        $scope.fresh();
+        $('.warning').click(function () {
+            $scope.nextWord();
+        });
+
+
+
+        $scope.refresh = function() {
+            $scope.button_next = 'ОБНОВИТЬ';
+            $scope.class_button_next = 'warning';
+            document.getElementById('id_button_next').style.display = 'inline';
+            var elems = document.getElementsByClassName('text-muted');
+            for(var i = 0; i < elems.length; i++) {
+                elems[i].style.display = 'inline';
+            }
+            result_client = null;
+            sortWords.getSortWords().then(function (words) {
+                $scope.words = words;
+                swords = words;
+            });
+        };
 
 //дурацкий костыль от вспышек
         $timeout(function () {
@@ -330,10 +341,6 @@ tryHskControllers.controller('checkboxCtrl', function ($scope, $rootScope, check
             $scope.$parent.refresh();
         } catch (e) {
         }
-        try {
-            $scope.$parent.fresh()
-        } catch (e) {
-        }
     }, true);
     $rootScope.$watch('checkboxValues', function () {
         $scope.checkboxValues = $rootScope.checkboxValues;
@@ -347,17 +354,15 @@ tryHskControllers.controller('loveCtrl', function ($scope) {
 
 tryHskControllers.controller('infoCtrl', function ($scope, $rootScope) {
     $rootScope.$watch('rating', function () {
-            console.log(parseInt($rootScope.amount));
-            console.log(typeof parseInt($rootScope.amount));
-            console.log($rootScope.amount);
-        if (parseInt($rootScope.amount) < 100) {
-            $scope.rating = 'Для получения рейтинга, нужно сделать сто попыток'
+        if (parseInt($rootScope.amountOfTry) < 100) {
+            $scope.rating = 'Для получения рейтинга, нужно сделать не менее ста попыток';
+            $scope.class_rating = 'text-alert';
         }
         else {
             $scope.rating = $rootScope.rating;
+            $scope.class_rating = '';
         }
-        $scope.rating = $rootScope.rating;
-        $scope.amount = $rootScope.amount;
+        $scope.amountOfTry = $rootScope.amountOfTry;
         $scope.rights = $rootScope.rights;
     }, true);
 

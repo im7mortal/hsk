@@ -9,9 +9,23 @@
                 <div class="row" style="margin-top: 0">
                     <!--@todo src porevo!!!!!-->
                     <object height="1" width="1" data="http://china-standart.ru{{sound}}"></object>
-                    <button class="button toServer" ng-click="nextWord()" style="margin-left:50px">СЛЕДУЮЩИЙ</button>
+                    <button class="button {{class_button_next}}" ng-click="nextWord()" style="margin-left:50px">{{button_next}} <i id='id_button_next' class="icon-spin"></i></button>
                     <output id="value"></output>
-                    {{amount}}
+                    <ng-pluralize count="words.length"
+                                  when="{'0': 'Ничего не выбрано',
+                        '1': 'Слишком мало слов. Выбрано {} слово',
+                        '2': 'Слишком мало слов. Выбрано {} слова',
+                        '3': 'Слишком мало слов. Выбрано {} слова',
+                        '4': 'Слишком мало слов. Выбрано {} слова',
+                        '5': 'Слишком мало слов. Выбрано {} слов',
+                        '6': 'Слишком мало слов. Выбрано {} слов',
+                        '7': 'Слишком мало слов. Выбрано {} слов',
+                        '8': 'Слишком мало слов. Выбрано {} слов',
+                        '9': 'Слишком мало слов. Выбрано {} слов',
+                     'one': 'Выбрано {} слово',
+                     'few': 'Выбрано {} слово',
+                     'many': 'Выбрано {} слов'}">
+                    </ng-pluralize>
                     <!--@fixme pornography  <center>-->
                     <center>
                         <button class="shortcut link " id="random" style="font-size: 60px;">{{char}}
@@ -41,6 +55,7 @@
                                     <button class="button {{wordsTest.ansver}}" ng-click="nextWord()"
                                             style="margin-left:50px">{{wordsTest.button}}
                                     </button>
+                                    <p class="text-muted">Результат не будет засчитан</p>
                                 </div>
                             </div>
                         </div>
