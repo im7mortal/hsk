@@ -52,10 +52,12 @@
                                         <div class="span4"><h2>{{wordsTest.char}}</h2></div>
                                         <div class="span4"><h2>{{wordsTest.pinyin}}</h2></div>
                                     </div>
-                                    <button class="button {{wordsTest.ansver}}" ng-click="nextWord()"
-                                            style="margin-left:50px">{{wordsTest.button}}
-                                    </button>
-                                    <p class="text-muted">Результат не будет засчитан</p>
+                                    <div class="row" style="margin-top:0;margin-bottom:0">
+                                        <button class="button {{wordsTest.ansver}}" ng-click="nextWord()"
+                                                style="margin-left:50px">{{wordsTest.button}}
+                                        </button>
+                                        <p class="text-muted">Результат не будет засчитан</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
