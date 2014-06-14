@@ -109,7 +109,7 @@ function getRegister(id, res) {
                 str = JSON.stringify(str);
                 str = del_spaces(str);
                 res.end(str);
-                client.end();
+//                client.end();
             }
 
                 str = {
@@ -120,7 +120,7 @@ function getRegister(id, res) {
                 str = JSON.stringify(str);
                 str = del_spaces(str);
                 res.end(str);
-                client.end();
+//                client.end();
         } else {
             client.query("INSERT INTO hsk (id, amount, rights, date, rating) VALUES ($1, $2, $3, $4, $5);",
                 [id, '0', '0', new Date(), 0], function (err, result) {
@@ -132,7 +132,7 @@ function getRegister(id, res) {
                 str = JSON.stringify(str);
                 str = del_spaces(str);
                 res.end(str);
-                client.end();
+//                client.end();
             });
         }
     })
@@ -156,7 +156,7 @@ function insertRating(id, amount, rights, res) {
                         str = JSON.stringify(str);
                         str = del_spaces(str);
                         res.end(str);
-                        client.end();
+//                        client.end();
                 }
             });
         }
