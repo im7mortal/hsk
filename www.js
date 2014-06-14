@@ -5,7 +5,7 @@ var express = require("express")
     , pg = require("pg")
     , url = require('url')
     , app = express();
-var strl = 'lol';
+var strl;
 var port = Number(process.env.PORT || 5000);
 
 var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o";  //production
