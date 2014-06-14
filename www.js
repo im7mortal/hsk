@@ -68,20 +68,20 @@ app.listen(port, function () {
     console.log("Listening on " + port);
 });
 
-setInterval(function() {
-    // Каждые 10 сек. сканирует БД и составляет новый рейтинг.
-    var client = new pg.Client(conString);
-    client.connect();
-    client.query('SELECT id FROM hsk ORDER BY rating DESC', [], function (err, result) {
-        var array =[];
-        for(var i =0; i < 10; i++) {
-            array.push(result.rows[i].id)
-        }
-        strl = array.join();
-        strl = del_spaces(strl);
-        strl = '['+strl+']';
-    });
-},10000);
+//setInterval(function() {
+//    // Каждые 10 сек. сканирует БД и составляет новый рейтинг.
+//    var client = new pg.Client(conString);
+//    client.connect();
+//    client.query('SELECT id FROM hsk ORDER BY rating DESC', [], function (err, result) {
+//        var array =[];
+//        for(var i =0; i < 10; i++) {
+//            array.push(result.rows[i].id)
+//        }
+//        strl = array.join();
+//        strl = del_spaces(strl);
+//        strl = '['+strl+']';
+//    });
+//},10000);
 
 
 
