@@ -82,6 +82,7 @@ body  {
 /*отступы в рейтинге*/
 .rating_content{
     padding: 0;
+    color: red;
 }
 .rating_content > .grid {
     margin: 0;
