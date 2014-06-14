@@ -79,7 +79,6 @@ setInterval(function() {
         }
         strl = array.join();
         strl = del_spaces(strl);
-        console.log(strl)
         strl = '['+strl+']';
     });
 },10000);
