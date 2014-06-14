@@ -1,14 +1,10 @@
 'use strict';
-var amount_global;
-var rights;
 
 
 var tryHskControllers = angular.module('tryHskControllers', []);
 
-tryHskControllers.controller('summaryCtrl', function ($scope, $rootScope, sortWords, amountWords, language, SummaryStateManager) {
-
-
-    $scope.language = language.getLanguage();
+tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, amountWords, language, SummaryStateManager) {
+//    $scope.language = language.getLanguage();
     $scope.refresh = function () {
         SummaryStateManager.add('summary');
         sortWords.getSortWords().then(function (words) {
@@ -21,7 +17,7 @@ tryHskControllers.controller('summaryCtrl', function ($scope, $rootScope, sortWo
                     $scope.amount = amount;
                 });
             }
-            SummaryStateManager.remove('summary');
+        SummaryStateManager.remove('summary');
         });
     };
     $scope.refresh();
@@ -43,23 +39,34 @@ tryHskControllers.controller('testCtrl',
             , test_randoms = []
             ,result_client;
 
-        StateManager.add('d');
+        StateManager.add('test');
+
+
+
         var params ='id=' +vkid;
+//        var params ='id=' +10000000;
+
         $resource('/register?' + params, {}, {
             query: {method:'GET',isArray:false}
         }).query().$promise.then(function(stat) {
-                $scope.amountOfTry = parseInt(stat.amount);
-                $scope.rights = parseInt(stat.rights);
-                $scope.rating =  stat.rating;
+                $rootScope.rating =  stat.rating;
+                $rootScope.amountOfTry =  stat.amount;
+                $scope.amountOfTry =  stat.amount;
+                $rootScope.rights =  stat.rights;
+                $scope.rights =  stat.rights;
             });
 
 
         $scope.$watch('rights', function () {
+            if($scope.amountOfTry == undefined || $scope.rights == undefined) {return}
             var params ='id=' +vkid+ '&amount=' + $scope.amountOfTry + '&rights=' + $scope.rights;
+//            var params ='id=' +10000000+ '&amount=' + $scope.amountOfTry + '&rights=' + $scope.rights;
             $resource('/rating?'+ params, {}, {
                 query: {method:'GET',isArray:false}
             }).query().$promise.then(function(stat) {
-                    $scope.rating =  stat.rating;
+                    $rootScope.rating =  stat.rating;
+                    $rootScope.amountOfTry =  stat.amount;
+                    $rootScope.rights =  stat.rights;
                 });
          }, true);
 
@@ -256,7 +263,7 @@ tryHskControllers.controller('testCtrl',
 
                     amountWords.getAmountWords().then(function (amount) {
                         $scope.amount = amount;
-                        StateManager.remove('d');
+                        StateManager.remove('test');
                     });
                 }
             });
@@ -270,56 +277,64 @@ tryHskControllers.controller('testCtrl',
         }, 500);
         $scope.wordsTests = wordsTests;
         $timeout(function () {
-            StateManager.remove('d');
+            StateManager.remove('test');
         }, 3000);
     });
 
 
-tryHskControllers.controller('loveCtrl', function ($scope) {
-
-});
-
-tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout) {
-
-    $resource('/users', {}, {
-        query: {method: 'GET', isArray: true }
-    }).query().$promise.then(function (users) {
-            console.log(users);
 
 
-            var new_array = [];
 
 
-            for (var i = 0; i < users.length; i++) {
-                (function () {
-
-                    var new_object = {};
-//                    var strt =''+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+',';
-                    if (users.length == 0) {
-                        //todo обработать ошибку
-                    } else {
-                        VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
-                            console.log(data)
-                            console.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
-                            // Действия с полученными данными
-//                            new_object.photo_medium = data.response[0].photo_medium;
-//                            new_object.first_name = data.response[0].first_name;
-//                            new_object.last_name = data.response[0].last_name;
-//                            new_object.rating = users[i].rating;
-//                            new_array.push(new_object);
-                        });
-                    }
-
-                })();
-            }
-
-            $timeout(function() {
-                console.log(new_array);
-                $scope.users = new_array;
-            }, 10000);
 
 
+
+tryHskControllers.controller('ratingCtrl', function ($scope, $http) {
+
+
+
+    $http.get('/users').success(function(data) {
+        console.log(data);
+    });
+
+////////////////////////////////////////////////////////
+//    {
 //
+//
+////
+//        var new_array = [];
+//
+//
+//        for (var i = 0; i < users.length; i++) {
+//            (function () {
+//
+//                var new_object = {};
+////                    var strt =''+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+',';
+//                if (users.length == 0) {
+//                    //todo обработать ошибку
+//                } else {
+//                    VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
+//                        console.log(data)
+//                        console.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+////                            Действия с полученными данными
+//                        new_object.photo_medium = data.response[0].photo_medium;
+//                        new_object.first_name = data.response[0].first_name;
+//                        new_object.last_name = data.response[0].last_name;
+//                        new_object.rating = users[i].rating;
+//                        new_array.push(new_object);
+//                    });
+//                }
+//
+//            })();
+//        }
+//
+//        $timeout(function() {
+//            console.log(new_array);
+//            $scope.users = new_array;
+//        }, 10000);
+//    }
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //            function vis_rat(){
 //                var deferred = $q.defer();
 //
@@ -353,11 +368,18 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $resource, $timeout
 //                console.log(words);
 //                $scope.users = words;
 //            })
-        });
+
 
 
     $scope.predicate = 'id';
 });
+
+
+
+
+
+
+
 
 tryHskControllers.controller('settingsCtrl', function ($scope, language) {
     $scope.languages = language.getLanguage();
@@ -399,6 +421,18 @@ tryHskControllers.controller('checkboxCtrl', function ($scope, $rootScope, check
 //   3 аргумент true важен в $watch так как из за него наблюдается весь обьект целиком
 });
 
+tryHskControllers.controller('loveCtrl', function ($scope) {
+
+});
+
+tryHskControllers.controller('infoCtrl', function ($scope, $rootScope) {
+    $rootScope.$watch('rating', function () {
+        $scope.rating = $rootScope.rating;
+        $scope.amount = $rootScope.amount;
+        $scope.rights = $rootScope.rights;
+    }, true);
+
+});
 
 //$(document).ready(function () {
 //    $('.toServer').click(function () {
