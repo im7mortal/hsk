@@ -349,7 +349,7 @@ tryHskControllers.controller('infoCtrl', function ($scope, $rootScope) {
     $rootScope.$watch('rating', function () {
             console.log(parseInt($rootScope.amount));
             console.log(typeof parseInt($rootScope.amount));
-            console.log(parseInt($rootScope.amount));
+            console.log($rootScope.amount);
         if (parseInt($rootScope.amount) < 100) {
             $scope.rating = 'Для получения рейтинга, нужно сделать сто попыток'
         }
