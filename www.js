@@ -80,6 +80,7 @@ setInterval(function() {
         strl = array.join();
         strl = del_spaces(strl);
 //        strl = '['+strl+']';
+        client.end();
     });
 },10000);
 
@@ -143,10 +144,10 @@ function insertRating(id, amount, rights, res) {
     client.connect();
     client.query("UPDATE hsk SET amount=$1, rights=$2, date=$4, rating=$5 WHERE id=$3 ",
         [amount, rights, id, new Date(), setRating(amount,rights)], function (err, result) {
-        if (err) {
+        if (err) { client.end();
         } else {
             client.query('SELECT amount,rights,rating FROM hsk WHERE id = $1', [id], function (err, result) {
-                if (err) {
+                if (err) { client.end();
                 } else {
                         var  str = {
                             rating: result.rows[0].rating,
