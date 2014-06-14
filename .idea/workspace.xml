@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/Framework/work/controllers.js" line="289" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="080aeaf0-14d2-4242-ad7a-f9e4d30f304c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/index.html" afterPath="$PROJECT_DIR$/Framework/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="080aeaf0-14d2-4242-ad7a-f9e4d30f304c" name="Default" comment="" />
     <ignored path="lol.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -92,8 +89,8 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Framework/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4430769" vertical-offset="108" max-vertical-offset="3816">
-              <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.5538462" vertical-offset="108" max-vertical-offset="3816">
+              <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -816,8 +813,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Framework/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4430769" vertical-offset="108" max-vertical-offset="3816">
-          <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.5538462" vertical-offset="108" max-vertical-offset="3816">
+          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
           <folding />
         </state>
       </provider>

@@ -19,44 +19,44 @@ app.get('/', function (req, res) {
 });
 
 //@todo  ПОМОЕМУ КЛИЕНТ БД НЕ ЗАКРЫВАЕТСЯ
-app.get('/register', function (req, res) {
-    var url_parts = url.parse(req.url, true)
-        , id = parseInt(url_parts.query.id);
-
-    if (typeof id == 'number') {
-        getRegister(id, res);
-    } else {
-        var str = {
-            rating: 0,
-            amount: 0,
-            rights: 0
-        };
-        str = JSON.stringify(str);
-        str = del_spaces(str);
-        console.log('Ошибка в getRegister');
-        res.end(str);
-    }
-});
-
-app.get('/rating', function (req, res) {
-    var url_parts = url.parse(req.url, true)
-        , id = parseInt(url_parts.query.id)
-        , amount = parseInt(url_parts.query.amount)
-        , rights = parseInt(url_parts.query.rights);
-    if (typeof amount == 'number' && typeof rights == 'number' && typeof id == 'number' && !(isNaN(amount) || isNaN(id) || isNaN(rights))) {
-        insertRating(id, amount, rights, res)
-    } else {
-        var str = {
-            rating: 0,
-            amount: 0,
-            rights: 0
-        };
-        str = JSON.stringify(str);
-        str = del_spaces(str);
-        console.log('Ошибка в getRating');
-        res.end(str);
-    }
-});
+//app.get('/register', function (req, res) {
+//    var url_parts = url.parse(req.url, true)
+//        , id = parseInt(url_parts.query.id);
+//
+//    if (typeof id == 'number') {
+//        getRegister(id, res);
+//    } else {
+//        var str = {
+//            rating: 0,
+//            amount: 0,
+//            rights: 0
+//        };
+//        str = JSON.stringify(str);
+//        str = del_spaces(str);
+//        console.log('Ошибка в getRegister');
+//        res.end(str);
+//    }
+//});
+//
+//app.get('/rating', function (req, res) {
+//    var url_parts = url.parse(req.url, true)
+//        , id = parseInt(url_parts.query.id)
+//        , amount = parseInt(url_parts.query.amount)
+//        , rights = parseInt(url_parts.query.rights);
+//    if (typeof amount == 'number' && typeof rights == 'number' && typeof id == 'number' && !(isNaN(amount) || isNaN(id) || isNaN(rights))) {
+//        insertRating(id, amount, rights, res)
+//    } else {
+//        var str = {
+//            rating: 0,
+//            amount: 0,
+//            rights: 0
+//        };
+//        str = JSON.stringify(str);
+//        str = del_spaces(str);
+//        console.log('Ошибка в getRating');
+//        res.end(str);
+//    }
+//});
 
 app.get('/users', function (req, res) {
     if(strl == undefined) {return}
