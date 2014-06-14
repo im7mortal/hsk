@@ -81,7 +81,7 @@ body  {
 
 /*отступы в рейтинге*/
 .rating_content{
-    padding: 0 !important;
+    /*padding: 0 !important;*/
 
 }
 .rating_content > .grid {

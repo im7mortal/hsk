@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="080aeaf0-14d2-4242-ad7a-f9e4d30f304c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/index.html" afterPath="$PROJECT_DIR$/Framework/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/css/tryhsk.css" afterPath="$PROJECT_DIR$/Framework/css/tryhsk.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -49,22 +50,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tryhsk.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="tryhsk.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Framework/css/tryhsk.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72307694" vertical-offset="1266" max-vertical-offset="1746">
-              <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1266" max-vertical-offset="1746">
+              <caret line="90" column="23" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Framework/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.8148148" vertical-offset="1697" max-vertical-offset="3240">
-              <caret line="100" column="62" selection-start-line="100" selection-start-column="48" selection-end-line="100" selection-end-column="62" />
-              <folding />
+            <state vertical-scroll-proportion="0.6028572" vertical-offset="1697" max-vertical-offset="3240">
+              <caret line="106" column="51" selection-start-line="106" selection-start-column="51" selection-end-line="106" selection-end-column="51" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#5;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,8 +102,8 @@
         <option value="$PROJECT_DIR$/Framework/partials/summary.html" />
         <option value="$PROJECT_DIR$/www.js" />
         <option value="$PROJECT_DIR$/Framework/work/controllers.js" />
-        <option value="$PROJECT_DIR$/Framework/index.html" />
         <option value="$PROJECT_DIR$/Framework/css/tryhsk.css" />
+        <option value="$PROJECT_DIR$/Framework/index.html" />
       </list>
     </option>
   </component>
@@ -741,14 +744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/work/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5256" max-vertical-offset="7002">
-          <caret line="330" column="21" selection-start-line="330" selection-start-column="21" selection-end-line="330" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Framework/partials/summary.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10285714" vertical-offset="0" max-vertical-offset="972">
@@ -757,19 +752,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/index.html">
+    <entry file="file://$PROJECT_DIR$/Framework/css/tryhsk.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8148148" vertical-offset="1697" max-vertical-offset="3240">
-          <caret line="100" column="62" selection-start-line="100" selection-start-column="48" selection-end-line="100" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1266" max-vertical-offset="1746">
+          <caret line="90" column="23" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/css/tryhsk.css">
+    <entry file="file://$PROJECT_DIR$/Framework/work/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72307694" vertical-offset="1266" max-vertical-offset="1746">
-          <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="5256" max-vertical-offset="7002">
+          <caret line="330" column="21" selection-start-line="330" selection-start-column="21" selection-end-line="330" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6028572" vertical-offset="1697" max-vertical-offset="3240">
+          <caret line="106" column="51" selection-start-line="106" selection-start-column="51" selection-end-line="106" selection-end-column="51" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#5;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
