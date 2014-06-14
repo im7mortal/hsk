@@ -102,12 +102,11 @@
                                 <div class="grid">
                                     <div class="row" ng-controller="ratingCtrl">
 <!--<div class="span1" ng-repeat="user in users | orderBy:predicate:reverse" >-->
-<!--<div class="span1" ng-repeat="user in users" >-->
-    <!--{{user.first_name}}</br>-->
-    <!--{{user.last_name}}-->
-    <!--<img src="{{user.photo_medium}}">-->
-    <!--{{user.rating}}-->
-<!--</div>-->
+<div class="span1" ng-repeat="user in users" >
+    {{user.response.first_name}}</br>
+    {{user.data.response.last_name}}
+    <img src="{{user.response.photo_medium}}">
+</div>
                                     </div>
                                 </div>
                             </div>

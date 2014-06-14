@@ -295,9 +295,11 @@ tryHskControllers.controller('ratingCtrl', function ($scope, $http) {
         console.log(data);
 
         VK.api("users.get", {user_ids: data, fields: "photo_medium"}, function (data) {
-            console.log(data)
-            console.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+            console.log(data);
 //                            Действия с полученными данными
+            $scope.users = data;
+
+
 //            new_object.photo_medium = data.response[0].photo_medium;
 //            new_object.first_name = data.response[0].first_name;
 //            new_object.last_name = data.response[0].last_name;
