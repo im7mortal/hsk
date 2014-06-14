@@ -347,6 +347,12 @@ tryHskControllers.controller('loveCtrl', function ($scope) {
 
 tryHskControllers.controller('infoCtrl', function ($scope, $rootScope) {
     $rootScope.$watch('rating', function () {
+        if (parseInt($rootScope.amount) < 100) {
+            $scope.rating = 'Для получения рейтинга, нужно сделать сто попыток'
+        }
+        else {
+            $scope.rating = $rootScope.rating;
+        }
         $scope.rating = $rootScope.rating;
         $scope.amount = $rootScope.amount;
         $scope.rights = $rootScope.rights;
