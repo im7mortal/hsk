@@ -40,7 +40,7 @@ tryHskControllers.controller('testCtrl',
 
         StateManager.add('test');
 
-
+console.log(vkid);
 
         var params ='id=' +vkid;
 
