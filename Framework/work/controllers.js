@@ -4,7 +4,6 @@
 var tryHskControllers = angular.module('tryHskControllers', []);
 
 tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, amountWords, language, SummaryStateManager) {
-//    $scope.language = language.getLanguage();
     $scope.refresh = function () {
         SummaryStateManager.add('summary');
         sortWords.getSortWords().then(function (words) {
