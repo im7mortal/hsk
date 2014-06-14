@@ -287,103 +287,11 @@ console.log(vkid);
 
 
 tryHskControllers.controller('ratingCtrl', function ($scope, $http) {
-
-
-
     $http.get('/users').success(function(data) {
-        console.log(typeof data);
-        console.log(data);
-
         VK.api("users.get", {user_ids: data, fields: "photo_medium"}, function (data) {
-            console.log(data);
-//                            Действия с полученными данными
             $scope.users = data;
-            console.log($scope.users.response[3].first_name);
-            console.log($scope.users.response[3].last_name);
-            console.log($scope.users.response[3].photo_medium);
-
-
-//            new_object.photo_medium = data.response[0].photo_medium;
-//            new_object.first_name = data.response[0].first_name;
-//            new_object.last_name = data.response[0].last_name;
-//            new_object.rating = users[i].rating;
-//            new_array.push(new_object);
         });
-
-
-
-//
-//        var new_array = [];
-//
-//
-//        for (var i = 0; i < users.length; i++) {
-//            (function () {
-//
-//                var new_object = {};
-////                    var strt =''+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+','+users[i].id+',';
-//                if (users.length == 0) {
-//                    //todo обработать ошибку
-//                } else {
-//
-//                }
-//
-//            })();
-//        }
-//
-//        $timeout(function() {
-//            console.log(new_array);
-//            $scope.users = new_array;
-//        }, 10000);
-
-
-
-    });
-
-////////////////////////////////////////////////////////
-//    {
-//
-//
-////
-
-            ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//            function vis_rat(){
-//                var deferred = $q.defer();
-//
-//                deferred.resolve(
-//                    {vis:function() {
-//                        var new_array = [];
-//                        for (var i = 0; i < users.length; i++) {
-//                            var new_object = {};
-//                            if (users.length == 0) {
-//                                //todo обработать ошибку
-//                            } else {
-//                                VK.api("users.get", {user_ids: users[i].id, fields: "photo_medium"}, function (data) {
-//                                    // Действия с полученными данными
-//                                    new_object.photo_medium = data.response[0].photo_medium;
-//                                    new_object.first_name = data.response[0].first_name;
-//                                    new_object.last_name = data.response[0].last_name;
-//                                    new_array.push(new_object)
-//                                });
-//                            }
-//                        }
-//                        console.log(new_array);
-//                        return new_array;
-//                    }
-//                    }
-//                );
-//                return deferred.promise;
-//            }
-//
-//            vis_rat.vis().then(function (words) {
-//                console.log('llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll');
-//                console.log(words);
-//                $scope.users = words;
-//            })
-
-
-
-    $scope.predicate = 'id';
+});
 });
 
 
