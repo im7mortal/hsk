@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="080aeaf0-14d2-4242-ad7a-f9e4d30f304c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/css/metro-bootstrap.css" afterPath="$PROJECT_DIR$/Framework/css/metro-bootstrap.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lol.iws" />
@@ -84,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Framework/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6023392" vertical-offset="1738" max-vertical-offset="2988">
-              <caret line="108" column="31" selection-start-line="108" selection-start-column="31" selection-end-line="108" selection-end-column="31" />
+            <state vertical-scroll-proportion="-8.296296" vertical-offset="1684" max-vertical-offset="2988">
+              <caret line="106" column="45" selection-start-line="106" selection-start-column="45" selection-end-line="106" selection-end-column="54" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#5;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -97,6 +98,16 @@
                 <element signature="n#style#0;n#div#6;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#6;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="metro-bootstrap.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Framework/css/metro-bootstrap.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.58426964" vertical-offset="61010" max-vertical-offset="189594">
+              <caret line="3401" column="21" selection-start-line="3401" selection-start-column="21" selection-end-line="3401" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -117,7 +128,6 @@
         <option value="$PROJECT_DIR$/procfile" />
         <option value="$PROJECT_DIR$/Framework/settings.json" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/Framework/css/metro-bootstrap.css" />
         <option value="$PROJECT_DIR$/../jquery-ui-1.10.4.custom/js/jquery-1.10.2.js" />
         <option value="$PROJECT_DIR$/Framework/partials/d.js" />
         <option value="$PROJECT_DIR$/Framework/partials/ы.html" />
@@ -133,6 +143,7 @@
         <option value="$PROJECT_DIR$/Framework/partials/summary.html" />
         <option value="$PROJECT_DIR$/www.js" />
         <option value="$PROJECT_DIR$/Framework/index.html" />
+        <option value="$PROJECT_DIR$/Framework/css/metro-bootstrap.css" />
       </list>
     </option>
   </component>
@@ -638,13 +649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/css/metro-bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3361204" vertical-offset="126519" max-vertical-offset="189594">
-          <caret line="7040" column="1" selection-start-line="7040" selection-start-column="1" selection-end-line="7040" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Metro-UI-CSS-master/docs/js/metro/metro-accordion.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
@@ -826,8 +830,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Framework/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6023392" vertical-offset="1738" max-vertical-offset="2988">
-          <caret line="108" column="31" selection-start-line="108" selection-start-column="31" selection-end-line="108" selection-end-column="31" />
+        <state vertical-scroll-proportion="-8.296296" vertical-offset="1684" max-vertical-offset="2988">
+          <caret line="106" column="45" selection-start-line="106" selection-start-column="45" selection-end-line="106" selection-end-column="54" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#5;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -836,6 +840,14 @@
             <element signature="n#style#0;n#div#6;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#6;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/css/metro-bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58426964" vertical-offset="61010" max-vertical-offset="189594">
+          <caret line="3401" column="21" selection-start-line="3401" selection-start-column="21" selection-end-line="3401" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

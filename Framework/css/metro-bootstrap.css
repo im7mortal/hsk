@@ -3386,7 +3386,7 @@ a {
   position: relative;
   padding: 0;
   background-color: #333333;
-  width: 240px;
+  /*width: 240px;*/
   overflow: hidden;
 }
 .metro .image-container.full-size {
