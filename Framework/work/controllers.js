@@ -33,7 +33,7 @@ tryHskControllers.controller('testCtrl',
         StateManager.add('test');
 
 console.log(vkid);
-
+        var rights;//нужен для проверки изменеия rights
         var params ='id=' +vkid;
 
         $resource('/register?' + params, {}, {
@@ -41,12 +41,18 @@ console.log(vkid);
         }).query().$promise.then(function(stat) {
                 $scope.result = stat;
                 $rootScope.result = stat;
+                rights = stat.rights;
+                console.log('rig +'+rights)
             });
 
-        $scope.$watch('result.amount', function () {
+        $scope.$watch('result', function () {
             if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
             $rootScope.result = $scope.result;
-            if($scope.result.amount % 3 !== 0) {return}
+            if($scope.result.amount % 3 !== 0) {return}else{refreshResult()}
+            if($scope.result.rights == rights) {return}else{refreshResult()}
+        }, true);
+
+        function refreshResult() {
             var params ='id=' +vkid+ '&amount=' + $scope.result.amount + '&rights=' + $scope.result.rights;
             $resource('/rating?'+ params, {}, {
                 query: {method:'GET',isArray:false}
@@ -54,7 +60,7 @@ console.log(vkid);
                     $scope.result = stat;
                     $rootScope.result = stat;
                 });
-        }, true);
+        }
 
         $scope.$watch('result.rights', function () {
             if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
