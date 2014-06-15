@@ -8,8 +8,8 @@ var express = require("express")
 var strl;
 var port = Number(process.env.PORT || 5000);
 
-var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o";  //production
-//var conString = "postgres://sssr:hui@localhost/postgres";  //develop
+//var conString = "postgres://kyhetrqttjglpi:949BScb2C_YjRZKFH2eA5ngz7-@ec2-54-235-245-180.compute-1.amazonaws.com:5432/d3i4729gmg7s1o";  //production
+var conString = "postgres://sssr:hui@localhost/postgres";  //develop
 var index = fs.readFileSync('Framework/index.html');
 app.use(express.static('Framework'));
 app.use(logfmt.requestLogger());
@@ -97,10 +97,10 @@ setInterval(function() {
     var client = new pg.Client(conString);
     client.connect();
     client.query('SELECT id FROM hsk ORDER BY rating DESC', [], function (err, result) {
-        var array =[]
-            ,lenght;
-        if (result.rows.length < 12) {lenght = 12}else { lenght = result.rows.length}
-        for(var i =0; i < lenght; i++) {
+        var array =[];
+        console.log(result.rows.length);
+        if (result.rows.length < 12) {var length = 12}else { length = result.rows.length}
+        for(var i =0; i < length; i++) {
             if(result.rows[i].id == undefined) {break}
             array.push(result.rows[i].id)
         }
