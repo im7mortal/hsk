@@ -46,6 +46,14 @@ console.log(vkid);
         $scope.$watch('result', function () {
             if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
             $rootScope.result = $scope.result;
+            if($scope.result.amount % 3 !== 0) {return}
+            var params ='id=' +vkid+ '&amount=' + $scope.result.amount + '&rights=' + $scope.result.rights;
+            $resource('/rating?'+ params, {}, {
+                query: {method:'GET',isArray:false}
+            }).query().$promise.then(function(stat) {
+                    $scope.result = stat;
+                    $rootScope.result = stat;
+                });
         }, true);
 
         $scope.$watch('result.rights', function () {
