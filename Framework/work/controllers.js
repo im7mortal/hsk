@@ -47,7 +47,7 @@ console.log(vkid);
         $scope.$watch('result', function () {
             if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
             $rootScope.result = $scope.result;
-//            if($scope.result.amount % 10 !== 0) {return}else{refreshResult()}
+            if(parseInt($scope.result.amount) % 10 !== 0) {return}else{refreshResult()}
             if($scope.result.rights == rights) {return}else{refreshResult()}
         }, true);
 
@@ -373,7 +373,7 @@ tryHskControllers.controller('loveCtrl', function ($scope) {
 tryHskControllers.controller('infoCtrl', function ($scope, $rootScope, $timeout) {
 
     $rootScope.$watch('result', function () {
-        $timeout(function() {
+
             if (parseInt($rootScope.result.amount) < 100) {
                 $scope.rating = 'Для получения рейтинга, нужно сделать не менее ста попыток';
                 $scope.class_rating = 'text-alert';
@@ -384,7 +384,6 @@ tryHskControllers.controller('infoCtrl', function ($scope, $rootScope, $timeout)
             }
             $scope.amount = $rootScope.result.amount;
             $scope.rights = $rootScope.result.rights;
-        },1000);
     }, true);
 
 });
