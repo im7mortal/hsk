@@ -75,7 +75,7 @@
                 <div ng-include="'partials/test.html'"></div>
             </div>
 
-            <div class="frame" id="_page_2">
+            <div class="frame" id="_page_2" style="padding: 0">
                 <div ng-include="'partials/summary.html'"></div>
             </div>
 
@@ -91,6 +91,32 @@
                 <div ng-include="'partials/love.html'"></div>
             </div>
 
+
+
+
+            <div class="grid" style="margin-top:0;margin-bottom:0">
+                <div class="row" style="margin-top:0;margin-bottom:0">
+                    <div class="accordion" data-role="accordion" data-closeany="true">
+                        <div class="accordion-frame">
+                            <a class="active heading" href="#">Рейтинг пользователей</a>
+                            <div class="content rating_content">
+                                <div class="grid">
+                                    <div class="row" style="margin: 0!important" ng-controller="ratingCtrl">
+<div class="span1" ng-repeat="user in users.response" >
+    <div class="image-container">
+        <img src="{{user.photo_medium}}">
+        <div class="overlay">
+            {{user.first_name}}
+        </div>
+    </div>
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="grid" style="margin-top:0;margin-bottom:0">
                 <div class="row" style="margin-top:0;margin-bottom:0">
                     <div class="accordion" data-role="accordion" data-closeany="true">
