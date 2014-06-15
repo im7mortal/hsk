@@ -43,8 +43,12 @@ console.log(vkid);
                 $rootScope.result = stat;
             });
 
-
         $scope.$watch('result', function () {
+            if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
+            $rootScope.result = $scope.result;
+        }, true);
+
+        $scope.$watch('result.rights', function () {
             if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
             var params ='id=' +vkid+ '&amount=' + $scope.result.amount + '&rights=' + $scope.result.rights;
             $resource('/rating?'+ params, {}, {
