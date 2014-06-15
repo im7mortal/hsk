@@ -123,11 +123,12 @@
 
 
 <script type="text/javascript" charset="cp1251">
-
+    var height = document.getElementById('tab-control').offsetHeight;
     setInterval(function() {
-        var height = document.getElementById('tab-control').offsetHeight;
-        console.log(height);
+        if (height !== document.getElementById('tab-control').offsetHeight) {
+            height = document.getElementById('tab-control').offsetHeight;
             VK.callMethod('resizeWindow',920,height);
+        }
     },10);
 
 
