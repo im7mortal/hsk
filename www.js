@@ -99,6 +99,7 @@ setInterval(function() {
     client.query('SELECT id FROM hsk ORDER BY rating DESC', [], function (err, result) {
         var array =[];
         for(var i =0; i < 10; i++) {
+            if(result.rows[i].id == undefined) {break}
             array.push(result.rows[i].id)
         }
         strl = array.join();
