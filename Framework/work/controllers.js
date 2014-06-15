@@ -384,7 +384,7 @@ tryHskControllers.controller('infoCtrl', function ($scope, $rootScope, $timeout)
             }
             $scope.amount = $rootScope.result.amount;
             $scope.rights = $rootScope.result.rights;
-        },100);
+        },1000);
     }, true);
 
 });
