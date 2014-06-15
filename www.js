@@ -90,18 +90,22 @@ app.get('/users', function (req, res) {
 });
 
 
-
-
-setInterval(function() {
+setInterval(function () {
     // Каждые 10 сек. сканирует БД и составляет новый рейтинг.
     var client = new pg.Client(conString);
     client.connect();
     client.query('SELECT id FROM hsk ORDER BY rating DESC', [], function (err, result) {
-        var array =[];
+        var array = [];
         console.log(result.rows.length);
-        if (result.rows.length < 12) {var length = 12}else { length = result.rows.length}
-        for(var i =0; i < length; i++) {
-            if(result.rows[i].id == undefined) {break}
+        if (result.rows.length > 12) {
+            var length = 12
+        } else {
+            length = result.rows.length
+        }
+        for (var i = 0; i < length; i++) {
+            if (result.rows[i].id == undefined) {
+                break
+            }
             array.push(result.rows[i].id)
         }
         strl = array.join();
@@ -109,7 +113,7 @@ setInterval(function() {
 //        strl = '['+strl+']';
         client.end();
     });
-},10000);
+}, 10000);
 
 
 
