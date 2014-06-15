@@ -39,23 +39,19 @@ console.log(vkid);
         $resource('/register?' + params, {}, {
             query: {method:'GET',isArray:false}
         }).query().$promise.then(function(stat) {
-                $rootScope.rating =  stat.rating;
-                $rootScope.amountOfTry =  stat.amount;
-                $scope.amountOfTry =  stat.amount;
-                $rootScope.rights =  stat.rights;
-                $scope.rights =  stat.rights;
+                $scope.result = stat;
+                $rootScope.result = stat;
             });
 
 
-        $scope.$watch('rights', function () {
-            if($scope.amountOfTry == undefined || $scope.rights == undefined) {return}
-            var params ='id=' +vkid+ '&amount=' + $scope.amountOfTry + '&rights=' + $scope.rights;
+        $scope.$watch('result', function () {
+            if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
+            var params ='id=' +vkid+ '&amount=' + $scope.result.amount + '&rights=' + $scope.result.rights;
             $resource('/rating?'+ params, {}, {
                 query: {method:'GET',isArray:false}
             }).query().$promise.then(function(stat) {
-                    $rootScope.rating =  stat.rating;
-                    $rootScope.amountOfTry =  stat.amount;
-                    $rootScope.rights =  stat.rights;
+                    $scope.result = stat;
+                    $rootScope.result = stat;
                 });
          }, true);
 
@@ -73,7 +69,7 @@ console.log(vkid);
         }
         Hamster.prototype.check = function (ansv) {
             if (ansv) {
-                $scope.rights = ++$scope.rights;
+                $scope.result.rights = ++$scope.result.rights;
             } else {
             }
         };
@@ -212,7 +208,7 @@ console.log(vkid);
                 $("div.content:has(button.success)").css("border", "2px solid #60a917");
                 $("div.content:has(button.danger)").css("border", "2px solid red");
             }, 500);
-            $scope.amountOfTry = ++$scope.amountOfTry;
+            $scope.result.amount = ++$scope.result.amount;
             return wordsTests;
         };
 
@@ -352,16 +348,16 @@ tryHskControllers.controller('loveCtrl', function ($scope) {
 });
 
 tryHskControllers.controller('infoCtrl', function ($scope, $rootScope) {
-    $rootScope.$watch('rating', function () {
-        if (parseInt($rootScope.amountOfTry) < 100) {
+    $rootScope.$watch('result', function () {
+        if (parseInt($rootScope.result.amount) < 100) {
             $scope.rating = 'Для получения рейтинга, нужно сделать не менее ста попыток';
             $scope.class_rating = 'text-alert';
         }
         else {
-            $scope.rating = $rootScope.rating;
+            $scope.rating = $rootScope.result.rating;
             $scope.class_rating = '';
         }
-        $scope.amountOfTry = $rootScope.amountOfTry;
+        $scope.amount = $rootScope.result.amount;
         $scope.rights = $rootScope.rights;
     }, true);
 
