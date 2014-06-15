@@ -13,12 +13,13 @@ tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, Summary
     };
     $scope.refresh();
     $scope.predicate = 'id';
+    var height = document.getElementById('tab-control').style.height;
+    console.log(height);
+    console.log('lllllllllllllllllllllllllllllllllllllllllllllll');
 });
 
 
-var height = document.getElementById('tab-control').style.height;
-console.log(height);
-console.log('ddddddddddddddddddddddddddddddddddddddddd');
+
 
 //setInterval(function() {
 //    var height = document.getElementById('tab-control').style.height;
