@@ -43,7 +43,7 @@ console.log(vkid);
                 $rootScope.result = stat;
             });
 
-        $scope.$watch('result', function () {
+        $scope.$watch('result.amount', function () {
             if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
             $rootScope.result = $scope.result;
             if($scope.result.amount % 3 !== 0) {return}
