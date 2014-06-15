@@ -358,7 +358,7 @@ tryHskControllers.controller('infoCtrl', function ($scope, $rootScope) {
             $scope.class_rating = '';
         }
         $scope.amount = $rootScope.result.amount;
-        $scope.rights = $rootScope.rights;
+        $scope.rights = $rootScope.result.rights;
     }, true);
 
 });
