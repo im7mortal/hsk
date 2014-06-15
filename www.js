@@ -14,6 +14,10 @@ var index = fs.readFileSync('Framework/index.html');
 app.use(express.static('Framework'));
 app.use(logfmt.requestLogger());
 
+app.listen(port, function () {
+    console.log("Listening on " + port);
+});
+
 app.get('/', function (req, res) {
     res.end(index);
 });
@@ -38,25 +42,47 @@ app.get('/register', function (req, res) {
     }
 });
 
-app.get('/rating', function (req, res) {
+app.get('/fresh', function (req, res) {
     var url_parts = url.parse(req.url, true)
         , id = parseInt(url_parts.query.id)
         , amount = parseInt(url_parts.query.amount)
         , rights = parseInt(url_parts.query.rights);
     if (typeof amount == 'number' && typeof rights == 'number' && typeof id == 'number' && !(isNaN(amount) || isNaN(id) || isNaN(rights))) {
-        insertRating(id, amount, rights, res)
+        fresh(id, amount, rights, res)
     } else {
-        var str = {
-            rating: 0,
-            amount: 0,
-            rights: 0
-        };
-        str = JSON.stringify(str);
-        str = del_spaces(str);
-        console.log('Ошибка в getRating');
-        res.end(str);
+        res.end(null);
     }
 });
+
+
+
+//
+//
+//
+//
+//app.get('/rating', function (req, res) {
+//    var url_parts = url.parse(req.url, true)
+//        , id = parseInt(url_parts.query.id)
+//        , amount = parseInt(url_parts.query.amount)
+//        , rights = parseInt(url_parts.query.rights);
+//    if (typeof amount == 'number' && typeof rights == 'number' && typeof id == 'number' && !(isNaN(amount) || isNaN(id) || isNaN(rights))) {
+//        insertRating(id, amount, rights, res)
+//    } else {
+//        var str = {
+//            rating: 0,
+//            amount: 0,
+//            rights: 0
+//        };
+//        str = JSON.stringify(str);
+//        str = del_spaces(str);
+//        console.log('Ошибка в getRating');
+//        res.end(str);
+//    }
+//});
+
+
+
+
 
 app.get('/users', function (req, res) {
     if(strl == undefined) {return}
@@ -64,9 +90,7 @@ app.get('/users', function (req, res) {
 });
 
 
-app.listen(port, function () {
-    console.log("Listening on " + port);
-});
+
 
 setInterval(function() {
     // Каждые 10 сек. сканирует БД и составляет новый рейтинг.
@@ -145,27 +169,17 @@ function getRegister(id, res) {
     })
 }
 
-function insertRating(id, amount, rights, res) {
+function fresh(id, amount, rights, res) {
     var client = new pg.Client(conString);
     client.connect();
     client.query("UPDATE hsk SET amount=$1, rights=$2, date=$4, rating=$5 WHERE id=$3 ",
         [amount, rights, id, new Date(), setRating(amount,rights)], function (err, result) {
-        if (err) { client.end();
+        if (err) {
+            res.end(null);
+            client.end();
         } else {
-            client.query('SELECT amount,rights,rating FROM hsk WHERE id = $1', [id], function (err, result) {
-                if (err) { client.end();
-                } else {
-                        var  str = {
-                            rating: result.rows[0].rating,
-                            amount: result.rows[0].amount,
-                            rights: result.rows[0].rights
-                        };
-                        str = JSON.stringify(str);
-                        str = del_spaces(str);
-                        res.end(str);
-                        client.end();
-                }
-            });
+            res.end(null);
+            client.end();
         }
     });
 }

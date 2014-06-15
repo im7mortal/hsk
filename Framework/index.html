@@ -25,7 +25,7 @@
                     flashVars[curr[0]] = curr[1];
                 }
                 vkid = flashVars['viewer_id'];
-//                vkid = 1000000;
+//                vkid = 1000000;   // develop
             });
     </script>
     <script src="js/metro.min.js"></script>
@@ -128,58 +128,6 @@
             VK.callMethod('resizeWindow',1000,height);
         }
     },10);
-    window.onunload = function() {
-
-    };
-
-
-
-
-
-//    $(window).unload( function(){
-//            var xhr = new XMLHttpRequest()
-//            ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;
-//            xhr.open('GET', '/rating?'+params, true);
-//            xhr.send(null);
-//    } );
-//window.onunload = function() {
-//    var xhr = new XMLHttpRequest()
-//            ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;
-//    xhr.open('GET', '/rating?'+params, true);
-//    xhr.send(null);
-//};
-
-
-
-    //$(document).ready(function () {
-    //    $('.toServer').click(function () {
-    //            var xhr = new XMLHttpRequest();
-    //            var id = 59379236;
-    //            var amount = 1000;
-    //            var rights = 500;
-    //            var params = 'id=' + encodeURIComponent(id)+ '&amount=' + encodeURIComponent(amount)+ '&rights=' + encodeURIComponent(rights);
-    //            alert(params);
-    //            xhr.open('GET', '/vote?'+params, true);
-    //
-    //            xhr.onreadystatechange = function() {
-    //                if (xhr.readyState != 4) return;
-    //
-    //                if (xhr.status != 200) {
-    //                    // обработать ошибку
-    //                    alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
-    //                    return;
-    //                }
-    //                // обработать результат
-    //                amount_global = JSON.parse(xhr.responseText);
-    //                console.log('+++++++++++++++++');
-    //                console.log(amount_global.amount);
-    //                console.log(amount_global);
-    //            };
-    //            xhr.send(null);
-    //        }
-    //    );
-    //});
-
 </script>
 
 

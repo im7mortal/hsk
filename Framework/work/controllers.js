@@ -29,54 +29,27 @@ tryHskControllers.controller('testCtrl',
             ]
             , test_randoms = []
             ,result_client;
-
+        $scope.currentRights = 0;
+        document.getElementById('classCurrentRights').style.display = 'none';
         StateManager.add('test');
 
-console.log(vkid);
-        var rights;//нужен для проверки изменеия rights
-        var params ='id=' +vkid;
 
-        $resource('/register?' + params, {}, {
+        $resource('/register?id=' + vkid, {}, {
             query: {method:'GET',isArray:false}
         }).query().$promise.then(function(stat) {
                 $scope.result = stat;
                 $rootScope.result = stat;
-                rights = stat.rights;
             });
 
         $scope.$watch('result', function () {
-            if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
-            $rootScope.result = $scope.result;
-            if(parseInt($scope.result.amount) % 10 !== 0) {return}else{refreshResult()}
-            if($scope.result.rights == rights) {return}else{refreshResult()}
+            $resource('/fresh?id='+ vkid+ '&amount=' + $scope.result.amount + '&rights=' + $scope.result.rights, {}, {
+                query: {method:'GET',isArray:false}
+            }).query()
         }, true);
 
-        function refreshResult() {
-            var params ='id=' +vkid+ '&amount=' + $scope.result.amount + '&rights=' + $scope.result.rights;
-console.log(params);
-            $resource('/rating?'+ params, {}, {
-                query: {method:'GET',isArray:false}
-            }).query().$promise.then(function(stat) {
-                    $scope.result = stat;
-                    $rootScope.result = stat;
-                });
-        }
-
-        window.onunload = function() {
-            refreshResult()
-        };
 
 
-//        $scope.$watch('result.rights', function () {
-//            if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
-//            var params ='id=' +vkid+ '&amount=' + $scope.result.amount + '&rights=' + $scope.result.rights;
-//            $resource('/rating?'+ params, {}, {
-//                query: {method:'GET',isArray:false}
-//            }).query().$promise.then(function(stat) {
-//                    $scope.result = stat;
-//                    $rootScope.result = stat;
-//                });
-//         }, true);
+
 
 
         $scope.checkAnswer = function (ansv) {
@@ -92,6 +65,8 @@ console.log(params);
         }
         Hamster.prototype.check = function (ansv) {
             if (ansv) {
+                $scope.currentRights = ++$scope.currentRights;
+                document.getElementById('classCurrentRights').style.display = 'inline';
                 $scope.result.rights = ++$scope.result.rights;
             } else {
             }
@@ -316,11 +291,13 @@ console.log(params);
 
 
 tryHskControllers.controller('ratingCtrl', function ($scope, $http) {
-    $http.get('/users').success(function(data) {
-        VK.api("users.get", {user_ids: data, fields: "photo_medium"}, function (data) {
-            $scope.users = data;
+    setInterval(function() {
+        $http.get('/users').success(function(data) {
+            VK.api("users.get", {user_ids: data, fields: "photo_medium"}, function (data) {
+                $scope.users = data;
+            });
         });
-});
+    },3000);
 });
 
 
@@ -370,7 +347,7 @@ tryHskControllers.controller('loveCtrl', function ($scope) {
 
 });
 
-tryHskControllers.controller('infoCtrl', function ($scope, $rootScope, $timeout) {
+tryHskControllers.controller('infoCtrl', function ($scope, $rootScope) {
 
     $rootScope.$watch('result', function () {
 
@@ -379,7 +356,7 @@ tryHskControllers.controller('infoCtrl', function ($scope, $rootScope, $timeout)
                 $scope.class_rating = 'text-alert';
             }
             else {
-                $scope.rating = $rootScope.result.rating;
+                $scope.rating = (($rootScope.result.rights * $rootScope.result.rights) / ($rootScope.result.amount * $rootScope.result.amount))+(Math.random()/100);
                 $scope.class_rating = '';
             }
             $scope.amount = $rootScope.result.amount;
