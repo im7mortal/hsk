@@ -61,7 +61,6 @@
 </div>
 <!--дурацкий костыль от вспышек-->
 <div id="f" style="height: 1000px; width: 500px;"></div>
-<div class="container">
     <div class="tab-control" data-role="tab-control" id="tab-control">
         <ul class="tabs">
 
@@ -129,7 +128,7 @@
     setInterval(function() {
         var height = document.getElementById('tab-control').style.height;
         console.log(height);
-        VK.callMethod('resizeWindow',920,height);
+//        VK.callMethod('resizeWindow',920,height);
     },100);
 
 
