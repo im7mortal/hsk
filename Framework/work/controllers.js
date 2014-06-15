@@ -13,7 +13,8 @@ tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, Summary
     };
     $scope.refresh();
     $scope.predicate = 'id';
-    var height = document.getElementById('tab-control').style.height;
+
+    var height = document.getElementById('tab-control').style.width;
     console.log(height);
     console.log('lllllllllllllllllllllllllllllllllllllllllllllll');
 });
