@@ -3401,7 +3401,7 @@ a {
 .metro .image-container > .overlay-fluid {
   position: absolute;
   width: 100%;
-  height: 55px;
+  height: 15px;
   overflow: hidden;
   background-color: #1e1e1e;
   padding: 5px 10px;
