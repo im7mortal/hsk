@@ -97,8 +97,10 @@ setInterval(function() {
     var client = new pg.Client(conString);
     client.connect();
     client.query('SELECT id FROM hsk ORDER BY rating DESC', [], function (err, result) {
-        var array =[];
-        for(var i =0; i < 5; i++) {
+        var array =[]
+            ,lenght;
+        if (result.rows.length < 12) {lenght = 12}else { lenght = result.rows.length}
+        for(var i =0; i < lenght; i++) {
             if(result.rows[i].id == undefined) {break}
             array.push(result.rows[i].id)
         }
