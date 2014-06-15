@@ -16,6 +16,12 @@ tryHskControllers.controller('summaryCtrl', function ($scope, sortWords, Summary
 });
 
 
+setInterval(function() {
+    var height = document.getElementById('tab-control').style.height;
+    console.log(height);
+//        VK.callMethod('resizeWindow',920,height);
+},100);
+
 tryHskControllers.controller('testCtrl',
     function ($scope, $rootScope, Word, sortWords, $timeout, StateManager, $resource) {
         var question
