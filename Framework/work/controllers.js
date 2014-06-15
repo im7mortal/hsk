@@ -370,18 +370,21 @@ tryHskControllers.controller('loveCtrl', function ($scope) {
 
 });
 
-tryHskControllers.controller('infoCtrl', function ($scope, $rootScope) {
+tryHskControllers.controller('infoCtrl', function ($scope, $rootScope, $timeout) {
+
     $rootScope.$watch('result', function () {
-        if (parseInt($rootScope.result.amount) < 100) {
-            $scope.rating = 'Для получения рейтинга, нужно сделать не менее ста попыток';
-            $scope.class_rating = 'text-alert';
-        }
-        else {
-            $scope.rating = $rootScope.result.rating;
-            $scope.class_rating = '';
-        }
-        $scope.amount = $rootScope.result.amount;
-        $scope.rights = $rootScope.result.rights;
+        $timeout(function() {
+            if (parseInt($rootScope.result.amount) < 100) {
+                $scope.rating = 'Для получения рейтинга, нужно сделать не менее ста попыток';
+                $scope.class_rating = 'text-alert';
+            }
+            else {
+                $scope.rating = $rootScope.result.rating;
+                $scope.class_rating = '';
+            }
+            $scope.amount = $rootScope.result.amount;
+            $scope.rights = $rootScope.result.rights;
+        },100);
     }, true);
 
 });
