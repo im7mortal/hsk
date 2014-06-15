@@ -42,18 +42,18 @@ console.log(vkid);
                 $scope.result = stat;
                 $rootScope.result = stat;
                 rights = stat.rights;
-                console.log('rig +'+rights)
             });
 
         $scope.$watch('result', function () {
             if($scope.result.amount == undefined || $scope.result.rights == undefined) {return}
             $rootScope.result = $scope.result;
-            if($scope.result.amount % 10 !== 0) {return}else{refreshResult()}
+//            if($scope.result.amount % 10 !== 0) {return}else{refreshResult()}
             if($scope.result.rights == rights) {return}else{refreshResult()}
         }, true);
 
         function refreshResult() {
             var params ='id=' +vkid+ '&amount=' + $scope.result.amount + '&rights=' + $scope.result.rights;
+console.log(params);
             $resource('/rating?'+ params, {}, {
                 query: {method:'GET',isArray:false}
             }).query().$promise.then(function(stat) {
@@ -63,11 +63,7 @@ console.log(vkid);
         }
 
         window.onunload = function() {
-            var params ='id=' +vkid+ '&amount=' + $scope.result.amount + '&rights=' + $scope.result.rights;
-            $resource('/rating?'+ params, {}, {
-                query: {method:'GET',isArray:false}
-            }).query().$promise.then(function(stat) {
-                });
+            refreshResult()
         };
 
 
