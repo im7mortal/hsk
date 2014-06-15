@@ -125,6 +125,15 @@
 
 <script type="text/javascript" charset="cp1251">
 
+
+    setInterval(function() {
+        var height = document.getElementsByClassName('tab-control').style.height;
+        console.log(height);
+        VK.callMethod('resizeWindow',920,height);
+    },100);
+
+
+
 //    $(window).unload( function(){
 //            var xhr = new XMLHttpRequest()
 //            ,params = 'id=' +vkid+ '&amount=' + global_amount+ '&rights=' + global_rights;

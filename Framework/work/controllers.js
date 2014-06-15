@@ -87,7 +87,7 @@ console.log(vkid);
 
 
 
-        VK.callMethod('resizeWindow',1000,200);
+
 
 
 
