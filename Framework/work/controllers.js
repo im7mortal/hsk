@@ -218,6 +218,9 @@ tryHskControllers.controller('testCtrl',
             }
             $scope.button_next = 'СЛЕДУЮЩИЙ';
             $scope.class_button_next = 'info';
+            $scope.row = '';
+            $scope.span4 = '';
+            $scope.span8 = '';
             if (swords.length < 10) {
                 setSmock();
             } else {
@@ -234,6 +237,9 @@ tryHskControllers.controller('testCtrl',
             }
             $scope.button_next = 'СЛЕДУЮЩИЙ';
             $scope.class_button_next = 'info';
+            $scope.row = '';
+            $scope.span4 = '';
+            $scope.span8 = '';
             sortWords.getSortWords().then(function (words) {
                 $scope.words = words;
                 swords = words;
@@ -260,6 +266,9 @@ tryHskControllers.controller('testCtrl',
         $scope.refresh = function() {
             $scope.button_next = 'ОБНОВИТЬ';
             $scope.class_button_next = 'warning';
+            $scope.row = 'row';
+            $scope.span4 = 'span4';
+            $scope.span8 = 'span8';
             document.getElementById('id_button_next').style.display = 'inline';
             var elems = document.getElementsByClassName('text-muted');
             for(var i = 0; i < elems.length; i++) {
