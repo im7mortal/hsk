@@ -42,7 +42,25 @@ tryHskServices.factory('checkboxValues', ['$cookies', function ($cookies) {
 }]);
 
 
-
+tryHskServices.factory('settings', ['$cookies', function ($cookies) {
+	return {
+		getSettings: function () {
+			if ($cookies.settings === undefined) {
+				return {
+					sound: true,
+					color: true,
+					letter: false,
+					number: false
+				}
+			} else {
+				return JSON.parse($cookies.settings);
+			}
+		},
+		refreshSettings: function (object) {
+			$cookies.settings = JSON.stringify(object);
+		}
+	};
+}]);
 
 tryHskServices.factory('sortWords', function ($q, Word, checkboxValues) {
 
@@ -57,7 +75,6 @@ tryHskServices.factory('sortWords', function ($q, Word, checkboxValues) {
                     var result = [];
 //                        len = words.length;
                     for (var i = 0; i < words.length; i++) {
-
                         var hsk;
                         hsk = words[i].hsk.split('-');
                         switch (hsk[0]) {

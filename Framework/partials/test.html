@@ -8,7 +8,9 @@
                 <!--@fixme pornography  style="margin-top: 0"-->
                 <div class="row" style="margin-top: 0">
                     <!--@todo src porevo!!!!!-->
-                    <object height="1" width="1" data="http://china-standart.ru{{sound}}"></object>
+                    <div id="sound"></div>
+
+                    <!--<object height="1" width="1" data="http://china-standart.ru{{sound}}"></object>-->
                     <button class="button {{class_button_next}}" ng-click="nextWord()" style="margin-left:50px">{{button_next}} <i id='id_button_next' class="icon-spin"></i></button>
                     <output id="value"></output>
                     <ng-pluralize count="words.length"
@@ -50,15 +52,17 @@
                                     <div class="row" style="margin-top:0;margin-bottom:0">
                                         <audio ngsrc="{{wordsTest.sound}}"></audio>
                                         <div class="span4"><h2>{{wordsTest.char}}</h2></div>
-                                        <div class="span4"><h2>{{wordsTest.pinyin}}</h2></div>
+                                        <div class="span4"><h2>
+                                            <span style="color:{{tone.color}}" ng-repeat="tone in wordsTest.pinyin">{{tone.pinyin }}</span>
+                                        </h2></div>
                                     </div>
-                                    <div class="{{row}}" style="margin-top:0;margin-bottom:0">
-                                        <div class="{{span4}}">
+                                    <div class="row" style="margin-top:0;margin-bottom:0">
+                                        <div class="span4">
                                             <button class="button {{wordsTest.ansver}}" ng-click="nextWord()">
                                             {{wordsTest.button}}
                                         </button>
                                         </div>
-                                        <div class="{{span8}}">
+                                        <div class="span8">
                                             <p class="text-muted">Результат не будет засчитан</p>
                                         </div>
 
