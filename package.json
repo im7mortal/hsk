@@ -6,7 +6,7 @@
     "dependencies": {
         "express": "^4.3.2",
         "logfmt": "^1.1.2",
-        "facebook-node-sdk": "",
+        "facebook-node-sdk": "0.2.0",
         "pg": "0.6.15"
     },
     "devDependencies": {},
