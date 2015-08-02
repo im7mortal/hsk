@@ -1,268 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="product" content="">
-    <meta name="description"
-          content="Популярный тренажер для экзамена HSK. И просто отличное приложение для изучения основной лексики 汉语.">
-    <meta name="author" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="product" content="">
+	<meta name="description"
+	      content="Популярный тренажер для экзамена HSK. И просто отличное приложение для изучения основной лексики 汉语.">
+	<meta name="author" content="">
 
-    <!--Metro UI-->
-    <link href="css/metro-bootstrap.css" rel="stylesheet">
-    <link href="css/iconFont.css" rel="stylesheet">
-    <link href="css/tryhsk.css" rel="stylesheet">
-    <script src="js/jquery/jquery-2.1.1.min.js"></script>
-    <script src="js/jquery/jquery.widget.min.js"></script>
-    <script src="//vk.com/js/api/xd_connection.js?2" type="text/javascript"></script>
-    <!--id пользователя-->
-<!--    <script>
-        var vkid;
-        VK.init(function () {    // инициализируем Vk API
-            var parts = document.location.search.substr(1).split("&");
-            var flashVars = {}, curr;
-            for (i = 0; i < parts.length; i++) {
-                curr = parts[i].split('=');
-                flashVars[curr[0]] = curr[1];
-            }
-            vkid = flashVars['viewer_id'];
-//                vkid = 1000000;   // develop
-        });
-    </script>-->
-    <script src="js/metro.min.js"></script>
-    <script src="js/docs.js"></script>
-    <script src="js/underscore-min.js"></script>
-
-    <!--AngularJS-->
-    <script src="angular/angular.js"></script>
-    <script src="angular/angular-locale_ru-ru.js"></script>
-    <script src="angular-route/angular-route.js"></script>
-    <script src="angular-resource/angular-resource.js"></script>
-    <script src="src/ngCookies/cookies.js"></script>
-    <script src="work/app.js"></script>
-    <script src="work/loveCtrl.js"></script>
-    <script src="work/summaryCtrl.js"></script>
-    <script src="work/testCtrl.js"></script>
-    <script src="work/infoCtrl.js"></script>
-    <script src="work/checkboxCtrl.js"></script>
-    <script src="work/settingsCtrl.js"></script>
-    <script src="work/ratingCtrl.js"></script>
-    <script src="work/filters.js"></script>
-    <script src="work/services.js"></script>
-
-    <title>HSK. Китайский язык 汉语</title>
+	<title>HSK. Китайский язык 汉语</title>
 
 
 </head>
-<body class="metro" ng-app="tryHsk" ng-cloak>
-<div class="loader" ng-show="globalLoader">
-    <div class="spinner">
-        <div class="rect1"></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
-    </div>
+<body ng-app="tryHsk">
+<style>
+    .loader{position:fixed;width:100%;height:100%;z-index:1000;opacity:1;background-color:#fff}
+    .summaryLoader{position:fixed;width:inherit;height:100%;z-index:1000;opacity:1;background-color:#fff}
+    .spinner{margin:100px auto;width:50px;height:30px;text-align:center;font-size:10px;right:50%}
+    .spinner>div{background-color:#333;height:100%;width:6px;display:inline-block;-webkit-animation:stretchdelay 1.2s infinite ease-in-out;animation:stretchdelay 1.2s infinite ease-in-out}
+    .spinner .rect2{-webkit-animation-delay:-1.1s;animation-delay:-1.1s}
+    .spinner .rect3{-webkit-animation-delay:-1s;animation-delay:-1s}
+    .spinner .rect4{-webkit-animation-delay:-.9s;animation-delay:-.9s}
+    .spinner .rect5{-webkit-animation-delay:-.8s;animation-delay:-.8s}
+    @-webkit-keyframes stretchdelay{0%,100%,40%{-webkit-transform:scaleY(.4)}
+        20%{-webkit-transform:scaleY(1)}}
+    @keyframes stretchdelay{0%,100%,40%{transform:scaleY(.4);-webkit-transform:scaleY(.4)}
+        20%{transform:scaleY(1);-webkit-transform:scaleY(1)}}
+</style>
+<div class="loader" ng-init="globalLoader = true" ng-show="globalLoader">
+	<div class="spinner">
+		<div class="rect1"></div>
+		<div class="rect2"></div>
+		<div class="rect3"></div>
+		<div class="rect4"></div>
+		<div class="rect5"></div>
+	</div>
 </div>
-<!--дурацкий костыль от вспышек-->
-<div id="f" style="height: 1000px; width: 500px;"></div>
-<div class="tab-control" data-role="tab-control" id="tab-control">
-    <ul class="tabs">
+<!--Metro UI-->
+<div class="tabcontrol" id="tab-control" data-role="tabControl">
+	<ul class="tabs">
 
-        <li class="active"><a href="#_page_1">ТЕСТ</a></li>
-        <li><a href="#_page_2">СЛОВАРЬ</a></li>
-        <li class="place-right"><a href="#_page_5"><i class="icon-heart"></i></a></li>
-        <li class="place-right "><a href="#_page_4"><i class="icon-cog"></i></a></li>
-        <li class="place-right"><a href="#_page_3"><i class="icon-book"></i></a></li>
-    </ul>
-    <div class="frames">
+		<li class="active"><a href="#_page_1" ng-bind="content.test"></a></li>
+		<li><a href="#_page_2" ng-bind="content.summary"></a></li>
+		<li class="place-right"><a href="#_page_5"><span class="mif-heart mif-lg fg-red"></span></a></li>
+		<li class="place-right "><a href="#_page_4"><span class="mif-cog mif-lg"></span></a></li>
+		<!--<li class="place-right"><a href="#_page_3"><span class="mif-book mif-lg"></span></a></li>-->
+	</ul>
+	<div class="frames">
 
-        <div class="frame" id="_page_1" style="padding: 0">
-            <div ng-include="'partials/test.html'"></div>
-        </div>
+		<div class="frame no-padding" id="_page_1">
+			<div ng-include="'partials/test/test.html'"></div>
+		</div>
 
-        <div class="frame" id="_page_2" style="padding: 0">
-            <div ng-include="'partials/summary.html'"></div>
-        </div>
+		<div class="frame no-padding" id="_page_2">
+			<div ng-include="'partials/summary/summary.html'"></div>
+		</div>
 
-        <div class="frame" id="_page_3">
-            <div ng-include="'partials/info.html'"></div>
-        </div>
+		<div class="frame no-padding" id="_page_3">
+			<div ng-include="'partials/info/info.html'"></div>
+		</div>
 
-        <div class="frame" id="_page_4">
-            <div ng-include="'partials/settings.html'">dadad</div>
-        </div>
+		<div class="frame no-padding" id="_page_4">
+			<div ng-include="'partials/settings/settings.html'">dadad</div>
+		</div>
 
-        <div class="frame" id="_page_5">
-            <div ng-include="'partials/love.html'"></div>
-        </div>
-
-
-        <!--<div class="grid" style="margin-top:0;margin-bottom:0">
-            <div class="row" style="margin-top:0;margin-bottom:0">
-                <div class="accordion" data-role="accordion" data-closeany="true">
-                    <div class="accordion-frame">
-                        <a class="active heading" href="#">Рейтинг пользователей</a>
-
-                        <div class="content rating_content">
-                            <div class="grid">
-                                <div class="row" style="margin: 0!important" ng-controller="ratingCtrl">
-                                    <div class="span1" ng-repeat="user in users.response">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="{{user.photo_medium}}">
-
-                                            <div class="overlay">
-                                                {{user.first_name}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-        <div class="grid" style="margin-top:0;margin-bottom:0">
-            <div class="row" style="margin-top:0;margin-bottom:0">
-                <div class="accordion" data-role="accordion" data-closeany="true">
-                    <div class="accordion-frame">
-                        <a class="active heading" href="#">Рейтинг пользователей</a>
-
-                        <div class="content rating_content">
-                            <div class="grid">
-                                <div class="row" style="margin: 0!important" ng-controller="ratingCtrl">
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs613424.vk.me/v613424233/1616d/fwRnkadeKgA.jpg">
-
-                                            <div class="overlay">
-                                                Салтанат
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs616020.vk.me/v616020106/16ced/xOAqrP_BKbU.jpg">
-
-                                            <div class="overlay">
-                                               Елена
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs313727.vk.me/v313727608/7b5b/9-8_CQm2dpo.jpg">
-
-                                            <div class="overlay">
-                                                Дарья
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs412728.vk.me/v412728739/10b5/cqVru9GCQ30.jpg">
-
-                                            <div class="overlay">
-                                                Екатерина
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs407523.vk.me/v407523525/be6c/CcyDSPu0O0w.jpg">
-
-                                            <div class="overlay">
-                                                Наталья
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs617120.vk.me/v617120734/151d3/U8ODoIZOP_E.jpg">
-
-                                            <div class="overlay">
-                                                Юлия
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs620720.vk.me/v620720530/a390/jUd-vfeN4BY.jpg">
-
-                                            <div class="overlay">
-                                                Наталия
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://vk.com/images/camera_100.gif">
-
-                                            <div class="overlay">
-                                               Павел
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs619319.vk.me/v619319496/f4d3/1eKIzee04YA.jpg">
-
-                                            <div class="overlay">
-                                               Юлия
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs608730.vk.me/v608730596/ddd1/Z-Kw4-mjLis.jpg">
-
-                                            <div class="overlay">
-                                               Катя
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://cs319127.vk.me/v319127103/5bc7/yQtJ1JQbKQM.jpg">
-
-                                            <div class="overlay">
-                                              Андрей
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="span1">
-                                        <div class="image-container">
-                                            <img class="image" height="60px" width="60px" src="http://vk.com/images/camera_100.gif">
-
-                                            <div class="overlay">
-                                               Иван
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="frame no-padding" id="_page_5">
+			<div ng-include="'partials/love/love.html'"></div>
+		</div>
+	</div>
 </div>
 
-
-
-
-<script type="text/javascript" charset="cp1251">
-    var height = document.getElementById('tab-control').offsetHeight;
-    setInterval(function () {
-        if (height !== document.getElementById('tab-control').offsetHeight) {
-            height = document.getElementById('tab-control').offsetHeight;
-            VK.callMethod('resizeWindow', 1000, height);
-        }
-    }, 10);
-</script>
-
-
+<link rel="stylesheet" type="text/css" href="public/css/all.css" defer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js" defer></script>
+<script src="appDev/vendor/js/metro.js" defer></script>
+<script src="//vk.com/js/api/xd_connection.js?2" type="text/javascript" defer></script>
+<script src="public/js/all.js" defer></script>
 </body>
 </html>
