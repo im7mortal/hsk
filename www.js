@@ -7,14 +7,14 @@ var express = require("express")
 	, app = express();
 var port = Number(process.env.PORT || 5000);
 
-var index = fs.readFileSync('Framework/index.html');
+var index = fs.readFileSync('tryhsk.github.com/index.html');
 var t = true;
 app.use('/', function(req, res, next) {
 	if (t) console.log(req.headers); // '/admin/new'
 	t = false;
 	next();
 });
-app.use(express.static('Framework'));
+app.use(express.static('tryhsk.github.com'));
 app.use(logfmt.requestLogger());
 //app.use(express.favicon('Framework/public/img/ico.png', { maxAge: 2592000000 }));
 app.listen(port, function () {
